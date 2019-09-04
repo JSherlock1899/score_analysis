@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 覆盖整个页面 */
+.login {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.login .login-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: wrap;
+    align-self: wrap;
+    justify-content: space-around;
+    padding: 15px;
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+}
+
+
+/* 中间区域 */
+.login-wrapper .login-content {
+    width: 960px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 177px 130px 33px 95px;
+}
+
+/* 中间区域左侧 */
+.login-wrapper .login-content .login-left {
+    width: 316px;
+    max-width: 448px;
+
+}
+
+.login-wrapper .login-content .login-left img {
+    max-width: 100%;
+
+}
+
+/* 右侧form表单 */
+.login-form {
+    width: 290px;
+}
+
+.login-form .login-title {
+    font-size: 24px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+}
+
+/* 两个登陆框 */
+.login-com {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-ident {
+    position: relative;
+}
+
+.login-com .identity {
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+    border-color: #666666;
+    outline: none;
+}
+
+
+.login-password {
+    position: relative;
+}
+
+.login-com .icon {
+    font-size: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 35px;
+    pointer-events: none;
+    color: #666666;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.login-com .icon .iconfont {
+    display: inline-block;
+    font-size: 18px;
+
+}
+
+.login-form .dl {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.login-form .dl .btn {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #57b846;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.login-form .login-select select {
+    width: 35%;
+    outline: none;
+    border-radius: 10px;
+    height: 30px;
+    cursor: pointer;
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+}
+
+
+
+@media screen and (max-width:762px) {
+    .login .login-wrapper {
+        width: 100%;
+        min-height: 100vh;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: wrap;
+        align-self: wrap;
+        justify-content: space-around;
+        padding: 15px;
+        background:#5d5e5d;
+    }
+
+    .login-wrapper .login-content{
+        padding: 80px 90px 33px 85px;
+    }
+}

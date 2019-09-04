@@ -1,7 +1,8 @@
 package com.slxy.analysis.model;
 
 
-public class Student extends User{
+
+public class Student extends User {
 
   private String schoolName;
   private String nativePlace;

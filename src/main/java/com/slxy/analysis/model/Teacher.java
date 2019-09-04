@@ -3,7 +3,8 @@ package com.slxy.analysis.model;
 /**
  *
  */
-public class Teacher extends Student{
+public class Teacher extends User {
+
 
   /**
    * 籍贯
@@ -30,9 +31,14 @@ public class Teacher extends Student{
    */
   private String graduateSchool;
   /**
-   * z证件照路径
+   * 证件照路径
    */
   private String picture;
+
+  /**
+   * 所教课程
+   */
+  private String subject;
 
   public String getNativePlace() {
     return nativePlace;
@@ -90,4 +96,11 @@ public class Teacher extends Student{
     this.picture = picture;
   }
 
+  public String getSubject() {
+    return subject;
+  }
+
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 }

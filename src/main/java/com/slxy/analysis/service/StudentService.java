@@ -9,5 +9,7 @@ import com.slxy.analysis.model.Student;
  */
 public interface StudentService {
 
-    Student getStudentById(String id);
+    Student getStudentPassword(Integer grade, String id);
+
+    Student getStudentNameAndClassNumber(Integer grade, String id);
 }

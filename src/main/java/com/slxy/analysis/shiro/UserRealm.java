@@ -1,9 +1,9 @@
 package com.slxy.analysis.shiro;
 
-import com.slxy.analysis.mapper.StudentMapper;
 import com.slxy.analysis.model.Permission;
 import com.slxy.analysis.model.User;
 import com.slxy.analysis.service.PermissionService;
+import com.slxy.analysis.service.StudentService;
 import com.slxy.analysis.service.TeacherService;
 import com.slxy.analysis.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -23,6 +23,12 @@ import java.util.Set;
  * @description:自定义realm
  * @date: 2019/8/31 18:11
  */
+
+/**
+ * @author: sherlock
+ * @description:自定义realm
+ * @date: 2019/8/31 18:11
+ */
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
@@ -32,7 +38,7 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     TeacherService teacherService;
     @Autowired
-    StudentMapper studentMapper;
+    StudentService studentService;
     /**
      * 执行认证逻辑,判断用户名和密码
      * @param authenticationToken  封装的前台传入的用户名和密码
@@ -47,9 +53,14 @@ public class UserRealm extends AuthorizingRealm {
         //根据不同的身份进行验证
         User user;
         if (User.STUDENT.equals(role)){
-            user = studentMapper.getStudentById(token.getUsername());
-            //在用户信息中添加自己的角色信息
-            user.setRole("student");
+            //根据学生用户名获取其所在的年级
+            Integer grade = Integer.valueOf(token.getUsername().substring(0,2));
+            user = studentService.getStudentPassword(grade,token.getUsername());
+            if (user != null) {
+                //在用户信息中添加自己的角色信息
+                user.setRole("student");
+            }
+            //添加用户角色
         }else if(User.TEACHER.equals(role)){
             user = teacherService.getTeacherById(token.getUsername());
             if (user == null) {
@@ -76,7 +87,6 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("授权！！！");
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获取当前用户的授权字符串集合，防止多次授权
         Set<String> stringPermissions = info.getStringPermissions();
@@ -93,8 +103,9 @@ public class UserRealm extends AuthorizingRealm {
             for (Permission p : permissions) {
                 //添加资源的授权字符串
                 info.addStringPermission(p.getPermission());
-                System.out.println("permission = " + p.getPermission());
             }
+            //授权学生角色
+            info.addRole("student");
         }else if(User.TEACHER.equals(user.getRole())){
             //获取当前教师权限角色
             String role = teacherService.getTeacherRole(user.getId());
@@ -103,9 +114,10 @@ public class UserRealm extends AuthorizingRealm {
             for (Permission p : permissions) {
                 //添加资源的授权字符串
                 info.addStringPermission(p.getPermission());
-                System.out.println("permission = " + p.getPermission());
-                }
             }
-            return info;
+            //授权教师角色
+            info.addRole("teacher");
         }
+        return info;
+    }
 }

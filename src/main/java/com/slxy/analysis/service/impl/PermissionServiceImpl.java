@@ -4,6 +4,7 @@ import com.slxy.analysis.mapper.PermissionMapper;
 import com.slxy.analysis.model.Permission;
 import com.slxy.analysis.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class PermissionServiceImpl implements PermissionService {
     PermissionMapper permissionMapper;
 
     @Override
+    @Cacheable(cacheNames = "userPermissions")
     public List<Permission> listTeacherPermissionsByRole(String role) {
         return permissionMapper.listTeacherPermissionsByRole(role);
     }

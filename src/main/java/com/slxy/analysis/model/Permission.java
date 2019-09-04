@@ -1,7 +1,9 @@
 package com.slxy.analysis.model;
 
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
 
   private long id;
   /**
