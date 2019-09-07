@@ -10,6 +10,7 @@
         classNumber：<a href="#" th:text="${classNumber}" > </a>
     </div>
     <p th:text="${classList}"></p>
+    <p th:text="${msg}"></p>
 
     <div shiro:hasPermission="teacher:selectGrade">
         <a href="/teacher/grade">查询成绩信息</a>
@@ -19,6 +20,9 @@
     </div>
     <div shiro:hasPermission="teacher:updateGrade">
         <a href="/user/add">修改成绩信息</a>
+    </div>
+    <div shiro:hasPermission="superAdmin:createTable">
+        <a href="/superAdmin/createTable">创建考试表</a>
     </div>
 </body>
 </html>
