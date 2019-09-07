@@ -1,7 +1,9 @@
 package com.slxy.analysis.model;
 
 
-public class Grade {
+import java.io.Serializable;
+
+public class Grade implements Serializable {
 
   private long id;
   private String name;

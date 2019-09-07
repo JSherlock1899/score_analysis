@@ -39,25 +39,22 @@ public class TeacherController {
      */
     @RequestMapping("grade")
     public ModelAndView listStudentGrade(HttpServletRequest request, @RequestParam(defaultValue = "1")
-            int pageNum, @RequestParam(defaultValue = "5") int pageSize,  @RequestParam(defaultValue = "17_students_grades_20190728") String exam,
+            int pageNum, @RequestParam(defaultValue = "5") int pageSize,  @RequestParam(defaultValue = "17_students_grades_20190728",name = "examName") String exam,
             @RequestParam(defaultValue = "1701") String classNumber){
         System.out.println("exam = " + exam);
         System.out.println("classNumber = " + classNumber);
+        System.out.println("pageSize = " + pageSize);
         //初始化老师所带的班级的下拉框
         ModelAndView mv = teacherService.listClass(request);
         //初始化考试名称的下拉框
         List<Exam> examList = userMapper.getExam();
-//        for (String e : examList){
-//            System.out.printf("e = " + e);
-//        }
-//        exam = "17_students_grades_20190728";
-//        classNumber = "1701";
         //传入当前页以及每页的数据条数
         PageHelper.startPage(pageNum, pageSize);
         //获取学生成绩信息
         List<Grade> studentGrades = teacherService.getStudentGrades(exam, classNumber);
         //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
         PageInfo<Grade> pageInfo = new PageInfo(studentGrades);
+        //该map用来存放各种要传递的参数
         //pageINfo封装了分页的详细信息，也可以指定连续显示的页数
         mv.addObject("pageInfo", pageInfo);
         //将学生成绩信息传到前端

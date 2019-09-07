@@ -109,13 +109,11 @@ public class UserRealm extends AuthorizingRealm {
         }else if(User.TEACHER.equals(user.getRole())){
             //获取当前教师权限角色
             String role = teacherService.getTeacherRole(user.getId());
-            System.out.println("role = " + role);
             //获取当前用户的授权字符串列表
             List<Permission> permissions = permissionService.listTeacherPermissionsByRole(role);
             for (Permission p : permissions) {
                 //添加资源的授权字符串
                 info.addStringPermission(p.getPermission());
-                System.out.println(p.getPermission());
             }
             //授权教师角色
             info.addRole("teacher");
