@@ -1,5 +1,12 @@
 package com.slxy.analysis.service;
 
+import com.slxy.analysis.model.Exam;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * @author: sherlock
  * @description:
@@ -7,4 +14,20 @@ package com.slxy.analysis.service;
  */
 public interface UserService {
 
+    /**
+     * 用户登录逻辑处理，并获取其基本信息
+     * @param request
+     * @param username 用户名
+     * @param password 密码
+     * @param role 权限角色
+     * @param model
+     * @return
+     */
+    ModelAndView login(HttpServletRequest request, String username, String password, String role, Model model);
+
+    /**
+     * 获取考试名
+     * @return
+     */
+    List<Exam> getExam();
 }

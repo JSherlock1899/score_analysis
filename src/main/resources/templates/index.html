@@ -9,8 +9,10 @@
     <div shiro:hasRole="student">
         classNumber：<a href="#" th:text="${classNumber}" > </a>
     </div>
+    <p th:text="${classList}"></p>
+
     <div shiro:hasPermission="teacher:selectGrade">
-        <a href="/user/selectGrade">查询成绩信息</a>
+        <a href="/teacher/grade">查询成绩信息</a>
     </div>
     <div shiro:hasPermission="student:selectGrade">
         <a href="/user/add">查询成绩信息</a>

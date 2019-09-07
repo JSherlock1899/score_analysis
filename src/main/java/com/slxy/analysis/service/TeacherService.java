@@ -1,7 +1,10 @@
 package com.slxy.analysis.service;
 
+import com.slxy.analysis.model.Grade;
 import com.slxy.analysis.model.Teacher;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -18,4 +21,8 @@ public interface TeacherService {
     Teacher getTeacherNameAndSubject(String id);
 
     List<String> getTeacherClass(String subject, String id);
+
+    List<Grade> getStudentGrades(String exam, String classNumber);
+
+    public ModelAndView listClass(HttpServletRequest request);
 }

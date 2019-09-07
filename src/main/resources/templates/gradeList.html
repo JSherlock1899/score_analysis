@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <select name="class" shiro:hasRole="teacher">
+        <!--/*@thymesVar id="classList" type=""*/-->
+        <option th:each="c:${classList}" th:value="${c}" th:text="${c}"></option>
+    </select>
+    <select name="exam" id="" shiro:hasRole="teacher">
+        <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}"></option>
+    </select>
+    <table border="1">
+        <tr>
+            <td>姓名</td>
+            <td>语文</td>
+            <td>数学</td>
+            <td>英语</td>
+            <td>物理</td>
+            <td>化学</td>
+            <td>生物</td>
+            <td>历史</td>
+            <td>政治</td>
+            <td>地理</td>
+            <td>技术</td>
+        </tr>
+        <tr th:each="grade:${studentGrades}">
+            <td th:text="${grade.name}"></td>
+            <td th:text="${grade.chineseGrades}"></td>
+            <td th:text="${grade.mathGrades}"></td>
+            <td th:text="${grade.englishGrades}"></td>
+            <td th:text="${grade.physicsGrades}"></td>
+            <td th:text="${grade.chemistryGrades}"></td>
+            <td th:text="${grade.biologyGrades}"></td>
+            <td th:text="${grade.historyGrades}"></td>
+            <td th:text="${grade.politicsGrades}"></td>
+            <td th:text="${grade.geographyGrades}"></td>
+            <td th:text="${grade.technologyGrades}"></td>
+        </tr>
+    </table>
+    当前页：<a href="#" th:text="${pageInfo.pageNum}"></a>
+    条数：<select name="pageSize">
+            <option th:text="${pageInfo.pageSize}" th:value="${pageInfo.pageSize}"></option>
+            <option th:text="15" th:value="15"></option>
+            <option th:text="20" th:value="20"></option>
+            <option th:text="25" th:value="25"></option>
+        </select>
+    <!--显示分页信息-->
+    <div class="modal-footer no-margin-top">
+        <div class="col-md-6">
+            当前第 [[${pageInfo.pageNum}]]页,共 [[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录
+        </div>
+        <ul class="pagination pull-right no-margin">
+            <!--首页-->
+            <li>
+                <a th:href="@{'/teacher/grade?pageNum=1&pageSize=' + ${pageInfo.pageSize}
+                 + '&classNumber=' + ${classNumber} + '&exam=18_students_grades_20190728'}">首页</a>
+            </li>
+            <!--上一页-->
+            <li class="prev" th:if="${pageInfo.hasPreviousPage}">
+                <a th:href="@{'/teacher/grade?pageNum=' + ${pageInfo.prePage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber}}">
+                    <span aria-hidden="true">«</span>
+                </a>
+            </li>
+            <!--遍历条数-->
+            <li th:each="nav:${pageInfo.navigatepageNums}">
+                <a th:href="@{'/teacher/grade?pageNum=' + ${nav} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber}}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
+                <span style="font-weight: bold;background: #6faed9;" th:if="${nav == pageInfo.pageNum}" th:text="${nav}" ></span>
+            </li>
+            <!--下一页-->
+            <li class="next" th:if="${pageInfo.hasNextPage}">
+                <a th:href="@{'/teacher/grade?pageNum=' + ${pageInfo.nextPage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber}}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <!--尾页-->
+            <li>
+                <a th:href="@{'/teacher/grade?pageNum=' + ${pageInfo.pages} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber}}">尾页</a>
+            </li>
+        </ul>
+    </div>
+
+    <div>当前页号：<span th:text="${pageInfo.pageNum}"></span></div>
+    <div>每页条数：<span th:text="${pageInfo.pageSize}"></span></div>
+    <div>起始行号：<span th:text="${pageInfo.startRow}"></span></div>
+    <div>终止行号：<span th:text="${pageInfo.endRow}"></span></div>
+    <div>总结果数：<span th:text="${pageInfo.total}"></span></div>
+    <div>总页数：<span th:text="${pageInfo.pages}"></span></div>
+    <hr />
+    <div>是否为第一页：<span th:text="${pageInfo.isFirstPage}"></span></div>
+    <div>是否为最后一页：<span th:text="${pageInfo.isLastPage}"></span></div>
+    <div>是否有前一页：<span th:text="${pageInfo.hasPreviousPage}"></span></div>
+    <div>是否有下一页：<span th:text="${pageInfo.hasNextPage}"></span></div>
+</div>
+</body>
+</html>

@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
  * @description:
  * @date: 2019/9/1 11:04
  */
-public interface StudentMapper {
+public interface StudentMapper extends UserMapper {
 
     /**
      * 根据id和所在年级获取学生密码，id同时也是用户名
