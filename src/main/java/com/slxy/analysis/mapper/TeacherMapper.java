@@ -1,5 +1,6 @@
 package com.slxy.analysis.mapper;
 
+import com.slxy.analysis.model.ClassGrade;
 import com.slxy.analysis.model.Grade;
 import com.slxy.analysis.model.Teacher;
 import org.apache.ibatis.annotations.Select;
@@ -60,8 +61,29 @@ public interface TeacherMapper extends UserMapper {
      */
     @Cacheable(cacheNames = "studentGrades")
     @Select("select name,chinese_grades,math_grades,english_grades,physics_grades,chemistry_grades," +
-            "biology_grades,history_grades,politics_grades,geography_grades,technology_grades from ${exam} e " +
-            "join ${grade}_students_basic_info s on e.id = s.id where s.classNumber = #{classNumber}")
-    List<Grade> getStudentGrades(String exam, String classNumber, String grade);
+            "biology_grades,history_grades,politics_grades,geography_grades,technology_grades,total_point_grades from ${exam} e " +
+            "join ${grade}_students_basic_info s on e.id = s.id  where s.classNumber = #{classNumber} order by ${subject} ${sort}")
+    List<Grade> getStudentGrades(String exam, String classNumber, String grade,Integer pageNum, Integer pageSize,String subject,String sort);
+
+    /**
+     * 根据年级和班级成绩表查出各班的平均成绩
+     * @param classGradeTable 该次考试各班的平均成绩
+     * @param startYear 年级
+     * @param pageNum 当前页
+     * @param pageSize 每页显示数据的条数
+     * @return
+     */
+    @Select("select e.classNumber,chinese_average_grades,math_average_grades,english_average_grades,physics_average_grades,chemistry_average_grades," +
+            "biology_average_grades,history_average_grades,politics_average_grades,geography_average_grades,technology_average_grades,total_point_average_grades from ${classGradeTable} e " +
+            "join class_basic_info c on e.classNumber = c.classNumber where c.start_year = #{startYear} order by ${subject} ${sort}")
+    List<ClassGrade> getClassGrades(String classGradeTable, String startYear, Integer pageNum, Integer pageSize,String subject, String sort);
+
+    /**
+     * 获取某个年级有哪几个班
+     * @param startYear 入学时间，也可以看做是年级
+     * @return
+     */
+    @Select("select classNumber from class_basic_info where start_year = #{startYear}")
+    List<String> getGradeClass(String startYear);
 
 }

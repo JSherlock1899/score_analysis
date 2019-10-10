@@ -29,4 +29,45 @@ public interface SuperAdminMapper {
             "  PRIMARY KEY (`id`)\n" +
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8;")
     void createStudentTable(String tableName);
+
+    /**
+     * 调用存储过程计算各班平均分并插入对应表
+     * @param subjects 考试科目字段
+     * @param avgSubject 考试平均分字段
+     * @param examTable 考试表
+     * @param classGradeTable 班级成绩表
+     * @param start_year 入学年份（即年级）
+     */
+    @Select("CALL insertClassGrade('${subjects}','${avgSubject}','${examTable}','${classGradeTable}','${start_year}');")
+    void callAverageGrade(String subjects, String avgSubject, String examTable, String classGradeTable, String start_year );
+
+    /**
+     *
+     * @param gradeTable 学生成绩表
+     * @param rankingTable 学生排名表
+     * @param subjects 考试科目字段
+     * @param ranking 学生排名字段
+     * @param classNumber 班级
+     */
+    @Select("CALL school_ranking('${gradeTable}','${rankingTable}','${subjects}','${ranking}','${classNumber}');")
+    void callSchoolRanking(String gradeTable,String rankingTable,String subjects,String ranking,String classNumber);
+
+    /**
+     *
+     * @param gradeTable 学生成绩表
+     * @param rankingTable 学生排名表
+     * @param subjects 考试科目字段
+     * @param ranking 学生排名字段
+     * @param classNumber 班级
+     */
+    @Select("CALL class_ranking('${gradeTable}','${rankingTable}','${subjects}','${ranking}','${classNumber}');")
+    void callClassRanking(String gradeTable,String rankingTable,String subjects,String ranking,String classNumber);
+
+    /**
+     * 初始化学生排名表
+     * @param gradeTable 学生成绩表
+     * @param rankingTable 学生排名表
+     */
+    @Select("CALL initRankingTable('${gradeTable}','${rankingTable}')")
+    void callInitRankingTable(String gradeTable, String rankingTable);
 }

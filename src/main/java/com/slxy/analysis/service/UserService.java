@@ -1,10 +1,12 @@
 package com.slxy.analysis.service;
 
+import com.slxy.analysis.model.ClassGrade;
 import com.slxy.analysis.model.Exam;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -29,5 +31,8 @@ public interface UserService {
      * 获取考试名
      * @return
      */
-    List<Exam> getExam();
+    HashSet<Exam> getExam(List<String> grades);
+
+    ClassGrade getClassAverageGrade(String gradeTable,String classNumber);
+
 }

@@ -1,10 +1,7 @@
 package com.slxy.analysis.service.impl;
 
 import com.slxy.analysis.mapper.UserMapper;
-import com.slxy.analysis.model.Exam;
-import com.slxy.analysis.model.Student;
-import com.slxy.analysis.model.Teacher;
-import com.slxy.analysis.model.User;
+import com.slxy.analysis.model.*;
 import com.slxy.analysis.result.CodeMsg;
 import com.slxy.analysis.service.StudentService;
 import com.slxy.analysis.service.TeacherService;
@@ -15,11 +12,13 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -88,7 +87,36 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public List<Exam> getExam() {
-        return userMapper.getExam();
+    public HashSet<Exam> getExam(List<String> grades) {
+        List<Exam> exams;
+        HashSet<Exam> examSet = new HashSet<Exam>();
+        for (String grade : grades){
+            grade = grade.substring(0, 2);
+            exams = userMapper.getExam(grade);
+            if (exams != null){
+                for (Exam e : exams){
+                    if (!examSet.contains(e)){
+                        examSet.add(e);
+                    }
+                }
+            }
+        }
+        return examSet;
     }
+
+    /**
+     * 获取某个班的各科平均分
+     * @param gradeTable 成绩表
+     * @param classNumber 班级
+     * @return
+     */
+    @Override
+    @Cacheable(cacheNames = "ClassAverageGrade")
+    public ClassGrade getClassAverageGrade(String gradeTable,String classNumber) {
+        //拼接字符串获得班级成绩表名
+        String classGradeTable = gradeTable.replace("students","class");
+        return userMapper.getClassAverageGrade(classGradeTable, classNumber);
+    }
+
+
 }

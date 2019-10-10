@@ -1,8 +1,11 @@
 package com.slxy.analysis.model;
 
 
-public class Exam {
+import java.io.Serializable;
 
+public class Exam implements Serializable {
+  //序列化
+  private static final long serialVersionUID = 3606662852460914830L;
   private String examName;
   private String examType;
   private String examTime;

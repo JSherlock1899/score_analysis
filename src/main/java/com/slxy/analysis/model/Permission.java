@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class Permission implements Serializable {
 
+  //序列化
+  private static final long serialVersionUID = -2639697846115592793L;
   private long id;
   /**
    *权限名称

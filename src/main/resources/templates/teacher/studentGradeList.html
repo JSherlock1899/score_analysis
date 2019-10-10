@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+</head>
+<body id="allbody">
+<div>
+    班级：<select name="class" id="classNumber" shiro:hasRole="teacher">
+        <!--/*@thymesVar id="classList" type=""*/-->
+        <!--th:selected中classNumber为上一次select中选中的值，与动态加载的option中的value比较，就可默认选中上一次选的option-->
+        <option th:each="c:${classList}" th:value="${c}" th:text="${c}"  th:selected="${classNumber eq c}"></option>
+    </select>
+    考试名：
+    <select name="exam" id="examName" shiro:hasRole="teacher" >
+        <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}" th:selected="${exam eq e.tableName}"></option>
+    </select>
+    <input type="hidden" id="pageNum" th:value="${pageInfo.pageNum}">
+    <div>
+        <!--隐藏域-->
+        <input type="hidden" th:value="${subject}" id="subject">
+        <input type="hidden" th:value="${sort}" id="sort">
+        <table border="1">
+            <tr>
+                <td>姓名</td>
+                <td th:class="chinese">语文<img th:src="@{/asserts/images/decline.png}" th:class="sort"/></td>
+                <td th:class="math">数学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="english">英语<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="physics">物理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="chemistry">化学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="biology">生物<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="history">历史<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="politics">政治<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="geography">地理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="technology">技术<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+                <td th:class="total_point">总分<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
+            </tr>
+            <tr th:each="grade:${studentGrades}">
+                <td th:text="${grade.name}"></td>
+                <td th:text="${grade.chineseGrades}"></td>
+                <td th:text="${grade.mathGrades}"></td>
+                <td th:text="${grade.englishGrades}"></td>
+                <td th:text="${grade.physicsGrades}"></td>
+                <td th:text="${grade.chemistryGrades}"></td>
+                <td th:text="${grade.biologyGrades}"></td>
+                <td th:text="${grade.historyGrades}"></td>
+                <td th:text="${grade.politicsGrades}"></td>
+                <td th:text="${grade.geographyGrades}"></td>
+                <td th:text="${grade.technologyGrades}"></td>
+                <td th:text="${grade.totalPointGrades}"></td>
+            </tr>
+        </table>
+        当前页：<a href="#" th:text="${pageInfo.pageNum}"></a>
+        条数：<select id="pageSize" name="pageSize">
+                <option th:text="${pageInfo.pageSize}" th:value="${pageInfo.pageSize}" ></option>
+                <option th:text="5" th:value="5" th:selected="${pageInfo.pageSize eq 5}"></option>
+                <option th:text="10" th:value="10" th:selected="${pageInfo.pageSize eq 10}"></option>
+                <option th:text="15" th:value="15" th:selected="${pageInfo.pageSize eq 15}"></option>
+                <option th:text="20" th:value="20" th:selected="${pageInfo.pageSize eq 20}"></option>
+              </select>
+        <!--显示分页信息-->
+        <div class="modal-footer no-margin-top">
+            <div class="col-md-6">
+                当前第 [[${pageInfo.pageNum}]]页,共 [[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录
+            </div>
+            <ul class="pagination pull-right no-margin">
+                <!--首页-->
+                <li>
+                    <a th:href="@{'/teacher/selectStuGrade?pageNum=1&pageSize=' + ${pageInfo.pageSize}
+                 + '&classNumber=' + ${classNumber} + '&exam=' + ${exam} + '&subject=' + ${subject} + '&sort=' + ${sort}}">首页</a>
+                </li>
+                <!--上一页-->
+                <!--/*@thymesVar id="hasPreviousPage" type="com.slxy.analysis.controller.TeacherController"*/-->
+                <li class="prev" th:if="${pageInfo.hasPreviousPage}">
+                    <a th:href="@{'/teacher/selectStuGrade?pageNum=' + ${pageInfo.prePage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <!--遍历条数-->
+                <li th:each="nav:${pageInfo.navigatepageNums}">
+                    <a th:href="@{'/teacher/selectStuGrade?pageNum=' + ${nav} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber} + '&subject=' + ${subject} + '&sort=' + ${sort}}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
+                    <span style="font-weight: bold;background: #6faed9;" th:if="${nav == pageInfo.pageNum}" th:text="${nav}" ></span>
+                </li>
+                <!--下一页-->
+                <li class="next" th:if="${pageInfo.hasNextPage}">
+                    <a th:href="@{'/teacher/selectStuGrade?pageNum=' + ${pageInfo.nextPage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <!--尾页-->
+                <li>
+                    <a th:href="@{'/teacher/selectStuGrade?pageNum=' + ${pageInfo.pages} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&classNumber=' + ${classNumber} + '&subject=' + ${subject} + '&sort=' + ${sort}}">尾页</a>
+                </li>
+            </ul>
+        </div>
+        <div>当前页号：<span th:text="${pageInfo.pageNum}"></span></div>
+        <div>每页条数：<span th:text="${pageInfo.pageSize}"></span></div>
+        <div>起始行号：<span th:text="${pageInfo.startRow}"></span></div>
+        <div>终止行号：<span th:text="${pageInfo.endRow}"></span></div>
+        <div>总结果数：<span th:text="${pageInfo.total}"></span></div>
+        <div>总页数：<span th:text="${pageInfo.pages}"></span></div>
+        <hr />
+        <div>是否为第一页：<span th:text="${pageInfo.isFirstPage}"></span></div>
+        <div>是否为最后一页：<span th:text="${pageInfo.isLastPage}"></span></div>
+        <div>是否有前一页：<span th:text="${pageInfo.hasPreviousPage}"></span></div>
+        <div>是否有下一页：<span th:text="${pageInfo.hasNextPage}"></span></div>
+    </div>
+    平均成绩：<br>
+    语文：<p th:text="${averageGrade.chineseAverageGrades}"></p>
+    数学：<p th:text="${averageGrade.mathAverageGrades}"></p>
+    英语：<p th:text="${averageGrade.englishAverageGrades}"></p>
+    物理：<p th:text="${averageGrade.physicsAverageGrades}"></p>
+    化学：<p th:text="${averageGrade.chemistryAverageGrades}"></p>
+    生物：<p th:text="${averageGrade.biologyAverageGrades}"></p>
+    历史：<p th:text="${averageGrade.historyAverageGrades}"></p>
+    政治：<p th:text="${averageGrade.politicsAverageGrades}"></p>
+    地理：<p th:text="${averageGrade.geographyAverageGrades}"></p>
+    技术：<p th:text="${averageGrade.technologyAverageGrades}"></p>
+</div>
+<script type="text/javascript">
+
+    $("#classNumber,#examName,#pageSize").change(function () {
+        var classNumber = $("#classNumber option:selected").val();
+        var examName = $("#examName option:selected").val();
+        var pageSize = $("#pageSize option:selected").val();
+        var pageNum = $("#pageNum").val();
+        //排序科目
+        var subject = $(this).parent().attr("class");
+        $.ajax({
+            method: "post",
+            url: "/teacher/selectStuGrade",
+            datatype:"html",
+            data:{
+                "classNumber": classNumber,
+                "exam": examName,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "subject": subject,
+                "sort": "asc"
+            },
+            success: function (msg) {
+                $("#allbody").html(msg);
+                var subject = $('#subject').val();
+                var sort = $('#sort').val();
+                $('#subject img').addClass(sort);
+            },
+            error: function (msg) {
+                alert('请求出现错误...');
+            }
+        })
+    })
+
+    //改变排序的图片,查询并排序
+    $(".sort").click(function () {
+        var str = '';
+        //取出图片名
+        str = this.src.slice(37);
+        var sort = $('#sort').val();
+        if (sort == "desc") {
+            this.src = '/asserts/images/rise.png';
+            $(this).removeClass("desc");
+            $(this).addClass("asc")
+        } else {
+            this.src = '/asserts/images/decline.png';
+            $(this).removeClass("asc");
+            $(this).addClass("desc")
+        }
+        //查询并排序
+        var classNumber = $("#classNumber option:selected").val();
+        var examName = $("#examName option:selected").val();
+        var pageSize = $("#pageSize option:selected").val();
+        var pageNum = $("#pageNum").val();
+        //排序科目
+        var subject = $(this).parent().attr("class");
+        //获取排序是升序还是降序
+        var sort = $(this).attr("class").split(" ")[1];
+        $.ajax({
+            method: "post",
+            url: "/teacher/selectStuGrade",
+            datatype:"json",
+            data:{
+                "classNumber": classNumber,
+                "exam": examName,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "subject": subject,
+                "sort": sort
+            },
+            success: function (msg) {
+                $("#allbody").html(msg);
+                var subject = $('#subject').val();
+                var sort = $('#sort').val();
+                $('#subject img').addClass(sort);
+                // $('#' + subject).attr("sort " + sort);
+            },
+            error: function (msg) {
+                alert('请求出现错误...');
+            }
+        })
+    })
+
+
+
+</script>
+</body>
+</html>

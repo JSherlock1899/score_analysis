@@ -1,5 +1,6 @@
 package com.slxy.analysis.controller;
 
+import com.slxy.analysis.model.ClassGrade;
 import com.slxy.analysis.model.Student;
 import com.slxy.analysis.service.StudentService;
 import com.slxy.analysis.service.TeacherService;
@@ -68,5 +69,10 @@ public class UserController {
         return userService.login(request, username, password, role, model);
     }
 
-
+    @RequestMapping("getClassAverageGrade")
+    public void  getClassAverageGrade(String gradeTable,String classNumber){
+        ClassGrade averageGrade = userService.getClassAverageGrade(gradeTable,classNumber);
+        System.out.println(averageGrade.getBiologyAverageGrades());
+        System.out.println(averageGrade.getChemistryAverageGrades());
+    }
 }

@@ -11,6 +11,11 @@ public class Student extends User {
   private String picture;
   private String classNumber;
 
+  /**
+   *科目
+   */
+  public static final String[] SUBJECT = {"chinese","math","english","physics","chemistry","biology","history","politics","geography","technology","total_point"};
+
   public String getSchoolName() {
     return schoolName;
   }

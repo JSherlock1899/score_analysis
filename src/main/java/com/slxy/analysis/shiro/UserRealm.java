@@ -55,6 +55,10 @@ public class UserRealm extends AuthorizingRealm {
         if (User.STUDENT.equals(role)){
             //根据学生用户名获取其所在的年级
             Integer grade = Integer.valueOf(token.getUsername().substring(0,2));
+            //判断年级是否正确
+            if (!User.gradeInt.contains(grade)){
+                grade = 17;
+            }
             user = studentService.getStudentPassword(grade,token.getUsername());
             if (user != null) {
                 //在用户信息中添加自己的角色信息
@@ -114,6 +118,7 @@ public class UserRealm extends AuthorizingRealm {
             for (Permission p : permissions) {
                 //添加资源的授权字符串
                 info.addStringPermission(p.getPermission());
+//                System.out.println(p.getPermission());
             }
             //授权教师角色
             info.addRole("teacher");

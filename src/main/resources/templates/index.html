@@ -12,14 +12,17 @@
     <p th:text="${classList}"></p>
     <p th:text="${msg}"></p>
 
-    <div shiro:hasPermission="teacher:selectGrade">
-        <a href="/teacher/grade">查询成绩信息</a>
-    </div>
     <div shiro:hasPermission="student:selectGrade">
-        <a href="/user/add">查询成绩信息</a>
+        <a href="/student/grade">查询成绩信息</a>
+    </div>
+    <div shiro:hasPermission="teacher:selectStuGrade">
+        <a href="/teacher/selectStuGrade">查询学生成绩信息</a>
+    </div>
+    <div shiro:hasPermission="teacher:selectClassGrade">
+        <a href="/teacher/selectClassGrade">查询各班级成绩信息</a>
     </div>
     <div shiro:hasPermission="teacher:updateGrade">
-        <a href="/user/add">修改成绩信息</a>
+        <a href="/teacher/update">修改成绩信息</a>
     </div>
     <div shiro:hasPermission="superAdmin:createTable">
         <a href="/superAdmin/createTable">创建考试表</a>

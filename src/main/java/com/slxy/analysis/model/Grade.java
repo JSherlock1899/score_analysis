@@ -3,8 +3,13 @@ package com.slxy.analysis.model;
 
 import java.io.Serializable;
 
+/**
+ * 学生个人成绩
+ */
 public class Grade implements Serializable {
 
+  //序列化
+  private static final long serialVersionUID = 3829428233696303159L;
   private long id;
   private String name;
   private String classNumber;

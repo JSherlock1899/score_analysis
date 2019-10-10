@@ -1,9 +1,11 @@
 package com.slxy.analysis.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 
 public class User implements Serializable {
-
+    //序列化
+    private static final long serialVersionUID = -213144974886680817L;
     private String id;
     private String password;
     private String name;
@@ -23,6 +25,12 @@ public class User implements Serializable {
     public static final String  GRADE_TEACHER = "grade_leader";
     public static final String  ADMIN = "admin";
     public static final String  SUPER_ADMIN = "super_admin";
+    //年级
+    public static final HashSet<Integer> gradeInt = new HashSet<Integer>(){{
+            add(17);
+            add(18);
+            add(19);
+    }};
 
     public String getId() {
         return id;
