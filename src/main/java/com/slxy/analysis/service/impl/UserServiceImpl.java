@@ -62,13 +62,14 @@ public class UserServiceImpl implements UserService {
                     mv.addObject("name", student.getName());
                     mv.addObject("classNumber", student.getClassNumber());
                 }
+                mv.setViewName("student/studentIndex");
             }else{
                 //初始化教师用户的信息
                 //根据教师用户名获取其初始化信息
                 Teacher teacher = teacherService.getTeacherNameAndSubject(username);
                 mv.addObject("name", teacher.getName());
+                mv.setViewName("teacher/teacherIndex");
             }
-            mv.setViewName("index");
         } catch (UnknownAccountException e) {
             //登录失败：用户名不存在
             model.addAttribute("msg", CodeMsg.USERNAME_ERROR.getMsg());

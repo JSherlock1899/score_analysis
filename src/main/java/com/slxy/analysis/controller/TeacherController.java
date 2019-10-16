@@ -1,11 +1,14 @@
 package com.slxy.analysis.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.slxy.analysis.model.ClassGrade;
 import com.slxy.analysis.model.Exam;
 import com.slxy.analysis.model.Grade;
+import com.slxy.analysis.model.Teacher;
 import com.slxy.analysis.service.TeacherService;
 import com.slxy.analysis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +48,8 @@ public class TeacherController {
     @RequestMapping("selectStuGrade")
     public ModelAndView listStudentGrade(HttpServletRequest request, @RequestParam(defaultValue = "1")
             int pageNum, @RequestParam(defaultValue = "5") int pageSize,  @RequestParam(defaultValue = "18_students_grades_20190728") String exam,
-            @RequestParam(defaultValue = "1801") String classNumber, @RequestParam(defaultValue = "chinese") String subject,
-            @RequestParam(defaultValue = "desc") String sort, Map<String, Object> map){
+            @RequestParam(defaultValue = "1801") String classNumber, @RequestParam(defaultValue = "total_point") String subject,
+            @RequestParam(defaultValue = "asc") String sort, Map<String, Object> map){
         //初始化老师所带的班级的下拉框
         List<String> classList = teacherService.listClass(request);
         //初始化考试名称的下拉框
@@ -96,8 +99,8 @@ public class TeacherController {
     @RequestMapping("selectClassGrade")
     public ModelAndView listClassGrade(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,
                                        @RequestParam(defaultValue = "18_students_grades_20190728") String exam,
-                                       @RequestParam(defaultValue = "18") String startYear,@RequestParam(defaultValue = "chinese") String subject,
-                                       @RequestParam(defaultValue = "desc") String sort, Map<String, Object> map){
+                                       @RequestParam(defaultValue = "18") String startYear,@RequestParam(defaultValue = "total_point") String subject,
+                                       @RequestParam(defaultValue = "asc") String sort, Map<String, Object> map){
         //初始化考试名称的下拉框
         HashSet<Exam> examList = userService.getExam(Arrays.asList(startYear));
         //获取班级成绩表名
@@ -105,7 +108,7 @@ public class TeacherController {
         //传入当前页以及每页的数据条数
         PageHelper.startPage(pageNum, pageSize);
         //获取各班级成绩信息
-        List<ClassGrade> classGrades = teacherService.getClassGrades(classGradeTable, startYear, pageNum, pageSize, subject, sort);
+        List<ClassGrade> classGrades = teacherService.getClassesGrades(classGradeTable, startYear, pageNum, pageSize, subject, sort);
         //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
         PageInfo<Grade> pageInfo = new PageInfo(classGrades);
         //pageINfo封装了分页的详细信息，也可以指定连续显示的页数
@@ -134,8 +137,39 @@ public class TeacherController {
      */
     @RequestMapping("viewDetail")
     public ModelAndView viewDetail(String classNumber, String exam, Map<String, Object> map){
+        List<Grade> classGradeList = teacherService.getClassGradeList(classNumber);
+        //只取近五次成绩进行可视化
+        if(classGradeList.size() > 5){
+            for (int i = 0; i < classGradeList.size() - 5; i++ ){
+                classGradeList.remove(i);
+            }
+        }
         ModelAndView mv = new ModelAndView();
+        List<Map<String, String>> studnetRankingDistribute = teacherService.getStudnetRankingDistribute(exam, classNumber);
+        System.out.println(classGradeList);
+        System.out.println(studnetRankingDistribute);
+        JSONArray jsonList = JSONArray.parseArray(JSON.toJSONString(classGradeList));
+        JSONArray rankingDistribute = JSONArray.parseArray(JSON.toJSONString(studnetRankingDistribute));
+        System.out.println(rankingDistribute);
+        mv.addObject("jsonList", jsonList);
+        mv.addObject("rankingDistribute", rankingDistribute);
         mv.setViewName("teacher/classDetail");
         return mv;
     }
+
+    /**
+     * 获取教师个人信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("getPersonalInformation")
+    public ModelAndView getPersonalInformation(HttpServletRequest request){
+        String username = (String) request.getSession().getAttribute("username");
+        Teacher teacher = teacherService.getTeacherById(username);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("teacher", teacher);
+        mv.setViewName("teacher/teacherPersonalInfo");
+        return mv;
+    }
+
 }

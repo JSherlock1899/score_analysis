@@ -44,9 +44,8 @@ public class UserController {
 }
 
     @RequestMapping("add")
-    @ResponseBody
     public String add(){
-        return "add";
+        return "teacherIndex";
     }
 
     /**
@@ -74,5 +73,22 @@ public class UserController {
         ClassGrade averageGrade = userService.getClassAverageGrade(gradeTable,classNumber);
         System.out.println(averageGrade.getBiologyAverageGrades());
         System.out.println(averageGrade.getChemistryAverageGrades());
+    }
+
+    /**
+     * 注销
+     * @return
+     */
+    @RequestMapping("signOut")
+    public String signOut(){
+        return "login";
+    }
+
+    /**
+     * 教师端跳转到首页
+     */
+    @RequestMapping("goTeacherIndex")
+    public String goIndex(){
+        return "teacher/teacherIndex";
     }
 }

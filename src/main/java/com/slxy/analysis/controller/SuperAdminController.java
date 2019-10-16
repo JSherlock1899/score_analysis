@@ -32,7 +32,7 @@ public class SuperAdminController {
     @RequestMapping("createTable")
     public ModelAndView createTable(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("index");
+        mv.setViewName("ttt");
         try{
             superAdminService.createStudentTable("18_students_grades_20190418");
         }catch (Exception e){
@@ -59,7 +59,7 @@ public class SuperAdminController {
             String avgSubject = Student.SUBJECT[i] + "_average_grades";
             superAdminService.callAverageGrade(subject,avgSubject,examTable,classGradeTable,start_year);
         }
-        return "index";
+        return "ttt";
     }
 
     @RequestMapping("callStudentRanking")

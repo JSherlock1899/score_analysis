@@ -6,6 +6,7 @@ import com.slxy.analysis.model.Teacher;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: sherlock
@@ -26,12 +27,24 @@ public interface TeacherService {
 
     List<String> listClass(HttpServletRequest request);
 
-    List<ClassGrade> getClassGrades(String classGradeTable, String startYear, Integer pageNum, Integer pageSize, String subject, String sort);
+    List<ClassGrade> getClassesGrades(String classGradeTable, String startYear, Integer pageNum, Integer pageSize, String subject, String sort);
 
     List<String> getGradeClass(String startYear);
 
     List<String> getTeacherGrade(List<String> classes);
 
+    List<String> getExamList(String grade);
 
+    Grade getClassGrades(String examTable, String classNumber);
+
+    List<Grade> getClassGradeList(String classNumber);
+
+    String getExamName(String examTable);
+
+    Integer getTopStudnetNumber(String examTable, String classNumber, Integer num);
+
+    Integer getClassStudentNumber(String classNumber);
+
+    List<Map<String, String>> getStudnetRankingDistribute(String examTable, String classNumber);
 
 }
