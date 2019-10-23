@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1200px;
+}
+
+.content {
+    width: 100%;
+    padding: 0 10%;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+
+.form-control {
+    width: 20%;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 3%;
+}
+
+.wrap {
+    width: 1200px;
+    border: 1px solid;
+    position: relative;
+}
+
+.wrap1 {
+    width: 600px;
+    height: 400px;
+    float: left;
+}
+
+#main1 {
+    width: 600px;
+    height: 400px;
+}
+
+#main2 {
+    width: 600px;
+    height: 400px;
+    margin-left: 600px;
+    position: absoulte;
+    top: 0;
+    left: 0;
+}
+
+.panel-body {
+    position: relative;
+
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+
+
+.total-points {
+    width: 120px;
+    height: 120px;
+    border: 10px solid #13D1BE;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all .5s;
+    text-align: center;
+    line-height: 100px;
+    float: left;
+}
+
+
+.total-points:hover {
+    background-color: #13D1BE;
+
+}
+
+.tota2 {
+    padding: 25px 30px;
+    width: 40px;
+    float: left;
+}
+
+
+.tota2 .total {
+    width: 20px;
+    height: 100px;
+    background-color: #13D1BE;
+    float: left;
+    margin-top: -10px;
+
+}
+
+.tota2 .total-jian {
+    width: 0;
+    height: 0;
+    float: left;
+    margin-left: -30px;
+    margin-top: -50px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent transparent #13D1BE transparent;
+}
+
+/* .tota1 {
+    padding: 20px 30px;
+    width: 40px;
+    float: left;
+}
+
+
+.tota1 .total {
+    width: 20px;
+    height: 100px;
+    background-color: red;
+    float: left;
+    margin-top: -10px;
+
+} */
+/* 
+.tota1 .total-jian {
+    width: 0;
+    height: 0;
+    float: left;
+    margin-top: 80px;
+    margin-left: -30px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+} */
+
+
+
+.text {
+    font-size: 14px;
+    float: left;
+    width: 60%;
+    padding: 20px;
+}
+
+/* 
+@keyframes mymove{
+    0%{
+        background-color: #fff;
+    }
+  
+    100%{
+        background-color: #13D1BE;
+    }
+} */

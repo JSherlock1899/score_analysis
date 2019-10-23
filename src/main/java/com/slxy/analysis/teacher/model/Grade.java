@@ -35,8 +35,6 @@ public class Grade implements Serializable {
   private String technologyAverageGrades;
   private String totalPointGrades;
   private String totalPointAverageGrades;
-  private String totalPointClassRanking;
-  private String totalPointRanking;
 
 
   public long getId() {
@@ -262,21 +260,5 @@ public class Grade implements Serializable {
   }
 
 
-  public String getTotalPointClassRanking() {
-    return totalPointClassRanking;
-  }
-
-  public void setTotalPointClassRanking(String totalPointClassRanking) {
-    this.totalPointClassRanking = totalPointClassRanking;
-  }
-
-
-  public String getTotalPointRanking() {
-    return totalPointRanking;
-  }
-
-  public void setTotalPointRanking(String totalPointRanking) {
-    this.totalPointRanking = totalPointRanking;
-  }
 
 }

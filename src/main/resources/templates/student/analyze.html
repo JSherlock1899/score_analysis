@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>analyze</title>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+    <script th:href="@{/asserts/js/tool.js/bootstrap.min.js}"type="text/javascript"></script>
+    <link rel="stylesheet" th:href="@{/asserts/css/student/analyze.css}" href="../css/inquire.css">
+    <link rel="stylesheet" th:href="@{/asserts/css/student/common.css}" href="../css/inquire.css">
+    <script th:href="@{/asserts/js/tool.js/echarts.common.min.js}"type="text/javascript"></script>
+
+
+</head>
+
+
+<body>
+    <div class="panel panel-info" >
+        <div class="panel-heading ">
+            <div class="z-wrap">
+                <div class="z-header">
+                    <div class="z-logo">
+                        <h3>学 生 成 绩 分 析</h3>
+                    </div>
+                    <!-- 头部右侧区域 -->
+                    <div class="z-home">
+                        <div class="z-homepage">
+                            <a href="#">首页</a>
+                        </div>
+
+                        <div class="z-homepwd">
+                            <a href="#">修改密码</a>
+                        </div>
+                        <div class="z-homequit">
+                            <a href="#">注销</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <select class="form-control">
+
+            </select>
+            <select class="form-control">
+                <option>第一学期</option>
+                <option>第二学期</option>
+            </select>
+            <select class="form-control">
+                <option>期中</option>
+                <option>期末</option>
+                <option>第一次月考</option>
+                <option>第二次月考</option>
+            </select>
+            <a class="btn btn-default" href="./index.html" role="button">返回上一级</a>
+        </div>
+
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <ul class="nav nav-pills" style="    margin: 0 10px 15px auto;">
+                    <li role="presentation" class="active"><a href="#">全科</a></li>
+                    <li role="presentation"><a href="#">数学</a></li>
+                    <li role="presentation"><a href="#">语文</a></li>
+                    <li role="presentation"><a href="#">英语</a></li>
+                </ul>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">总成绩报告</div>
+                                <div class="panel-body">
+                                    <div class="total-points clear">总成绩880</div>
+                                    <div class="tota1 ">
+                                        <div class="total "></div>
+                                        <div class="total-jian"></div>
+                                    </div>
+                                    <div class="tota2 ">
+                                        <div class="total "></div>
+                                        <div class="total-jian"></div>
+                                    </div>
+                                    <div class="text">
+                                        <span>上次考试成绩 xxx，上次考试排名，这次考试排名。上次考试成绩 xxx，上次考试排名，这次考试排名。</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">xx同学成绩报告</div>
+                                <div class="panel-body">
+                                    xxxxxx经过对比，，本次语文科目拉低了你的位次，英语提高了你的位次
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">各科成绩与平均分报告</div>
+                    <div class="panel-body">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <span class="sr-only">40% Complete (success)</span>
+                                40
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                <span class="sr-only">20% Complete</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                <span class="sr-only">60% Complete (warning)</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                <span class="sr-only">80% Complete (danger)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        var myChart2 = echarts.init(document.getElementById('main2'));
+
+
+
+        var option1 = {
+            title: {
+                text: '某站点用户访问来源',
+                subtext: '纯属虚构',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        { value: 335, name: '直接访问' },
+                        { value: 310, name: '邮件营销' },
+                        { value: 234, name: '联盟广告' },
+                        { value: 135, name: '视频广告' },
+                        { value: 1548, name: '搜索引擎' }
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart1.setOption(option1);
+
+
+        var option2 = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                source: [
+                    ['product', '2015', '2016', '2017'],
+                    ['Matcha Latte', 43.3, 85.8, 93.7],
+                    ['Milk Tea', 83.1, 73.4, 55.1],
+                    ['Cheese Cocoa', 86.4, 65.2, 82.5],
+                    ['Walnut Brownie', 72.4, 53.9, 39.1]
+                ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                { type: 'bar' },
+                { type: 'bar' },
+                { type: 'bar' }
+            ]
+        };
+        myChart2.setOption(option2);
+
+        var option = {
+            title: {
+                text: '折线图堆叠'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '邮件营销',
+                    type: 'line',
+                    stack: '总量',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: '联盟广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: '视频广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: '直接访问',
+                    type: 'line',
+                    stack: '总量',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: '搜索引擎',
+                    type: 'line',
+                    stack: '总量',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    </script>
+
+
+</body>
+
+</html>

@@ -59,10 +59,11 @@ public class UserServiceImpl implements UserService {
                 //根据学生用户名获取其姓名和所在的班级
                 Student student = studentService.getStudentNameAndClassNumber(grade, username);
                 if (student != null) {
+                    request.getSession().setAttribute("student", student);
                     mv.addObject("name", student.getName());
                     mv.addObject("classNumber", student.getClassNumber());
                 }
-                mv.setViewName("student/studentIndex");
+                mv.setViewName("student/stindex");
             }else{
                 //初始化教师用户的信息
                 //根据教师用户名获取其初始化信息

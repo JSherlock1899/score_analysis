@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>inquire</title>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+    <script th:href="@{/asserts/js/tool.js/bootstrap.min.js}"type="text/javascript"></script>
+    <link rel="stylesheet" th:href="@{/asserts/css/student/inquire.css}" href="../css/inquire.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="content">
+            <select class="form-control" >
+                <option th:each="ex:${ex}" th:value="${ex.tableName}" th:name="examName" th:text="${ex.examName}">2017-2018</option>
+            </select>
+
+            <a class="btn btn-default" th:href="${'/st/index'}"   role="button">返回上一级</a>
+        </div>
+
+        <div class="table-respqonsive">
+            <table class="table   table-hover  table-striped" >
+                <thead>
+                    <tr class="info">
+                        <th>姓名</th>
+                        <th>学号</th>
+                        <th>班级</th>
+                        <th>学年</th>
+                        <th>学期</th>
+                        <th>课程名字</th>
+                        <th>分数</th>
+
+                        <th>平均分</th>
+                        <th>班名次</th>
+                        <th>校名次</th>
+
+                    </tr>
+                </thead>
+
+                <tbody id="tbody">
+                    <tr class="tr" th:each="st:${st}">
+                       <td id="name" th:text="${st.getName()}">张三</td>
+                        <td id="sno" th:text="${st.getId()}">1023</td>
+                        <th id="classno" th:text="${st.getClassNumber()}"></th>
+                        <td id="year">2018-2019</td>
+                        <td id="term">1</td>
+                        <td id="class">语文</td>
+                        <td id="grade" th:text="${st.getChineseGrades()}">860</td>
+                        <td id="svggrade" th:text="${st.getChemistryAverageGrades()}"> 86</td>
+                        <td id="classRank" th:text="${st.getChineseClassRanking()}">10</td>
+                        <td id="nianji" th:text="${st.getChineseSchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >数学</td>
+                        <td  th:text="${st.getMathGrades()}">860</td>
+                        <td  th:text="${st.getMathAverageGrades()}"> 86</td>
+                        <td th:text="${st.getMathClassRanking()}">10</td>
+                        <td  th:text="${st.getMathSchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >英语</td>
+                        <td  th:text="${st.getEnglishGrades()}">860</td>
+                        <td  th:text="${st.getEnglishAverageGrades()}"> 86</td>
+                        <td th:text="${st.getEnglishClassRanking()}">10</td>
+                        <td  th:text="${st.getEnglishSchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >物理</td>
+                        <td  th:text="${st.getPhysicsGrades()}">860</td>
+                        <td  th:text="${st.getPhysicsAverageGrades()}"> 86</td>
+                        <td th:text="${st.getPhysicsClassRanking()}">10</td>
+                        <td  th:text="${st.getPhysicsSchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >化学</td>
+                        <td  th:text="${st.getChemistryGrades()}">860</td>
+                        <td  th:text="${st.getChemistryAverageGrades()}"> 86</td>
+                        <td th:text="${st.getChemistryClassRanking()}">10</td>
+                        <td  th:text="${st.getChemistrySchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >生物</td>
+                        <td  th:text="${st.getBiologyGrades()}">860</td>
+                        <td  th:text="${st.getBiologyAverageGrades()}"> 86</td>
+                        <td th:text="${st.getBiologyClassRanking()}">10</td>
+                        <td  th:text="${st.getBiologySchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >历史</td>
+                        <td  th:text="${st.getHistoryGrades()}">860</td>
+                        <td  th:text="${st.getHistoryAverageGrades()}"> 86</td>
+                        <td th:text="${st.getHistoryClassRanking()}">10</td>
+                        <td  th:text="${st.getHistorySchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >政治</td>
+                        <td  th:text="${st.getPoliticsGrades()}">860</td>
+                        <td  th:text="${st.getPoliticsAverageGrades()}"> 86</td>
+                        <td th:text="${st.getPoliticsClassRanking()}">10</td>
+                        <td  th:text="${st.getPoliticsSchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >地理</td>
+                        <td  th:text="${st.getGeographyGrades()}">860</td>
+                        <td  th:text="${st.getGeographyAverageGrades()}"> 86</td>
+                        <td th:text="${st.getGeographyClassRanking()}">10</td>
+                        <td  th:text="${st.getGeographySchoolRanking()}">100</td>
+                    </tr>
+                    <tr  th:each="st:${st}">
+                        <td  th:text="${st.getName()}">张三</td>
+                        <td  th:text="${st.getId()}">1023</td>
+                        <th  th:text="${st.getClassNumber()}"></th>
+                        <td >2018-2019</td>
+                        <td >1</td>
+                        <td >信息技术</td>
+                        <td  th:text="${st.getTechnologyGrades()}">860</td>
+                        <td  th:text="${st.getTechnologyAverageGrades()}"> 86</td>
+                        <td th:text="${st.getTechnologyClassRanking()}">10</td>
+                        <td  th:text="${st.getTechnologySchoolRanking()}">100</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+        <script>
+
+
+            (function () {
+                $(document).on('ready', function () {
+                    $.ajax({
+                        url: '../mock/inquire.json',
+                        type: 'get',
+                        dataType: 'json',
+                        success: function (res) {
+                            var data = res.data;
+                            render(data)
+                        }
+                    })
+                })
+
+                function render(status) {
+                    var obj = status;
+                    var str = "";
+                    var averageScore = 90;
+                    obj.forEach(function (item, index) {
+                        str += '<tr class="tr">\
+                        <td >'+ item.name + '</td>\
+                        <td >'+ item.sno + '</td>\
+                        <td >'+ item.age + '</td>\
+                        <td >'+ item.year + '</td>\
+                        <td >'+ item.term + '</td>\
+                        <td >'+ item.class + '</td>\
+                        <td >'+ item.fengshu + '</td>\
+                        <td >'+ item.grade + '</td>\
+                        <td id="grade">'+ item.svggrade + '</td>\
+                        <td >'+ item.classRank + '</td>\
+                        <td >'+ item.nianji + '</td>\
+                    </tr>'
+                    })
+                    // console.log( $('.tr').find('#grade').text())
+
+                    $('.tr').delegate('', '#grade', function () {
+                        console.log(1)
+                    })
+                    var fengshu = $('document').on();
+                    // console.log(fengshu)
+                    if (fengshu < averageScore) {
+                        $('#grade').css({ color: 'red' })
+                    } else {
+                        $('#grade').css({ color: 'green' })
+                    }
+                    var tBody = document.getElementById('tbody');
+                    tBody.innerHTML = str;
+                    // var str = '';
+                    // str = '<td>' + obj[i].name + '</td>\<td>' + obj[i].sno + '</td>\<td>' + obj[i].age + '</td>\<td>' + obj[i].year + '</td>\<td>' + obj[i].term + '</td>\<td >' + obj[i].class + '</td>\<td>' + obj[i].grade + '</td>\<td> ' + obj[i].svggrade + '</td>\<td>' + obj[i].classRank + '</td>\<td >' + obj[i].nianji + '</td>'
+
+                }
+            })()
+       $(".form-control").change(function () {
+           $.ajax({
+               type:"post",
+               async : true,
+               url:"/student/mygrade",
+               datatype:"json",
+
+               data:{
+                   examName:$(this).val()
+               },
+               success: function (msg) {
+
+                   $("body").html(msg)
+
+               },
+               error: function (msg) {
+                   alert('请求出现错误...');
+               }
+           })
+       })
+
+        </script>
+
+</body>
+
+</html>
