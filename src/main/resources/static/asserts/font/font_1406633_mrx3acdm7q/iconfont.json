@@ -1,0 +1,51 @@
+{
+  "id": "1406633",
+  "name": "啊哈哈",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "42020",
+      "name": "箭头",
+      "font_class": "jiantou",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "5700390",
+      "name": "分析",
+      "font_class": "fenxi",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "6998941",
+      "name": "个人信息",
+      "font_class": "gerenxinxi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7147872",
+      "name": "箭头",
+      "font_class": "arrow-down",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7196771",
+      "name": "上箭头",
+      "font_class": "jiantou-copy",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "10031813",
+      "name": "查询",
+      "font_class": "chaxun-current",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

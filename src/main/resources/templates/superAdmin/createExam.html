@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>创建考试</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/common.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <form action="/superAdmin/createTable">
+        <select name="grade" id="startYearSelect">
+            <option th:each="g:${presentGrade}" th:value="${g}" th:text="${g}"></option>
+        </select>
+        输入考试名：<input type="text" name="examName">
+        <input type="date" name="examTime"><br>
+        <input type="submit" value="提交">
+    </form>
+</div>
+</body>
+</html>

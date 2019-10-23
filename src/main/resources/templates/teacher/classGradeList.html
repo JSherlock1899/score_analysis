@@ -2,129 +2,166 @@
 <html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>各班成绩</title>
+    <title>班级成绩</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/studentGrade.css}" rel="stylesheet">
+    <link th:href="@{/asserts/font/font_1406633_mrx3acdm7q/iconfont.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/common.css}" rel="stylesheet">
     <!--JQuery-->
     <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
 </head>
 <body id="allbody">
 <div>
-    年级：<select name="class" id="startYear" shiro:hasRole="teacher">
-        <option th:value="${startYear}" th:text="${startYear}"></option>
-        <option th:value="17">17</option>
-        <option th:value="18">18</option>
-        <option th:value="19">19</option>
-    </select>
-    考试名：
-    <select name="exam" id="examName" shiro:hasRole="teacher" >
-        <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}" th:selected="${exam eq e.tableName}"></option>
-    </select>
-    <input type="hidden" id="pageNum" th:value="${pageInfo.pageNum}">
-    <div>
-        <table border="1">
-            <!--隐藏域-->
-            <input type="hidden" th:value="${subject}" id="subject">
-            <input type="hidden" th:value="${sort}" id="sort">
-            <tr>
-                <td>班级</td>
-                <td th:class="chinese">语文<img th:src="@{/asserts/images/decline.png}" th:class="sort"/></td>
-                <td th:class="math">数学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="english">英语<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="physics">物理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="chemistry">化学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="biology">生物<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="history">历史<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="politics">政治<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="geography">地理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="technology">技术<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-                <td th:class="total_point">总分<img th:src="@{/asserts/images/decline.png}" th:class="sort"></td>
-            </tr>
-            <tr th:each="grade:${classGrades}">
-                <!--/*@thymesVar id="startYear" type="com.slxy.analysis.model.ClassGrade"*/-->
-                <td><a th:href="@{'/teacher/viewDetail?classNumber=' + ${grade.classNumber} + '&exam=' + ${exam}  + '&startYear=' + ${startYear}}">[[${grade.classNumber}]]</a></td>
-                <td th:text="${grade.chineseAverageGrades}"></td>
-                <td th:text="${grade.mathAverageGrades}"></td>
-                <td th:text="${grade.englishAverageGrades}"></td>
-                <td th:text="${grade.physicsAverageGrades}"></td>
-                <td th:text="${grade.chemistryAverageGrades}"></td>
-                <td th:text="${grade.biologyAverageGrades}"></td>
-                <td th:text="${grade.historyAverageGrades}"></td>
-                <td th:text="${grade.politicsAverageGrades}"></td>
-                <td th:text="${grade.geographyAverageGrades}"></td>
-                <td th:text="${grade.technologyAverageGrades}"></td>
-                <td th:text="${grade.totalPointAverageGrades}"></td>
-            </tr>
-        </table>
-        当前页：<a href="#" th:text="${pageInfo.pageNum}"></a>
-        条数：<select id="pageSize" name="pageSize">
-                <option th:text="${pageInfo.pageSize}" th:value="${pageInfo.pageSize}" ></option>
-                <option th:text="5" th:value="5" th:selected="${pageInfo.pageSize eq 5}"></option>
-                <option th:text="10" th:value="10" th:selected="${pageInfo.pageSize eq 10}"></option>
-                <option th:text="15" th:value="15" th:selected="${pageInfo.pageSize eq 15}"></option>
-                <option th:text="20" th:value="20" th:selected="${pageInfo.pageSize eq 20}"></option>
-              </select>
-        <!--显示分页信息-->
-        <div class="modal-footer no-margin-top">
-            <div class="col-md-6">
-                当前第 [[${pageInfo.pageNum}]]页,共 [[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录
-            </div>
-            <ul class="pagination pull-right no-margin">
-                <!--首页-->
-                <li>
-                    <a th:href="@{'/teacher/selectClassGrade?pageNum=1&pageSize=' + ${pageInfo.pageSize}
-                 + '&startYear=' + ${startYear} + '&exam=' + ${exam} + '&subject=' + ${subject} + '&sort=' + ${sort}}">首页</a>
-                </li>
-                <!--上一页-->
-                <!--/*@thymesVar id="hasPreviousPage" type="com.slxy.analysis.controller.TeacherController"*/-->
-                <li class="prev" th:if="${pageInfo.hasPreviousPage}">
-                    <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.prePage} + '&pageSize=' + ${pageInfo.pageSize}
-                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
-                        <span aria-hidden="true">«</span>
-                    </a>
-                </li>
-                <!--遍历条数-->
-                <li th:each="nav:${pageInfo.navigatepageNums}">
-                    <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${nav} + '&pageSize=' + ${pageInfo.pageSize}
-                        + '&exam=' + ${exam} + '&startYear=' + ${startYear}}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
-                    <span style="font-weight: bold;background: #6faed9;" th:if="${nav == pageInfo.pageNum}" th:text="${nav}" ></span>
-                </li>
-                <!--下一页-->
-                <li class="next" th:if="${pageInfo.hasNextPage}">
-                    <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.nextPage} + '&pageSize=' + ${pageInfo.pageSize}
-                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                <!--尾页-->
-                <li>
-                    <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.pages} + '&pageSize=' + ${pageInfo.pageSize}
-                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">尾页</a>
-                </li>
-            </ul>
-        </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="z-header">
+                <div class="z-logo">
+                    <h3>学 生 成 绩 分 析</h3>
+                </div>
+                <!-- 头部右侧区域 -->
+                <div class="z-home">
+                    <div class="z-homepage">
+                        <a href="/user/goTeacherIndex">首页</a>
+                    </div>
 
-        <div>当前页号：<span th:text="${pageInfo.pageNum}"></span></div>
-        <div>每页条数：<span th:text="${pageInfo.pageSize}"></span></div>
-        <div>起始行号：<span th:text="${pageInfo.startRow}"></span></div>
-        <div>终止行号：<span th:text="${pageInfo.endRow}"></span></div>
-        <div>总结果数：<span th:text="${pageInfo.total}"></span></div>
-        <div>总页数：<span th:text="${pageInfo.pages}"></span></div>
-        <hr />
-        <div>是否为第一页：<span th:text="${pageInfo.isFirstPage}"></span></div>
-        <div>是否为最后一页：<span th:text="${pageInfo.isLastPage}"></span></div>
-        <div>是否有前一页：<span th:text="${pageInfo.hasPreviousPage}"></span></div>
-        <div>是否有下一页：<span th:text="${pageInfo.hasNextPage}"></span></div>
+                    <div class="z-homepwd">
+                        <a href="#">修改密码</a>
+                    </div>
+                    <div class="z-homequit">
+                        <a href="/user/signOut">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gradeTable" class="container">
+        <div class="content">
+            <div id="gradeSelect">
+                <select name="class" id="startYearSelect" class="form-control">
+                    <option th:each="g:${presentGrade}" th:value="${g}" th:text="${g}"  th:selected="${startYear eq g}"></option>
+                </select>
+            </div>
+            <div shiro:hasRole="teacher" id="examSelect">
+                <select name="exam" id="examName" shiro:hasRole="teacher" class="form-control">
+                    <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}" th:selected="${exam eq e.tableName}"></option>
+                </select>
+            </div>
+            <a class="btn btn-default" href="/user/goTeacherIndex" role="button">返回上一级</a>
+            <a class="btn btn-default" th:href="@{'/teacher/setCutOffGrade?exam=' + ${exam} + '&startYear=' + ${startYear}}"  role="button">总体分析</a>
+            <div class="table-respqonsive">
+                <table border="1" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>班级</th>
+                        <th th:class="chinese">语文<img th:src="@{/asserts/images/decline.png}" th:class="sort"/></th>
+                        <th th:class="math">数学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="english">英语<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="physics">物理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="chemistry">化学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="biology">生物<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="history">历史<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="politics">政治<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="geography">地理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="technology">技术<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="total_point">总分<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="grade:${classGrades}">
+                            <!--/*@thymesVar id="startYear" type="com.slxy.analysis.teacher.model.ClassGrade"*/-->
+                            <td><a th:href="@{'/teacher/viewDetail?classNumber=' + ${grade.classNumber} + '&exam=' + ${exam}  + '&startYear=' + ${startYear}}">[[${grade.classNumber}]]</a></td>
+                            <td th:text="${grade.chineseAverageGrades}"></td>
+                            <td th:text="${grade.mathAverageGrades}"></td>
+                            <td th:text="${grade.englishAverageGrades}"></td>
+                            <td th:text="${grade.physicsAverageGrades}"></td>
+                            <td th:text="${grade.chemistryAverageGrades}"></td>
+                            <td th:text="${grade.biologyAverageGrades}"></td>
+                            <td th:text="${grade.historyAverageGrades}"></td>
+                            <td th:text="${grade.politicsAverageGrades}"></td>
+                            <td th:text="${grade.geographyAverageGrades}"></td>
+                            <td th:text="${grade.technologyAverageGrades}"></td>
+                            <td th:text="${grade.totalPointAverageGrades}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            当前页：<a href="#" th:text="${pageInfo.pageNum}"></a>
+            条数：<select id="pageSize" name="pageSize">
+            <option th:text="${pageInfo.pageSize}" th:value="${pageInfo.pageSize}" ></option>
+            <option th:text="5" th:value="5" th:selected="${pageInfo.pageSize eq 5}"></option>
+            <option th:text="10" th:value="10" th:selected="${pageInfo.pageSize eq 10}"></option>
+            <option th:text="15" th:value="15" th:selected="${pageInfo.pageSize eq 15}"></option>
+            <option th:text="20" th:value="20" th:selected="${pageInfo.pageSize eq 20}"></option>
+        </select>
+            <!--显示分页信息-->
+            <div class="modal-footer no-margin-top">
+                <div class="col-md-6">
+                    当前第 [[${pageInfo.pageNum}]]页,共 [[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录
+                </div>
+                <ul class="pagination pull-right no-margin">
+                    <!--首页-->
+                    <li>
+                        <a th:href="@{'/teacher/selectClassGrade?pageNum=1&pageSize=' + ${pageInfo.pageSize}
+                 + '&startYear=' + ${startYear} + '&exam=' + ${exam} + '&subject=' + ${subject} + '&sort=' + ${sort}}">首页</a>
+                    </li>
+                    <!--上一页-->
+                    <!--/*@thymesVar id="hasPreviousPage" type="com.slxy.analysis.teacher.controller.TeacherController"*/-->
+                    <li class="prev" th:if="${pageInfo.hasPreviousPage}">
+                        <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.prePage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+                    <!--遍历条数-->
+                    <li th:each="nav:${pageInfo.navigatepageNums}">
+                        <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${nav} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&startYear=' + ${startYear}}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
+                        <span style="font-weight: bold;background: #6faed9;" th:if="${nav == pageInfo.pageNum}" th:text="${nav}" ></span>
+                    </li>
+                    <!--下一页-->
+                    <li class="next" th:if="${pageInfo.hasNextPage}">
+                        <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.nextPage} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <!--尾页-->
+                    <li>
+                        <a th:href="@{'/teacher/selectClassGrade?pageNum=' + ${pageInfo.pages} + '&pageSize=' + ${pageInfo.pageSize}
+                        + '&exam=' + ${exam} + '&startYear=' + ${startYear} + '&subject=' + ${subject} + '&sort=' + ${sort}}">尾页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--隐藏域-->
+        <input type="hidden" th:value="${subject}" id="subject">
+        <input type="hidden" th:value="${sort}" id="sort">
+        <input type="hidden" th:value="${exam}" id="exam">
+        <input type="hidden" th:value="${startYear}" id="startYear">
+        <!--<input type="hidden" id="pageNum" th:value="${pageInfo.pageNum}">-->
+        <!--<input type="hidden" th:value="${averageGrade.chineseAverageGrades}" id="chineseAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.mathAverageGrades}" id="mathAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.englishAverageGrades}" id="englishAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.physicsAverageGrades}" id="physicsAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.chemistryAverageGrades}" id="chemistryAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.biologyAverageGrades}" id="biologyAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.historyAverageGrades}" id="historyAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.politicsAverageGrades}" id="politicsAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.geographyAverageGrades}" id="geographyAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.technologyAverageGrades}" id="technologyAverageGrades">-->
+        <!--<input type="hidden" th:value="${averageGrade.totalPointAverageGrades}" id="totalPointAverageGrades">-->
     </div>
 </div>
 <script type="text/javascript">
-    $("#startYear,#examName,#pageSize").change(function () {
-        var startYear = $("#startYear option:selected").val();
+    $("#examName,#pageSize").change(function () {
+        var startYear = $("#startYearSelect option:selected").val();
         var examName = $("#examName option:selected").val();
         var pageSize = $("#pageSize option:selected").val();
         var pageNum = $("#pageNum").val();
         //排序科目
-        var subject = $(this).parent().attr("class");
+        var subject = $("#subject").val();
         $.ajax({
             method: "post",
             url: "/teacher/selectClassGrade",
@@ -139,7 +176,29 @@
             },
             success: function (msg) {
                 $("#allbody").html(msg);
-                var subject = $('#subject').val();
+                var sort = $('#sort').val();
+                $('#subject img').addClass(sort);
+            },
+            error: function (msg) {
+                alert('请求出现错误...');
+            }
+        })
+    })
+
+    $("#startYearSelect").change(function () {
+        var startYear = $("#startYearSelect option:selected").val();
+        //排序科目
+        var subject = $("#subject").val();
+        $.ajax({
+            method: "post",
+            url: "/teacher/selectClassGrade",
+            datatype:"html",
+            data:{
+                "startYear": startYear,
+                "subject": subject
+            },
+            success: function (msg) {
+                $("#allbody").html(msg);
                 var sort = $('#sort').val();
                 $('#subject img').addClass(sort);
             },
@@ -165,7 +224,7 @@
             $(this).addClass("desc")
         }
         //查询并排序
-        var startYear = $("#startYear option:selected").val();
+        var startYear = $("#startYearSelect option:selected").val();
         var examName = $("#examName option:selected").val();
         var pageSize = $("#pageSize option:selected").val();
         var pageNum = $("#pageNum").val();
@@ -187,7 +246,6 @@
             },
             success: function (msg) {
                 $("#allbody").html(msg);
-                var subject = $('#subject').val();
                 var sort = $('#sort').val();
                 $('#subject img').addClass(sort);
             },

@@ -15,7 +15,6 @@ $(function () {
     var geographyGrades = new Array();//地理成绩
     var technologyGrades = new Array();//技术成绩
     var totalPointGrades = new Array();//总成绩
-    console.log(jsonList)
     for (var i=0; i<jsonList.length; i++){
         examName.push(jsonList[i].name);
         chineseGrades.push(jsonList[i].chineseAverageGrades);
@@ -151,9 +150,6 @@ $(function () {
             value: rankingDistribute[i].number
         })
     }
-    console.log(type)
-    console.log(number)
-    console.log(jsonArr)
     var option = {
         title: {
             text: '学生排名分布',
