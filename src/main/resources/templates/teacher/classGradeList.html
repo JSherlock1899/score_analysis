@@ -55,17 +55,39 @@
                     <thead>
                     <tr>
                         <th>班级</th>
-                        <th th:class="chinese">语文<img th:src="@{/asserts/images/decline.png}" th:class="sort"/></th>
-                        <th th:class="math">数学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="english">英语<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="physics">物理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="chemistry">化学<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="biology">生物<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="history">历史<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="politics">政治<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="geography">地理<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="technology">技术<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
-                        <th th:class="total_point">总分<img th:src="@{/asserts/images/decline.png}" th:class="sort"></th>
+                        <th th:class="chinese">语文<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="math">数学<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="english">英语<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="physics">物理<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="chemistry">化学<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="biology">生物<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="history">历史<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="politics">政治<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="geography">地理<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="technology">技术<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
+                        <th th:class="total_point">总分<i class="iconfont icon-arrow-down downjiantou sort"  style="font-size: 18px;color: red; margin-right:-35px;"></i>
+                            <i class="iconfont icon-jiantou-copy upjiantou sort"  style="font-size: 18px;color: green; margin-right:-35px;"></i>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -155,6 +177,13 @@
     </div>
 </div>
 <script type="text/javascript">
+    window.onload = function(){
+        classJudge();
+        changeArrows();
+        gradeOptions();
+        $('.upjiantou').hide();
+    }
+
     $("#examName,#pageSize").change(function () {
         var startYear = $("#startYearSelect option:selected").val();
         var examName = $("#examName option:selected").val();
@@ -176,6 +205,9 @@
             },
             success: function (msg) {
                 $("#allbody").html(msg);
+                classJudge();
+                changeArrows();
+                gradeOptions();
                 var sort = $('#sort').val();
                 $('#subject img').addClass(sort);
             },
@@ -199,6 +231,9 @@
             },
             success: function (msg) {
                 $("#allbody").html(msg);
+                classJudge();
+                changeArrows();
+                gradeOptions();
                 var sort = $('#sort').val();
                 $('#subject img').addClass(sort);
             },
@@ -210,16 +245,12 @@
 
     //改变排序的图片,查询并排序
     $(".sort").click(function () {
-        var str = '';
         //取出图片名
-        str = this.src.slice(37);
         var sort = $('#sort').val();
         if (sort == "desc") {
-            this.src = '/asserts/images/rise.png';
             $(this).removeClass("desc");
             $(this).addClass("asc")
         } else {
-            this.src = '/asserts/images/decline.png';
             $(this).removeClass("asc");
             $(this).addClass("desc")
         }
@@ -231,23 +262,29 @@
         //排序科目
         var subject = $(this).parent().attr("class");
         //获取排序是升序还是降序
-        var sort = $(this).attr("class").split(" ")[1];
+        var sort = $(this).attr("class").split(" ")[4];
         $.ajax({
             method: "post",
             url: "/teacher/selectClassGrade",
             datatype:"json",
             data:{
-                "startYear": startYear,
                 "exam": examName,
                 "pageNum": pageNum,
                 "pageSize": pageSize,
+                "startYear": startYear,
                 "subject": subject,
                 "sort": sort
             },
             success: function (msg) {
+                // console.log(msg)
                 $("#allbody").html(msg);
-                var sort = $('#sort').val();
-                $('#subject img').addClass(sort);
+                classJudge();
+                gradeOptions();
+                changeArrows();
+                // var subject = $('#subject').val();
+                // var sort = $('#sort').val();
+                // $('#subject img').addClass(sort);
+                // // $('#' + subject).attr("sort " + sort);
             },
             error: function (msg) {
                 alert('请求出现错误...');
@@ -255,6 +292,84 @@
         })
     })
 
+    function changeArrows(){
+        var sort = $('#sort').val();
+        if (sort == "desc") {
+            $('.upjiantou').hide();
+            $('.downjiantou').show();
+        } else {
+            $('.downjiantou').hide();
+            $('.upjiantou').show();
+        }
+    }
+
+
+    function classJudge() {
+        var myOptions = $('#startYearSelect').find('option');
+        var newmyOptions = Array.from(myOptions);
+        newmyOptions.forEach(function (item, index) {
+            var myValue = $(item).attr('value')
+            var str = ''
+            str += '20' + myValue;
+            var newStr = parseInt(str);
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            if (year - newStr == 0) {
+                $(item).text('高一')
+            }
+            if (year - newStr == 1) {
+                $(item).text('高二')
+            }
+            if (year - newStr == 2) {
+                $(item).text('高三')
+            }
+            // if (year - newStr !== 2 && year - newStr !== 1 && year - newStr !== 0) {
+            // }
+        })
+    }
+
+    function gradeOptions() {
+        var mygradeOptions = $('#examSelect').find('option');
+        var newmygradeOptions = Array.from(mygradeOptions);
+        newmygradeOptions.forEach(function (item) {
+            var myValue = $(item).attr('value');
+            myValue = myValue.substring(0, 2)
+            var str = ''
+            str += '20' + myValue;
+            var newStr = parseInt(str);
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            if (year - newStr == 0) {
+                var mytext = $(item).html();
+                mytext = mytext.substring(2, mytext.length);
+                console.log(mytext)
+                var sstr = '高一' + mytext;
+                $(item).html(sstr)
+            }
+            if (year - newStr == 1) {
+                var mytext = $(item).html();
+                mytext = mytext.substring(2, mytext.length);
+                var sstr = '高二' + mytext ;
+                $(item).html(sstr)
+            } if (year - newStr == 2) {
+                var mytext = $(item).html();
+                mytext = mytext.substring(2, mytext.length);
+                var sstr = '高三' + mytext;
+                $(item).html(sstr)
+            }
+        })
+    }
+
+    function changeArrows(){
+        var sort = $('#sort').val();
+        if (sort == "desc") {
+            $('.upjiantou').hide();
+            $('.downjiantou').show();
+        } else {
+            $('.downjiantou').hide();
+            $('.upjiantou').show();
+        }
+    }
 </script>
 </body>
 </html>
