@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>顶部</title>
+</head>
+<body>
+    <div class="frameTop" th:fragment="frameTop">
+    <img th:src="@{/asserts/images/superAdmin/top_jt.png}" alt="" class="jt">
+    <div class="topMenu">
+        <ul>
+            <li>
+                <a href="http://" class="menuFA" rel="noopener noreferrer">
+                    <i class="iconfont icon-guanliyuan"></i> 管理员
+                </a>
+            </li>
+
+            <li>
+                <a href="http://" class="menuFA" rel="noopener noreferrer">
+                    <i class="iconfont icon-xiugai"> </i> 修改密码
+                </a>
+            </li>
+
+            <li>
+                <a href="http://" class="menuFA" rel="noopener noreferrer">
+                    <i class="iconfont icon-icon_logout"></i> 注销
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>

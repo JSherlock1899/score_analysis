@@ -1,11 +1,14 @@
 package com.slxy.analysis.teacher.service.impl;
 
 import com.slxy.analysis.teacher.mapper.SuperAdminMapper;
+import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
+import com.slxy.analysis.teacher.model.Teacher;
 import com.slxy.analysis.teacher.service.SuperAdminService;
 import com.slxy.analysis.teacher.util.LinuxCmdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +34,14 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         superAdminMapper.createStudentsRankingTable(tableName02);
         String tableName03 = grade + "_class_grades_" + examTime;
         superAdminMapper.createClassGrades(tableName03);
+    }
+
+    @Override
+    public void createExamRecord(String grade, String examTime, String examName) {
+        examTime = examTime.replace("-", "");
+        //该次考试对应的数据表名
+        String examTalbe = grade + "_students_grades_" + examTime;
+        superAdminMapper.createExamRecord(examTalbe, grade, examTime, examName);
     }
 
     /**
@@ -114,4 +125,47 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         LinuxCmdUtils.executeLinuxCmd(cmd1);
         LinuxCmdUtils.executeLinuxCmd(cmd2);
     }
+
+    /**
+     * 获取所有考试
+     * @return
+     */
+    @Override
+    public List<Exam> selectAllExam() {
+        return superAdminMapper.selectAllExam();
+    }
+
+    @Override
+    public List<Teacher> selectTeacherListByRole(String role) {
+        return superAdminMapper.selectTeacherListByRole(role);
+    }
+
+    @Override
+    public ModelAndView selectTeacherListByName(String name) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("superAdmin/updateTeacherInfo");
+        //若输入了具体的名字则对其进行模糊查询，若没有则返回普通教师列表
+        if (!"".equals(name)){
+            mv.addObject("teacherList", superAdminMapper.selectTeacherListByName(name));
+            return mv;
+        }else {
+            mv.addObject("teacherList", superAdminMapper.selectTeacherListByRole("2"));
+            return mv;
+        }
+
+    }
+
+    @Override
+    public ModelAndView updateTeacherAuthority(String id, String role) {
+        ModelAndView mv = new ModelAndView();
+        int i = superAdminMapper.updateTeacherAuthority(role, id);
+        System.out.println("id = " + id);
+        System.out.println("i = " + i);
+        if (i == 0){
+            mv.addObject("msg", "表已存在");
+        }
+        mv.setViewName("/superAdmin/authorityManagement");
+        return mv;
+    }
+
 }

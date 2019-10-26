@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan({"com.slxy.analysis.teacher.mapper","com.slxy.analysis.student.mapper"})
+@MapperScan({"com.slxy.analysis.teacher.mapper","com.slxy.analysis.student.Mapper"})
 public class AnalysisApplication {
 
 	public static void main(String[] args) {

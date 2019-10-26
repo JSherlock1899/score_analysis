@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+.container {
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
+    position: relative;
+    margin: 0 auto;
+}
+
+.container .form-inline {
+    width: calc(100% - 250px);
+    margin: 0 auto;
+}
+
+.container .totalWidth {
+    width: 100px;
+    margin: 20px 40px;
+}
+
+.container .btn {
+    width: 100px;
+}
+
+input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+
+@media screen and (max-width:1020px) {
+    .form-inline {
+        width: 730px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        width: 200px;
+    }
+}

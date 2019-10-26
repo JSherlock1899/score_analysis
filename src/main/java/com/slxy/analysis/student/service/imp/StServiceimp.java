@@ -6,6 +6,7 @@ import com.slxy.analysis.student.Mapper.StudentGradeMapper;
 import com.slxy.analysis.student.POJO.ClassRank;
 import com.slxy.analysis.student.service.StService;
 import com.slxy.analysis.student.tools.ConversionStringTools;
+import com.slxy.analysis.student.tools.ExamInformationSort;
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class StServiceimp implements StService
@@ -23,9 +26,13 @@ public class StServiceimp implements StService
     StudentGradeMapper sgm;
     @Autowired
     ExamInfomation ef;
-
+    @Autowired
+    AnalysisGradeService anas;
+/*
+查询学生基本成绩
+ */
     @Override
-    public void SearchOne(String exam, HttpServletRequest request, ModelAndView mv) {
+    public ModelAndView SearchOne(String exam, HttpServletRequest request, ModelAndView mv) {
         Student student = (Student) request.getSession().getAttribute("student");
         CountDownLatch cdl=new CountDownLatch(1);
         new Thread(()->{
@@ -40,16 +47,28 @@ public class StServiceimp implements StService
                     exam, ConversionStringTools.GreadtoRank(exam), student.getClassNumber(),
                     grade, ConversionStringTools.GradetoAverage(exam));
             System.out.println(username);
+            anas.ifQualified(username,60);
             mv.addObject("st",username);
         }
-       try {
+        CopyOnWriteArrayList<ClassRank> username = getHistroyTotalGrade((String) request.getSession().getAttribute("username"), request);
+        for (ClassRank c:username
+             ) {
+            System.out.println(c);
+        }
+        try {
         cdl.await();
+        return mv;
        } catch (Exception e) {
            e.printStackTrace();
        }
-
+        return mv;
     }
 
+
+
+/*
+获取学生基本信息
+ */
     @Override
     public Student SeacheStudentBasic(HttpServletRequest request) {
         Student student = (Student) request.getSession().getAttribute("student");
@@ -60,10 +79,58 @@ public class StServiceimp implements StService
         return null;
     }
 
+    /*
+    获取考试信息填充下拉菜单
+     */
     @Override
     public CopyOnWriteArrayList<Exam> getExaminfomation(String id) {
         String year = id.substring(0,2);
         CopyOnWriteArrayList<Exam> examinfomation = ef.getExaminfomation(year);
         return  examinfomation;
+    }
+/*
+获取单科最高和最最低成绩
+ */
+    public ModelAndView getSingleMAXandMINgrade(ModelAndView mv, String exam){
+        ExecutorService executorService= Executors.newFixedThreadPool(2);
+        CountDownLatch countDownLatch=new CountDownLatch(2);
+        try {
+          executorService.execute(()->{
+              mv.addObject("max",sgm.getSingleMax(exam));
+              countDownLatch.countDown();
+          });
+          executorService.execute(()->{
+              mv.addObject("min",sgm.getSingleMin(exam));
+              countDownLatch.countDown();
+          });
+          countDownLatch.await();
+          mv.setViewName("student/analyze");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+          executorService.shutdown();
+        }
+         return mv;
+    }
+
+
+
+    /*
+    获取历史考试所有成绩
+     */
+    public CopyOnWriteArrayList<ClassRank> getHistroyTotalGrade(String id,HttpServletRequest req){
+        Student student = (Student) req.getSession().getAttribute("student");
+       CopyOnWriteArrayList<ClassRank> cr=new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Exam> examinfomation = getExaminfomation(id);
+        examinfomation= ExamInformationSort.examSortredce(examinfomation);
+        for (Exam e:examinfomation
+             ) {
+            String grade = student.getClassNumber().substring(0, 2);
+            ClassRank username = sgm.SearchOneGrade((String) req.getSession().getAttribute("username"),
+                    e.getTableName(), ConversionStringTools.GreadtoRank(e.getTableName()), student.getClassNumber(),
+                    grade, ConversionStringTools.GradetoAverage(e.getTableName()));
+            cr.add(username);
+        }
+        return cr;
     }
 }

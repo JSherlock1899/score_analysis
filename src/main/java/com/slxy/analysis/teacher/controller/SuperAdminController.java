@@ -1,14 +1,19 @@
 package com.slxy.analysis.teacher.controller;
 
+import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
+import com.slxy.analysis.teacher.model.Teacher;
 import com.slxy.analysis.teacher.service.SuperAdminService;
 import com.slxy.analysis.teacher.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
+import static com.slxy.analysis.teacher.util.MySQLUtils.dbBackup;
 
 /**
  * @author: sherlock
@@ -31,12 +36,13 @@ public class SuperAdminController {
      */
     @RequestMapping("createTable")
     public ModelAndView createTable(String grade, String examTime, String examName){
-        System.out.println(examName);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("ttt");
         try{
             //创建三张表
             superAdminService.createExamTable(grade, examTime);
+            //创建考试记录
+            superAdminService.createExamRecord(grade ,examTime, examName);
         }catch (Exception e){
             e.printStackTrace();
             mv.addObject("msg", "表已存在");
@@ -89,8 +95,11 @@ public class SuperAdminController {
         ModelAndView mv = new ModelAndView();
         //首次查询时初始化年级
         List<String> presentGrade = teacherService.getPresentGrade();
-        mv.setViewName("superAdmin/createExam");
+        //查询所有考试信息
+        List<Exam> exams = superAdminService.selectAllExam();
+        mv.addObject("exams", exams);
         mv.addObject("presentGrade", presentGrade);
+        mv.setViewName("superAdmin/createExam");
         return mv;
     }
 
@@ -105,12 +114,59 @@ public class SuperAdminController {
         return mv;
     }
 
-    @RequestMapping("doBackup")
-    public void doBackups(){
-        System.out.println("!!");
-        superAdminService.doBackups();
+    /**
+     * 跳转到权限管理页面
+     * @return
+     */
+    @RequestMapping("authorityManagement")
+    public ModelAndView authorityManagement(@RequestParam(defaultValue = "2") String role){
+        ModelAndView mv = new ModelAndView();
+        List<Teacher> teacherList = superAdminService.selectTeacherListByRole(role);
+        mv.addObject("teacherList", teacherList);
+        mv.addObject("role", role);
+        mv.setViewName("superAdmin/authorityManagement");
+        return mv;
     }
 
+    /**
+     * 跳转到修改教师信息页面
+     * @return
+     */
+    @RequestMapping("updateTeacherInfo")
+    public ModelAndView updateTeacherInfo(@RequestParam(required = false) String name){
+        ModelAndView mv  = superAdminService.selectTeacherListByName(name);
+        return mv;
+    }
 
+    @RequestMapping("doBackup")
+    public String doBackups(){
+        try {
+            dbBackup("root","root","39.107.90.231","score_analysis");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "superAdmin/backups";
+    }
+
+    /**
+     * 查看教师详细信息
+     * @param id 工号
+     * @return
+     */
+    @RequestMapping("showTeacherInfo")
+    public ModelAndView showTeacherInfo(String id){
+        ModelAndView mv = new ModelAndView();
+        Teacher teacher = teacherService.getTeacherById(id);
+        mv.addObject("teacher", teacher);
+        mv.setViewName("teacher/teacherPersonalInfo");
+        return mv;
+    }
+
+    @RequestMapping("updateTeacherAuthority")
+    public ModelAndView updateTeacherAuthority(String id, String role){
+        System.out.println(">>P:LKPKP{");
+        ModelAndView mv = superAdminService.updateTeacherAuthority(id, role);
+        return mv;
+    }
 
 }

@@ -13,6 +13,8 @@ public interface ExamInfomation {
 
     @Cacheable(cacheNames = "examinfomation")
     @Select("SELECT ex.exam_name,ex.exam_type,ex.exam_time,ex.exam_count,ex.table_name,ex.grade\n" +
-            "FROM  exam_record AS ex WHERE ex.grade = #{year}")
+            "FROM  exam_record AS ex WHERE ex.grade = #{year} order by exam_time desc ")
     public CopyOnWriteArrayList<Exam> getExaminfomation(@Param("year") String year);
+
+
 }

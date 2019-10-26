@@ -206,7 +206,7 @@ public class TeacherController {
      * @return
      */
     @RequestMapping("getPersonalInformation")
-    public ModelAndView getPersonalInformation(HttpServletRequest request){
+    public ModelAndView getPersonalInformation(HttpServletRequest request, String id){
         String username = (String) request.getSession().getAttribute("username");
         Teacher teacher = teacherService.getTeacherById(username);
         ModelAndView mv = new ModelAndView();
@@ -227,7 +227,6 @@ public class TeacherController {
                                        ,@RequestParam(defaultValue = "500") String cutOffGrade){
         ModelAndView mv = new ModelAndView();
         List<Map<String, Integer>> map = teacherService.selectPassLineStudents(startYear, exam, cutOffGrade);
-        System.out.println("map = " + map);
         JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(map));
         //各班过线人数集合
         mv.addObject("map", map);

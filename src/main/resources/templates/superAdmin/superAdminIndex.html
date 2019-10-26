@@ -5,12 +5,60 @@
     <title>管理后台</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
-    <link th:href="@{/asserts/css/teacher/common.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/superAdmin/index.css}" rel="stylesheet">
+    <link th:href="@{/asserts/icon/iconfont.css}" rel="stylesheet">
     <!--JQuery-->
     <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
 </head>
 <body>
-    <a href="/superAdmin/goCreateExam">创建考试</a><br>
-    <a href="/superAdmin/goBackups">备份与恢复</a>
+<th:block th:replace="superAdmin/common/sidebar :: frameMenu"></th:block>
+<div class="main">
+    <th:block th:replace="superAdmin/common/top :: frameTop"></th:block>
+    11
+</div>
+
+
+<script>
+    function menuClick(url, _this) {
+        $("#mainIframe").attr("src", url);
+        if ($(_this).find("i").attr("class") == "iconfont icon-chuangjianshili left") {
+            console.log(_this)
+
+            $("#frameMainTitle span").html('<i class="iconfont icon-chuangjianshili"></i>创建考试');
+            return;
+        }
+        if ($(_this).find("i").attr("class") == "iconfont icon-beifen left") {
+            console.log(_this)
+
+            $("#frameMainTitle span").html('<i class="iconfont icon-chuangjianshili"></i>备份与恢复');
+            return;
+        }
+        if ($(_this).find("i").attr("class") == "iconfont icon-xiugai left") {
+            console.log(_this)
+
+            $("#frameMainTitle span").html('<i class="iconfont icon-xiugai left"></i>修改学生信息');
+            return;
+        }
+        if ($(_this).find("i").attr("class") == "iconfont icon-xiugai left tea") {
+            console.log(_this)
+
+            $("#frameMainTitle span").html('<i class="iconfont icon-chuangjianshili"></i>修改老师信息');
+            return;
+        }
+        if ($(_this).find("i").attr("class") == "iconfont icon-daoru left") {
+            console.log(_this)
+
+            $("#frameMainTitle span").html('<i class="iconfont icon-chuangjianshili"></i>Excel导入导出');
+            return;
+        }
+        if ($(_this).text() == "修改密码") {
+            $("#frameMainTitle span").html('<i class="iconfont icon-xianshiqi"></i>' + $(_this).text());
+            return;
+        }
+    }
+
+
+
+</script>
 </body>
 </html>

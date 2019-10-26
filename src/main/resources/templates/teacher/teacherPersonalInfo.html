@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,9 @@
 <body>
     <div class="container">
 
-        <a class="btn btn-default" href="/user/goTeacherIndex" role="button">返回上一级</a>
+        <div shiro:hasPermission="teacher:selectPersonalInfo">
+            <a class="btn btn-default" href="/user/goTeacherIndex" role="button">返回上一级</a>
+        </div>
 
 
         <table spellcheck="0" cellspacing="0" border="1px solid black">

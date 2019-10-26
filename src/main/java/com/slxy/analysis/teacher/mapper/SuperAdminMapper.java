@@ -1,7 +1,12 @@
 package com.slxy.analysis.teacher.mapper;
 
+import com.slxy.analysis.teacher.model.Exam;
+import com.slxy.analysis.teacher.model.Teacher;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * @author: sherlock
@@ -87,8 +92,16 @@ public interface SuperAdminMapper {
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8;")
     void createClassGrades(String examTable);
 
-    @Insert("insert into exam_record ()")
+    /**
+     * 在考试记录表中添加对应的记录
+     * @param examTable 该次考试对应的数据表名
+     * @param grade 年级
+     * @param examTime 考试时间
+     * @param examName 考试名
+     */
+    @Insert("insert into exam_record (exam_name,exam_time,table_name,grade) values(#{examName},#{examTime},#{examTable},#{grade})")
     void createExamRecord(String examTable, String grade, String examTime, String examName);
+
     /**
      * 调用存储过程计算各班平均分并插入对应表
      * @param subjects 考试科目字段
@@ -130,6 +143,37 @@ public interface SuperAdminMapper {
     @Select("CALL initRankingTable('${gradeTable}','${rankingTable}')")
     void callInitRankingTable(String gradeTable, String rankingTable);
 
-    @Select("mysqldump -u root -p score_analysis > /home/backup.sql")
-    void doBackup();
+    /**
+     * 查询所有考试信息
+     * @return
+     */
+    @Select("select exam_name,exam_time,grade from exam_record")
+    List<Exam> selectAllExam();
+
+    /**
+     * 根据教师的权限角色查询教师信息，获取各个权限角色的教师列表
+     * @param role
+     * @return
+     */
+    @Select("select id,name,sex,nation,id_card,telephone,native_place,homeAddress,job_grade,pol_stat," +
+            "employed_time,graduate_school,picture,subject,remark from teacher_basic_info where role = #{role}")
+    List<Teacher> selectTeacherListByRole(String role);
+
+    /**
+     * 根据教师名查询教师（模糊查询）
+     * @param name 教师名
+     * @return
+     */
+    @Select("select id,name,sex,nation,id_card,telephone,native_place,homeAddress,job_grade,pol_stat," +
+            "employed_time,graduate_school,picture,subject,remark,role from teacher_basic_info where name like '%${name}%'")
+    List<Teacher> selectTeacherListByName(String name);
+
+    /**
+     * 修改教师权限
+     * @param role 权限角色
+     * @param id 工号
+     * @return
+     */
+    @Update("update teacher_basic_info set role = #{role} where id = #{id}")
+    int updateTeacherAuthority(String role, String id);
 }

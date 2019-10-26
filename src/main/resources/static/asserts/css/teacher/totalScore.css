@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+    margin-top: -60px;
+}
+
+.content {
+    margin-top: 120px;
+}
+
+
+.form-control {
+    width: 20%;
+    display: inline-block;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.btn .btn-default {
+    float: right;
+    margin-right: 20px;
+}
+
+.panel-body {
+    position: relative;
+}
+
+.table {
+    width: 30%;
+    max-width: 20%;
+    border-collapse: collapse;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.table thead {
+    background-color: #0ec5a1;
+    color: #fff;
+}
+
+#school_grades_bar {
+    width: 70%;
+    height: 400px;
+    position: absolute;
+    top: 80px;
+    right: 40px;
+}

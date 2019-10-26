@@ -6,6 +6,7 @@
     <!-- Bootstrap core CSS -->
     <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{/asserts/css/teacher/common.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/totalScore.css}" rel="stylesheet">
     <!--JQuery-->
     <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
     <!--Echarts-->
@@ -13,30 +14,69 @@
     <script th:src="@{/asserts/js/teacher/analysisSchoolGrade.js}"></script>
 </head>
 <body id="allbody">
-    请输入分数线：<input type="text"  th:value="${cutOffGrade}" id="cutOffGrade">
-    <input type="button" id="btn" value="提交"><br>
-    <a class="btn btn-default" href="/teacher/selectClassGrade" role="button">返回上一级</a>
-    <table border="1">
-        <thead>
-            <th>班级</th>
-            <th>过线人数</th>
-        </thead>
-        <tbody th:each="rs:${map}">
-            <td th:text="${rs.classNumber}"></td>
-            <td th:text="${rs.number}"></td>
-        </tbody>
-    </table>
-    <input type="hidden" th:value="${exam}" id="exam">
-    <input type="hidden" th:value="${startYear}" id="startYear">
-    <input type="hidden" th:value="${map}" id="map">
-    <input type="hidden" th:value="${jsonArray}" id="jsonArray">
-    <input type="hidden" th:value="${cutOffGrade}" id="cutOffGradeValue">
-    <div class="container-fluid">
-        <div class="row">
-            <div id="school_grades_bar" class="col-md-6" style="height:400px"></div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="z-header">
+                <div class="z-logo">
+                    <h3>学 生 成 绩 分 析</h3>
+                </div>
+                <!-- 头部右侧区域 -->
+                <div class="z-home">
+                    <div class="z-homepage">
+                        <a href="/user/goTeacherIndex">首页</a>
+                    </div>
+
+                    <div class="z-homepwd">
+                        <a href="#">修改密码</a>
+                    </div>
+                    <div class="z-homequit">
+                        <a href="/user/signOut">注销</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <script>
+
+    <div class="container container-fluid">
+        <div class="content">
+            <div class="panel panel-success">
+                <div class="panel-heading" style="padding: 20px;">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="cutOffGrade" style="font-size: 18px;">请输入分数线：</label>
+                            <input type="text" class="form-control"  th:value="${cutOffGrade}" id="cutOffGrade">
+                        </div>
+                        <input type="button" class="btn btn-info" id="btn" style="margin-right:20px;margin-left: -10px" value="提交"/>
+                        <a class="btn btn-default" href="/teacher/selectClassGrade" role="button">返回上一级</a>
+                    </form>
+                </div>
+                <div class="panel-body row">
+                    <table class="table table-bordered col-md-3">
+                        <thead>
+                            <tr>
+                                <th>班级</th>
+                                <th>过线人数</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody" th:each="rs:${map}">
+                            <tr class="tr">
+                                <td th:text="${rs.classNumber}"></td>
+                                <td th:text="${rs.number}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="school_grades_bar" class="col-md-6" style="height:400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<input type="hidden" th:value="${exam}" id="exam">
+<input type="hidden" th:value="${startYear}" id="startYear">
+<input type="hidden" th:value="${map}" id="map">
+<input type="hidden" th:value="${jsonArray}" id="jsonArray">
+<input type="hidden" th:value="${cutOffGrade}" id="cutOffGradeValue">
+<script>
         $('#btn').on("click", function () {
             var startYear = $("#startYear").val();
             var exam = $("#exam").val();

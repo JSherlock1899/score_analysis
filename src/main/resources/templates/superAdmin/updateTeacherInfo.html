@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改教师信息</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/superAdmin/creatExam.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/superAdmin/index.css}" rel="stylesheet">
+    <link th:href="@{/asserts/icon/iconfont.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+    <!--bootstrap,js-->
+    <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}" type="text/javascript"></script>
+</head>
+<body>
+<th:block th:replace="superAdmin/common/sidebar :: frameMenu"></th:block>
+<div class="main">
+    <!--顶部-->
+    <th:block th:replace="superAdmin/common/top :: frameTop"></th:block>
+    <div class="frameMain">
+        <div class="title" id="frameMainTitle">
+            <span><i class="iconfont icon-chuangjianshili"></i>修改教师信息</span>
+        </div>
+    </div>
+    <div class="container container-fluid">
+        <form class="form-inline" action="/superAdmin/updateTeacherInfo">
+            教师名：<input type="text" name="name" class="form-control">
+            <input type="submit" value="搜索" class="btn btn-info">
+        </form>
+        <div class="table-respqonsive" style="margin-top: 30px">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>工号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>所教学科</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <tr th:each="t:${teacherList}" class="tr">
+                <td th:text="${t.id}"></td>
+                <td><a th:href="@{'/superAdmin/showTeacherInfo?id=' + ${t.id}}">[[${t.name}]]</a></td>
+                <td th:text="${t.sex}"></td>
+                <td th:text="${t.subject}"></td>
+                <td>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal">编辑</button>
+                    <button class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改教师信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">教师名</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="教师名">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    </div>
+</div>
+</body>
+</html>

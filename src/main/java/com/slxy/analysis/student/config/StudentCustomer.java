@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class StudentCustomer implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/student/logout").setViewName("login");
-        registry.addViewController("/st/index").setViewName("stindex");
+        registry.addViewController("/student/logout").setViewName("student/login");
+        registry.addViewController("/st/index").setViewName("student/stindex");
     }
 }

@@ -1,6 +1,6 @@
 package com.slxy.analysis.teacher.util;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @author: sherlock
@@ -8,81 +8,111 @@ import java.io.IOException;
  * @date: 2019/10/23 8:24
  */
 public class MySQLUtils {
-//    public static boolean backup(String username,String password,String dbName,String mysqldumpPath, String backupPath) {
-//        boolean status = false;
-//
-//        String command = mysqldumpPath + "/mysqldump -u " + username + " -p" + password + " " + dbName + " -r " + backupPath;
+
+    /**
+     * 数据库表备份
+     *
+     * @throws Exception
+     */
+    public static void tableBackup(String dbUser,String dbPass,String dbHost,String dbPort,String dbName,String savePath, String tableName)
+            throws Exception {
+
+        Runtime runtime = Runtime.getRuntime();
+        // -u后面是用户名，-p是密码-p后面最好不要有空格，-family是数据库的名字
+        Process process = runtime.exec("mysqldump -h " + dbHost + " -P "
+                + dbPort + " -u " + dbUser + " -p" + dbPass + " " + dbName
+                + " " + tableName);
+        InputStream inputStream = process.getInputStream();// 得到输入流，写成.sql文件
+        InputStreamReader reader = new InputStreamReader(inputStream);
+        BufferedReader br = new BufferedReader(reader);
+        String s = null;
+        StringBuffer sb = new StringBuffer();
+        while ((s = br.readLine()) != null) {
+            sb.append(s + "\r\n");
+        }
+        s = sb.toString();
+        File file = new File(savePath);
+        file.getParentFile().mkdirs();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(s.getBytes());
+        fileOutputStream.close();
+        br.close();
+        reader.close();
+        inputStream.close();
+    }
+
+    /**
+     * 备份数据库
+     *
+     * @throws Exception
+     */
+    public static void dbBackup(String dbUser, String dbPass, String dbHost, String dbName
+                                ) throws Exception {
+
+        Runtime runtime = Runtime.getRuntime();
+//        Process process1 = runtime.exec("docker exec -it mysql01 bash");
+        Process process = runtime.exec("ls > 1.txt");
+//        System.out.println("-------------------------------------" + process1.isAlive());
+        // -u后面是用户名，-p是密码-p后面最好不要有空格，-family是数据库的名字
+//        Process process2 = runtime.exec("/usr/bin/mysqldump -h " + dbHost + " -P "
+//                 + " -u " + dbUser + " -p" + dbPass + " " +  dbName);
+//        System.out.println("/usr/bin/mysqldump -h " + dbHost + " -P "
+//                + " -u " + dbUser + " -p" + dbPass + " " +  dbName  + " > /home/1111.sql");
+    }
+
+    /**
+     * 执行sql文件
+     *
+     * @param savePath
+     * @throws Exception
+     */
+    public static void dbRecover(String dbUser, String dbPass, String dbHost,
+                                String dbName, String savePath) throws Exception {
+        // 获取操作数据库的相关属性
+
+        Runtime runtime = Runtime.getRuntime();
+        Process process = runtime.exec("mysql -h" + dbHost + " -P "
+                + " -u " + dbUser + " -p" + dbPass
+                + " --default-character-set=utf8 " + dbName);
+        OutputStream outputStream = process.getOutputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(savePath)));
+        String str = null;
+        StringBuffer sb = new StringBuffer();
+        while ((str = br.readLine()) != null) {
+            sb.append(str + "\r\n");
+        }
+        str = sb.toString();
+        OutputStreamWriter writer = new OutputStreamWriter(outputStream,
+                "utf-8");
+        writer.write(str);
+        writer.flush();
+        outputStream.close();
+        br.close();
+        writer.close();
+    }
+
+    public static void main(String[] args) {
+        /*try {
+            dbBackup("root", "ROOT", "localhost","3306", "EPDB", "D:/back.sql");
+            System.out.println("完成！");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
 //        try {
-//            Process runtimeProcess = Runtime.getRuntime().exec(command);
-//            int processComplete = runtimeProcess.waitFor();
-//            if (processComplete == 0) {
-//                System.out.println("MySQLManager: Backup database Successfull");
-//                status = true;
-//            } else {
-//                System.out.println("MySQLManager: Backup database Failure!");
-//            }
-//        } catch (IOException ioe) {
-//            System.out.println("Exception IO");
-//            ioe.printStackTrace();
+//            dbRecover("root", "ROOT", "localhost","3306", "EPDB", "D:/back.sql");
+//            System.out.println("完成！");
 //        } catch (Exception e) {
-//            System.out.println("Exception");
 //            e.printStackTrace();
 //        }
-//        return status;
-//    }
-    public static boolean backup(String username,String password,String dbName,String mysqldumpPath, String backupPath) {
-        boolean status = false;
-
-        String[] command = new String[]{"/usr/bin/mysqldump -h39.107.90.231 -u root -proot score_analysis > /home/backu00p.sql"};
-
         try {
-            Process runtimeProcess = Runtime.getRuntime().exec(command);
-            int processComplete = runtimeProcess.waitFor();
-            if (processComplete == 0) {
-                System.out.println("MySQLManager:Restore database Successfull");
-                status = true;
-            } else {
-                System.out.println("MySQLManager:Restore database Failure");
-            }
-        } catch (IOException ioe) {
-            System.out.println("Exception IO");
-            ioe.printStackTrace();
+            dbBackup("root","root","39.107.90.231","score_analysis");
+            System.out.println("yeah！");
         } catch (Exception e) {
-            System.out.println("Exception");
             e.printStackTrace();
         }
-        return status;
-    }
-    public static boolean restore(String username,String password,String filePath){
-        boolean status = false;
-
-        String[] command = new String[]{"/usr/local/mysql/bin/mysql", "exp_transactions", "-u" + username, "-p" + password, "-e", " source "+filePath };
-
-        try {
-            Process runtimeProcess = Runtime.getRuntime().exec(command);
-            int processComplete = runtimeProcess.waitFor();
-            if (processComplete == 0) {
-                System.out.println("MySQLManager:Restore database Successfull");
-                status = true;
-            } else {
-                System.out.println("MySQLManager:Restore database Failure");
-            }
-        } catch (IOException ioe) {
-            System.out.println("Exception IO");
-            ioe.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Exception");
-            e.printStackTrace();
-        }
-        return status;
     }
 
-    //for testing
-    public static void main(String args[]){
-        //String backupName = "D:/DatabaseBackup/backupHvs.sql";
-        //MySQLManager.restore(backupName);
-        MySQLUtils.backup("root","jyh05745@","score_analysis","/usr/local/mysql/bin","/Users/jeff/Movies/backup_20120419_101741.sql");
-        //MySQLManager.restore("root","123","/Users/jeff/Movies/backup_20120419_101741.sql");
-    }
 
 }

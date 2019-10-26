@@ -12,7 +12,7 @@ public interface StService {
     /*
     查询某一个学生的成绩，根据id
      */
-    public void SearchOne(String exam, HttpServletRequest request, ModelAndView mv);
+    public ModelAndView SearchOne(String exam, HttpServletRequest request, ModelAndView mv);
 
     /*
     根据id查询用户基本信息

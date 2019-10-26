@@ -45,7 +45,7 @@ public class UserController {
 
     @RequestMapping("add")
     public String add(){
-        return "teacherIndex";
+        return "fragment";
     }
 
     /**

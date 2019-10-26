@@ -1,0 +1,51 @@
+{
+  "id": "1474501",
+  "name": "backManagment",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1048893",
+      "name": "注销",
+      "font_class": "icon_logout",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "1305462",
+      "name": "创建实例",
+      "font_class": "chuangjianshili",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "6244963",
+      "name": "导入",
+      "font_class": "daoru",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "6537208",
+      "name": "备份",
+      "font_class": "beifen",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "7898688",
+      "name": "管理员",
+      "font_class": "guanliyuan",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8765253",
+      "name": "修改",
+      "font_class": "xiugai",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    }
+  ]
+}

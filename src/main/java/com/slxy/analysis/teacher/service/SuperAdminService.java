@@ -1,5 +1,9 @@
 package com.slxy.analysis.teacher.service;
 
+import com.slxy.analysis.teacher.model.Exam;
+import com.slxy.analysis.teacher.model.Teacher;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 /**
@@ -23,9 +27,19 @@ public interface SuperAdminService {
 
     void createExamTable(String grade, String examTime);
 
+    void createExamRecord(String grade, String examTime, String examName);
+
     void createStudentsRankingTable(String examTable);
 
     void createClassGrades(String examTable);
 
     void doBackups();
+
+    List<Exam> selectAllExam();
+
+    List<Teacher> selectTeacherListByRole(String role);
+
+    ModelAndView selectTeacherListByName(String name);
+
+    ModelAndView updateTeacherAuthority(String role, String id);
 }
