@@ -1,6 +1,7 @@
 package com.slxy.analysis.teacher.mapper;
 
 import com.slxy.analysis.teacher.model.ClassGrade;
+import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Teacher;
 import org.apache.ibatis.annotations.Select;
@@ -91,8 +92,8 @@ public interface TeacherMapper extends UserMapper {
      * @param grade
      * @return
      */
-    @Select("select table_name from exam_record where grade = #{grade}")
-    List<String> getExamList(String grade);
+    @Select("select exam_name,table_name from exam_record where grade = #{grade}")
+    List<Exam> getExamList(String grade);
 
     /**
      * 获取某班各次考试的平均分
@@ -105,6 +106,14 @@ public interface TeacherMapper extends UserMapper {
             "total_point_average_grades from ${examTable} where classNumber = #{classNumber}")
     Grade getClassGrades(String examTable, String classNumber);
 
+    /**
+     * 查询各班单科平均分
+     * @param subject 科目
+     * @param examTable 班级成绩表
+     * @return
+     */
+    @Select("select ${subject} from ${examTable} where classNumber = #{classNumber}")
+    List<ClassGrade> selectSingleSubjectGrades(String subject, String examTable, String classNumber);
     /**
      * 根据考试表获取考试名
      * @param examTable
@@ -165,5 +174,14 @@ public interface TeacherMapper extends UserMapper {
     @Select("select subject from teacher_basic_info where id = #{id}")
     String selectTeacherSubject(String id);
 
+    /**
+     * 查询某个年级最近考试名和考试表的名称
+     * @param grade
+     * @return
+     */
+    @Select("select exam_name,exam_time,table_name from exam_record where grade = #{grade}")
+    List<Exam> selectRecentlyExams(String grade);
 
+    @Select("select count(*) from ${examTable} where total_point_grades >= #{cutOffGrade}")
+    Integer calcPassLineCount(String examTable, Integer cutOffGrade);
 }

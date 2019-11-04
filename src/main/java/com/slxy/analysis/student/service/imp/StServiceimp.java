@@ -1,8 +1,8 @@
 package com.slxy.analysis.student.service.imp;
 
 
-import com.slxy.analysis.student.Mapper.ExamInfomation;
-import com.slxy.analysis.student.Mapper.StudentGradeMapper;
+import com.slxy.analysis.student.mapper.ExamInfomation;
+import com.slxy.analysis.student.mapper.StudentGradeMapper;
 import com.slxy.analysis.student.POJO.ClassRank;
 import com.slxy.analysis.student.service.StService;
 import com.slxy.analysis.student.tools.ConversionStringTools;
@@ -49,6 +49,7 @@ public class StServiceimp implements StService
             System.out.println(username);
             anas.ifQualified(username,60);
             mv.addObject("st",username);
+
         }
         CopyOnWriteArrayList<ClassRank> username = getHistroyTotalGrade((String) request.getSession().getAttribute("username"), request);
         for (ClassRank c:username
@@ -63,9 +64,6 @@ public class StServiceimp implements StService
        }
         return mv;
     }
-
-
-
 /*
 获取学生基本信息
  */
@@ -81,11 +79,18 @@ public class StServiceimp implements StService
 
     /*
     获取考试信息填充下拉菜单
+    若id=all则查询所有考试
      */
     @Override
     public CopyOnWriteArrayList<Exam> getExaminfomation(String id) {
-        String year = id.substring(0,2);
-        CopyOnWriteArrayList<Exam> examinfomation = ef.getExaminfomation(year);
+        CopyOnWriteArrayList<Exam> examinfomation=null;
+        if(!id.equals("all")){
+            String year = id.substring(0,2);
+            examinfomation = ef.getExaminfomation(year);
+
+        }else{
+            examinfomation = ef.getAllExamList();
+        }
         return  examinfomation;
     }
 /*
@@ -112,8 +117,6 @@ public class StServiceimp implements StService
         }
          return mv;
     }
-
-
 
     /*
     获取历史考试所有成绩

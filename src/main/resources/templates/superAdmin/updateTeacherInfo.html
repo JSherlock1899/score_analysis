@@ -46,13 +46,26 @@
                 <td th:text="${t.sex}"></td>
                 <td th:text="${t.subject}"></td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#myModal">编辑</button>
-                    <button class="btn btn-danger">删除</button>
+                    <button class="btn btn-info modalBtn" data-toggle="modal" th:value="${t.id}" data-target="#myModal">编辑</button>
+                    <button class="btn btn-danger delete">删除</button>
                 </td>
+                <input type="hidden" th:value="${t.id}" class="id">
+                <input type="hidden" th:value="${t.name}" class="name">
+                <input type="hidden" th:value="${t.sex}" class="sex">
+                <input type="hidden" th:value="${t.nation}" class="nation">
+                <input type="hidden" th:value="${t.idCard}" class="idCard">
+                <input type="hidden" th:value="${t.telephone}" class="telephone">
+                <input type="hidden" th:value="${t.nativePlace}" class="nativePlace">
+                <input type="hidden" th:value="${t.homeAddress}" class="homeAddress">
+                <input type="hidden" th:value="${t.jobGrade}" class="jobGrade">
+                <input type="hidden" th:value="${t.polStat}" class="polStat">
+                <input type="hidden" th:value="${t.graduateSchool}" class="graduateSchool">
+                <input type="hidden" th:value="${t.subject}" class="subject">
             </tr>
             </tbody>
         </table>
     </div>
+    <input type="hidden" id="terId">
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -66,16 +79,72 @@
                     </h4>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="id">
                     <div class="form-group">
                         <label for="name">教师名</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="教师名">
+                        <input type="text" name="name" class="form-control" id="name">
                     </div>
+                    <div class="form-group">
+                        <label for="sex">性别</label>
+                        <select name="sex" id="sex" class="form-control">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nation">民族</label>
+                        <input type="text" name="nation" class="form-control" id="nation">
+                    </div>
+                    <div class="form-group">
+                        <label for="idCard">身份证号</label>
+                        <input type="text" name="idCard" class="form-control" id="idCard">
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">电话号码</label>
+                        <input type="text" name="telephone" class="form-control" id="telephone">
+                    </div>
+                    <div class="form-group">
+                        <label for="nativePlace">籍贯</label>
+                        <input type="text" name="nativePlace" class="form-control" id="nativePlace">
+                    </div>
+                    <div class="form-group">
+                        <label for="homeAddress">家庭住址</label>
+                        <input type="text" name="homeAddress" class="form-control" id="homeAddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobGrade">职称</label>
+                        <input type="text" name="jobGrade" class="form-control" id="jobGrade">
+                    </div>
+                    <div class="form-group">
+                        <label for="polStat">政治面貌</label>
+                        <input type="text" name="polStat" class="form-control" id="polStat">
+                    </div>
+                    <div class="form-group">
+                        <label for="graduateSchool">毕业院校</label>
+                        <input type="text" name="graduateSchool" class="form-control" id="graduateSchool">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">所教课程</label>
+                        <select name="class" id="subject" class="form-control">
+                            <option value="语文">语文</option>
+                            <option value="数学">数学</option>
+                            <option value="英语">英语</option>
+                            <option value="物理">物理</option>
+                            <option value="化学">化学</option>
+                            <option value="生物">生物</option>
+                            <option value="政治">政治</option>
+                            <option value="历史">历史</option>
+                            <option value="地理">地理</option>
+                            <option value="技术">技术</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default"
                             data-dismiss="modal">关闭
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="save">
                         提交更改
                     </button>
                 </div>
@@ -84,5 +153,113 @@
     </div><!-- /.modal -->
     </div>
 </div>
+<script>
+    // 对模态框赋值
+    $(".modalBtn").click(function () {
+        var c = $(this).val();
+        var id = $(this).closest("tr").find(".id").val();
+        var name = $(this).closest("tr").find(".name").val();
+        var sex = $(this).closest("tr").find(".sex").val();
+        var nation = $(this).closest("tr").find(".nation").val();
+        var idCard = $(this).closest("tr").find(".idCard").val();
+        var telephone = $(this).closest("tr").find(".telephone").val();
+        var nativePlace = $(this).closest("tr").find(".nativePlace").val();
+        var homeAddress = $(this).closest("tr").find(".homeAddress").val();
+        var jobGrade = $(this).closest("tr").find(".jobGrade").val();
+        var polStat = $(this).closest("tr").find(".polStat").val();
+        var graduateSchool = $(this).closest("tr").find(".graduateSchool").val();
+        var subject = $(this).closest("tr").find(".subject").val();
+        $("#id").attr("value", id);
+        $("#name").attr("value", name);
+        $("#sex").attr("value", sex);
+        $("#nation").attr("value", nation);
+        $("#idCard").attr("value", idCard);
+        $("#telephone").attr("value", telephone);
+        $("#nativePlace").attr("value", nativePlace);
+        $("#homeAddress").attr("value", homeAddress);
+        $("#jobGrade").attr("value", jobGrade);
+        $("#polStat").attr("value", polStat);
+        $("#graduateSchool").attr("value", graduateSchool);
+        $("#subject").attr("value", subject);
+        $("#terId").attr('value',c);
+    })
+
+    //保存更新的教师信息
+    $("#save").click(function () {
+        var id = $("#id").val();
+        var name = $("#name").val();
+        var sex = $("#sex").val();
+        var nation = $("#nation").val();
+        var idCard = $("#idCard").val();
+        var telephone = $("#telephone").val();
+        var nativePlace = $("#nativePlace").val();
+        var homeAddress = $("#homeAddress").val();
+        var jobGrade = $("#jobGrade").val();
+        var polStat = $("#polStat").val();
+        var graduateSchool = $("#graduateSchool").val();
+        var subject = $("#subject").val();
+        $.ajax({
+            url:"/superAdmin/updateTerInfo",
+            type:"post",
+            datatype:"json",
+            async: false,//同步
+            data:{
+                "id":id,
+                "name":name,                
+                "sex":sex,                
+                "nation":nation,                
+                "idCard":idCard,                
+                "telephone":telephone,                
+                "nativePlace":nativePlace,                
+                "homeAddress":homeAddress,                
+                "jobGrade":jobGrade,                
+                "polStat":polStat,                
+                "graduateSchool":graduateSchool,                
+                "subject":subject,                
+            },
+            success:function (result) {
+                console.log(result)
+                alert("修改成功");
+                window.location.reload();
+            },
+            error:function (result) {
+                alert("请求出现错误...");
+            }
+        })
+    })
+
+    //删除教师
+    $(".delete").click(function () {
+        var id = $(this).closest("tr").find(".id").val();
+        if (del()){
+            $.ajax({
+                url: "/superAdmin/delTer",
+                type: "post",
+                dataType: "json",
+                data:{
+                    "id":id
+                },
+                success:function (msg) {
+                    alert("删除成功");
+                    $(e.target).closest("tr").fadeOut();
+                    window.location.reload();
+                },
+                error:function(msg){
+                    alert('请求出现错误...');
+                }
+            })
+        }
+    })
+
+    //删除确认
+    function del() {
+        var msg = "您真的确定要删除吗？请确认！";
+        if (confirm(msg)==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

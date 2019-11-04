@@ -2,6 +2,7 @@ package com.slxy.analysis.teacher.mapper;
 
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Teacher;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -176,4 +177,26 @@ public interface SuperAdminMapper {
      */
     @Update("update teacher_basic_info set role = #{role} where id = #{id}")
     int updateTeacherAuthority(String role, String id);
+
+    /**
+     * 根据教师id修改其个人信息
+     * @param id
+     * @param name
+     * @param sex
+     * @param nation
+     * @param id_card
+     * @param telephone
+     * @param native_place
+     * @param homeAddress
+     * @param job_grade
+     * @param pol_stat
+     * @param graduate_school
+     * @param subject
+     * @return
+     */
+    @Update("update teacher_basic_info set name = #{name},sex = #{sex},id_card = #{id_card},telephone = #{telephone},native_place = #{native_place},homeAddress = #{homeAddress},job_grade = #{job_grade},pol_stat = #{pol_stat},graduate_school = #{graduate_school},subject = #{subject} where id = #{id} ")
+    int updateTerInfo(String id, String name, String sex, String nation,String id_card,String telephone,String native_place,String homeAddress,String job_grade,String pol_stat,String graduate_school,String subject);
+
+    @Delete("delete from teacher_basic_info where id = #{id}")
+    void delTer(String id);
 }

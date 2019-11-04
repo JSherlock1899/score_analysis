@@ -1,14 +1,11 @@
 package com.slxy.analysis.student.service.imp;
 
-import com.slxy.analysis.student.Mapper.ExamInfomation;
-import com.slxy.analysis.student.Mapper.StudentGradeMapper;
+import com.slxy.analysis.student.mapper.ExamInfomation;
+import com.slxy.analysis.student.mapper.StudentGradeMapper;
 import com.slxy.analysis.student.POJO.ClassRank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class AnalysisGradeService {

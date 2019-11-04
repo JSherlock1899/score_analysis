@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: sherlock
@@ -56,7 +53,7 @@ public class TeacherController {
         //查询教师备注(来判断该教师属于哪个年级)
         String remark = teacherService.getTeacherRemark((String) request.getSession().getAttribute("username"));
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getPresentGrade();
+        List<String> presentGrade = teacherService.getGradeList(request);
         List<String> classList = teacherService.getClassList(request, role, remark, presentGrade.get(0), startYear);
         //初始化考试名称的下拉框
         HashSet<Exam> examList = userService.getExam(teacherService.getTeacherGrade(classList));
@@ -132,11 +129,11 @@ public class TeacherController {
      * @return
      */
     @RequestMapping("selectClassGrade")
-    public ModelAndView listClassGrade(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,
+    public ModelAndView listClassGrade(HttpServletRequest request,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,
                                        @RequestParam(required = false) String exam, @RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
                                        @RequestParam(defaultValue = "asc") String sort, Map<String, Object> map){
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getPresentGrade();
+        List<String> presentGrade = teacherService.getGradeList(request);
         if (startYear == null){
             startYear = presentGrade.get(0);
         }
@@ -184,17 +181,12 @@ public class TeacherController {
     public ModelAndView viewDetail(String classNumber, String exam, Map<String, Object> map){
         List<Grade> classGradeList = teacherService.getClassGradeList(classNumber);
         //只取近五次成绩进行可视化
-        if(classGradeList.size() > 5){
-            for (int i = 0; i < classGradeList.size() - 5; i++ ){
-                classGradeList.remove(i);
-            }
-        }
+        classGradeList = teacherService.disposeList(classGradeList);
         ModelAndView mv = new ModelAndView();
         List<Map<String, String>> studnetRankingDistribute = teacherService.getStudnetRankingDistribute(exam, classNumber);
         JSONArray jsonList = JSONArray.parseArray(JSON.toJSONString(classGradeList));
         JSONArray rankingDistribute = JSONArray.parseArray(JSON.toJSONString(studnetRankingDistribute));
         mv.addObject("jsonList", jsonList);
-        System.out.println(jsonList);
         mv.addObject("rankingDistribute", rankingDistribute);
         mv.setViewName("teacher/classDetail");
         return mv;
@@ -223,9 +215,17 @@ public class TeacherController {
      * @return
      */
     @RequestMapping("setCutOffGrade")
-    public ModelAndView setCutOffGrade(@RequestParam(required = false) String exam, @RequestParam(required = false) String startYear
-                                       ,@RequestParam(defaultValue = "500") String cutOffGrade){
-        ModelAndView mv = new ModelAndView();
+    public ModelAndView setCutOffGrade(HttpServletRequest request,@RequestParam(required = false) String exam, @RequestParam(required = false) String startYear
+            ,@RequestParam(defaultValue = "500") String cutOffGrade){
+        //初始化查询的年级
+        startYear = teacherService.disposeStartYear(request, startYear);
+        ModelAndView mv = teacherService.setCutOffGrade(request, startYear);
+        //获取显示的考试列表
+        List<Exam> examList = teacherService.getExamList(startYear);
+        //初始化考试表值
+        exam = teacherService.disposeExam(exam, examList);
+        //获取过线人数总和
+        Integer passLineCount = teacherService.calcPassLineCount(exam, Integer.valueOf(cutOffGrade));
         List<Map<String, Integer>> map = teacherService.selectPassLineStudents(startYear, exam, cutOffGrade);
         JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(map));
         //各班过线人数集合
@@ -238,7 +238,45 @@ public class TeacherController {
         mv.addObject("startYear", startYear);
         //分数线
         mv.addObject("cutOffGrade", cutOffGrade);
+        //考试列表
+        mv.addObject("examList", examList);
+        //过线人数总和
+        mv.addObject("passLineCount", passLineCount);
         mv.setViewName("teacher/totalAnalysis");
         return mv;
     }
+
+    @RequestMapping("showGradesVariation")
+    public ModelAndView showGradesVariation(@RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
+                                        @RequestParam(required = false) String classNumber){
+        System.out.println("subject = " + subject);
+        System.out.println("startYear = " + startYear);
+        System.out.println("classNumber = " + classNumber);
+        ModelAndView mv = new ModelAndView();
+        //获取该年级最近的考试列表
+        List<Exam> exams = teacherService.selectRecentlyExams(startYear);
+        //该年级的所有班级
+        List<String> gradeClass = teacherService.getGradeClass(startYear);
+        List<Map<String, String>> grades = teacherService.selectClassSingleSubjectChange(startYear, subject, classNumber);
+        //考试的成绩
+        JSONArray jsongrades = JSONArray.parseArray(JSON.toJSONString(grades));
+        //考试名
+        JSONArray examJson = new JSONArray(Collections.singletonList(exams));
+        //入学年份
+        mv.addObject("startYear", startYear);
+        //各班单科成绩
+        mv.addObject("jsongrades", jsongrades);
+        //考试名
+        mv.addObject("exams", examJson);
+        //当前年级的所有班级
+        mv.addObject("gradeClass", gradeClass);
+        //当前班级
+        mv.addObject("classNumber", classNumber);
+        //所选科目
+        mv.addObject("subject", subject);
+        mv.setViewName("teacher/examAnalysis");
+        return mv;
+    }
+
+
 }

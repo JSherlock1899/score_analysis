@@ -4,6 +4,7 @@ import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Teacher;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -42,4 +43,14 @@ public interface SuperAdminService {
     ModelAndView selectTeacherListByName(String name);
 
     ModelAndView updateTeacherAuthority(String role, String id);
+
+    /*
+  将当前excel表上传至服务器
+   */
+    public boolean uploadfile(HttpServletRequest req);
+
+    int updateTerInfo(Teacher teacher);
+
+    void delTer(String id);
+
 }

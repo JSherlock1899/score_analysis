@@ -1,7 +1,10 @@
 package com.slxy.analysis.teacher.service.impl;
 
+import com.slxy.analysis.student.tools.ExcelHandelTools;
+import com.slxy.analysis.student.tools.UploadFileTools;
 import com.slxy.analysis.teacher.mapper.SuperAdminMapper;
 import com.slxy.analysis.teacher.model.Exam;
+import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Student;
 import com.slxy.analysis.teacher.model.Teacher;
 import com.slxy.analysis.teacher.service.SuperAdminService;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -168,4 +173,32 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         return mv;
     }
 
+    /*
+   将当前excel表上传至服务器
+    */
+    public boolean uploadfile(HttpServletRequest req){
+        String realPath = req.getSession().getServletContext().getRealPath("");
+        try {
+            String uploadfile = UploadFileTools.uploadfile(req, realPath);
+            ExcelHandelTools.readExcel(new Grade(),uploadfile);
+            File file = new File(uploadfile);
+            if(file.exists()){
+                file.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public int updateTerInfo(Teacher teacher) {
+        return superAdminMapper.updateTerInfo(teacher.getId(), teacher.getName(), teacher.getSex(), teacher.getNation(), teacher.getIdCard(), teacher.getTelephone(),teacher.getNativePlace(), teacher.getHomeAddress(), teacher.getJobGrade(), teacher.getPolStat(), teacher.getGraduateSchool(), teacher.getSubject());
+    }
+
+    @Override
+    public void delTer(String id) {
+        superAdminMapper.delTer(id);
+    }
 }

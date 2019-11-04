@@ -1,5 +1,6 @@
 package com.slxy.analysis.teacher.controller;
 
+import com.slxy.analysis.student.service.StService;
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
 import com.slxy.analysis.teacher.model.Teacher;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.slxy.analysis.teacher.util.MySQLUtils.dbBackup;
 
@@ -29,6 +32,8 @@ public class SuperAdminController {
     SuperAdminService superAdminService;
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    StService stServiceimp;
 
     /**
      * 创建各考试用表
@@ -91,10 +96,10 @@ public class SuperAdminController {
      * @return
      */
     @RequestMapping("goCreateExam")
-    public ModelAndView goCreateExam(){
+    public ModelAndView goCreateExam(HttpServletRequest request){
         ModelAndView mv = new ModelAndView();
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getPresentGrade();
+        List<String> presentGrade = teacherService.getGradeList(request);
         //查询所有考试信息
         List<Exam> exams = superAdminService.selectAllExam();
         mv.addObject("exams", exams);
@@ -169,4 +174,57 @@ public class SuperAdminController {
         return mv;
     }
 
+    /*
+    跳到导入excel页面
+     */
+    @RequestMapping("ie")
+    public ModelAndView InExcelPage(ModelAndView mv){
+        CopyOnWriteArrayList<Exam> all = stServiceimp.getExaminfomation("all");
+        mv.addObject("ex",all);
+        mv.setViewName("superAdmin/excel");
+        return mv;
+    }
+
+    /*
+    导excel
+     */
+    @RequestMapping("/eh")
+    public ModelAndView ExcelHandle(HttpServletRequest req, ModelAndView mv){
+        superAdminService.uploadfile(req);
+        mv.setViewName("superAdmin/excel");
+        return mv;
+    }
+
+    /**
+     * 更新教师信息
+     * @param teacher 教师实体
+     * @return
+     */
+    @RequestMapping("updateTerInfo")
+    public ModelAndView updateTerInfo(Teacher teacher){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("superAdmin/updateTeacherInfo");
+        String msg;
+        int i = superAdminService.updateTerInfo(teacher);
+        if (i == 0){
+            msg = "更新失败！";
+        }else{
+            msg = "更新成功！";
+        }
+        mv.addObject("msg", msg);
+        return mv;
+    }
+
+    /**
+     * 根据教师id删除教师
+     * @param id
+     * @return
+     */
+    @RequestMapping("delTer")
+    public ModelAndView delTer(String id){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("superAdmin/updateTeacherInfo");
+        superAdminService.delTer(id);
+        return mv;
+    }
 }

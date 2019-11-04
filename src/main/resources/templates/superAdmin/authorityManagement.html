@@ -68,11 +68,11 @@
                 </div>
                 <div class="modal-body">
                         <select  name="authority" id="authority" class="form-control">
-                            <option value="2">普通教师</option>
-                            <option value="3">班主任</option>
-                            <option value="4">年级组长</option>
-                            <option value="5">管理员</option>
-                            <option value="6">超级管理员</option>
+                            <option value="2" id="teacher">普通教师</option>
+                            <option value="3" id="headTeacher">班主任</option>
+                            <option value="4" id="gradeLeader">年级组长</option>
+                            <option value="5" id="admin">管理员</option>
+                            <option value="6" id="superAdmin">超级管理员</option>
                         </select>
                 </div>
                 <div class="modal-footer">
@@ -108,13 +108,13 @@
     })
 
     $(".modalBtn").click(function () {
-        $("#terId").attr($(this).val());
-        console.log("id= " + $("#terId").val())
+        var c = $(this).val();
+        $("#terId").attr('value',c);
+
     })
     $(".submit").click(function () {
         var role = $("#authority option:selected").val();
-        var id = $(this).val();
-        console.log(id)
+        var id = $("#terId").val();
         $.ajax({
             method: "post",
             url: "/superAdmin/updateTeacherAuthority",

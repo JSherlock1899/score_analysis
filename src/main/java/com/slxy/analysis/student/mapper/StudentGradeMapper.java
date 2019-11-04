@@ -1,4 +1,4 @@
-package com.slxy.analysis.student.Mapper;
+package com.slxy.analysis.student.mapper;
 
 import com.slxy.analysis.student.POJO.ClassRank;
 import com.slxy.analysis.student.POJO.SingleSubjectMAX;

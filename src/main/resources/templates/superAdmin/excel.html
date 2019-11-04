@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="/superAdmin/eh" method="post" enctype="multipart/form-data">
+			<select>
+				<option th:each="ex:${ex}" th:value="${ex.tableName}" th:name="examName" th:text="${ex.examName}">2017-2018</option>
+			</select><br />
+			<input type="file" name="file" />
+			<button type="submit">上传</button>
+		</form>
+	</body>
+</html>

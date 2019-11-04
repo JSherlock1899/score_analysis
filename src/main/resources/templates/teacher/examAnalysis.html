@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>历次考试分析</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/common.css}" rel="stylesheet">
+    <link th:href="@{/asserts/css/teacher/totalScore.css}" rel="stylesheet">
+    <!--JQuery-->
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
+    <!--Echarts-->
+    <script th:src="@{/asserts/js/echarts.common.min.js}"></script>
+    <script th:src="@{/asserts/js/teacher/analysisPreExamGrade.js}"></script>
+</head>
+<body id="allbody">
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="z-header">
+            <div class="z-logo">
+                <h3>学 生 成 绩 分 析</h3>
+            </div>
+            <!-- 头部右侧区域 -->
+            <div class="z-home">
+                <div class="z-homepage">
+                    <a href="/user/goTeacherIndex">首页</a>
+                </div>
+
+                <div class="z-homepwd">
+                    <a href="#">修改密码</a>
+                </div>
+                <div class="z-homequit">
+                    <a href="/user/signOut">注销</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div shiro:hasRole="teacher" id="classSelect">
+        <select name="class" id="classNumber" class="form-control">
+            <!--/*@thymesVar id="classList" type=""*/-->
+            <!--th:selected中classNumber为上一次select中选中的值，与动态加载的option中的value比较，就可默认选中上一次选的option-->
+            <option th:each="c:${gradeClass}" th:value="${c}" th:text="${c}" th:selected="${classNumber eq c}"></option>
+        </select>
+    </div>
+    <div shiro:hasRole="teacher">
+        <select name="class" id="subjectSelect" class="form-control" th:selected="${subject}">
+            <option value="chinese">语文</option>
+            <option value="math">数学</option>
+            <option value="english">英语</option>
+            <option value="physics">物理</option>
+            <option value="chemistry">化学</option>
+            <option value="biology">生物</option>
+            <option value="politics">政治</option>
+            <option value="history">历史</option>
+            <option value="geography">地理</option>
+            <option value="technology">技术</option>
+            <option value="total_point">总分</option>
+        </select>
+    </div>
+    <div class="row">
+        <div id="broken_line" class="col-md-12" style="height:400px"></div>
+    </div>
+</div>
+
+
+<input type="hidden" th:value="${startYear}" id="startYear">
+<input type="hidden" th:value="${jsongrades}" id="jsongrades">
+<input type="hidden" th:value="${exams}" id="exams">
+<input type="hidden" th:value="${classNumber}" id="preClassNumber">
+<input type="hidden" th:value="${subject}" id="subject">
+<script>
+
+    $("#classSelect,#subjectSelect").change(function () {
+        var classSelect = $("#classSelect option:selected").val();
+        var subjectSelect = $("#subjectSelect option:selected").val();
+        var startYear = $("#startYear").val();
+        $.ajax({
+            method: "post",
+            url: "/teacher/showGradesVariation",
+            datatype:"html",
+            data:{
+                "startYear": startYear,
+                "classNumber": classSelect,
+                "subject": subjectSelect,
+            },
+            success: function (msg) {
+                classJudge();
+                $("#allbody").html(msg);
+
+            },
+            error: function (msg) {
+                alert('请求出现错误...');
+            }
+        })
+    })
+
+    window.onload = function(){
+        classJudge();
+    }
+
+    function classJudge() {
+        var myOptions = $('#classSelect').find('option');
+        var newmyOptions = Array.from(myOptions);
+        newmyOptions.forEach(function (item, index) {
+            var myValue = $(item).attr('value')
+            var str = ''
+            str += '20' + myValue;
+            var newStr = parseInt(str);
+            var date = new Date();
+            var year = parseInt(date.getFullYear());
+            if (year - newStr == 0) {
+                $(item).text('高一')
+            }
+            if (year - newStr == 1) {
+                $(item).text('高二')
+            }
+            if (year - newStr == 2) {
+                $(item).text('高三')
+            }
+            // if (year - newStr !== 2 && year - newStr !== 1 && year - newStr !== 0) {
+            // }
+        })
+    }
+</script>
+</body>
+</html>

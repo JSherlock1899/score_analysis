@@ -1,8 +1,10 @@
 package com.slxy.analysis.teacher.service;
 
 import com.slxy.analysis.teacher.model.ClassGrade;
+import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Teacher;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -33,7 +35,7 @@ public interface TeacherService {
 
     List<String> getTeacherGrade(List<String> classes);
 
-    List<String> getExamList(String grade);
+    List<Exam> getExamList(String grade);
 
     Grade getClassGrades(String examTable, String classNumber);
 
@@ -57,4 +59,19 @@ public interface TeacherService {
 
     String selectTeacherSubject(String id);
 
+    List disposeList(List list);
+
+    List<Map<String, String>> selectClassSingleSubjectChange(String grade, String subject, String classNumber);
+
+    List<Exam> selectRecentlyExams(String grade);
+
+    ModelAndView setCutOffGrade(HttpServletRequest request,String startYear);
+
+    String disposeStartYear(HttpServletRequest request,String startYear);
+
+    String disposeExam(String exam,List<Exam> examList);
+
+    List<String> getGradeList(HttpServletRequest request);
+
+    Integer calcPassLineCount(String examTable, Integer cutOffGrade);
 }
