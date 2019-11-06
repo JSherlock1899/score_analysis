@@ -246,6 +246,19 @@ public class TeacherController {
         return mv;
     }
 
+    @RequestMapping("selectClassesRanking")
+    public ModelAndView selectClassesRanking(HttpServletRequest request, @RequestParam(required = false,value = "exam") String examTable,@RequestParam(value = "startYear", required = false) String grade, @RequestParam(value = "ranking", defaultValue = "100") String ranking,@RequestParam(value = "subject", defaultValue = "total_point") String subject){
+        //查询应该显示的年级
+        List<String> presentGrade = teacherService.getGradeList(request);
+        ModelAndView mv = teacherService.selectClassesRanking(request, examTable, grade, ranking, subject);
+        mv.setViewName("teacher/subjectAnalysis");
+        mv.addObject("exam", examTable);
+        mv.addObject("subject", subject);
+        mv.addObject("presentGrade", presentGrade);
+        mv.addObject("ranking", ranking);
+        return mv;
+    }
+
     @RequestMapping("showGradesVariation")
     public ModelAndView showGradesVariation(@RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
                                         @RequestParam(required = false) String classNumber){

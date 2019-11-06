@@ -1,5 +1,7 @@
 package com.slxy.analysis.teacher.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.slxy.analysis.teacher.mapper.TeacherMapper;
 import com.slxy.analysis.teacher.model.ClassGrade;
 import com.slxy.analysis.teacher.model.Exam;
@@ -442,8 +444,71 @@ public class TeacherServiceImpl implements TeacherService {
        }
    }
 
+    /**
+     * 计算过线总人数
+     * @param examTable
+     * @param cutOffGrade
+     * @return
+     */
     @Override
     public Integer calcPassLineCount(String examTable, Integer cutOffGrade) {
         return teacherMapper.calcPassLineCount(examTable, cutOffGrade);
     }
+
+    /**
+     * 获取各班指定排名段的人数分布
+     * @param examTable 考试表
+     * @param grade 年级
+     * @param ranking 指定排名段
+     * @param subject 学科
+     * @return
+     */
+    @Override
+    public ModelAndView selectClassesRanking(HttpServletRequest request, String examTable, String grade, String ranking, String subject) {
+        ModelAndView mv = new ModelAndView();
+        //初始化年级值
+        if (grade == null || "".equals(grade)){
+            //查询现在所有的年级
+            List<String> gradeList = getGradeList(request);
+            //初始化年级字段
+            grade = gradeList.get(0);
+            mv.addObject("grade", grade);
+        }else {
+            mv.addObject("grade", grade);
+        }
+        //初始化考试表值
+        System.out.println("fg = " + grade);
+        if (examTable == null || "".equals(examTable)){
+            examTable = getExamList(grade).get(0).getTableName();
+            mv.addObject("exam", examTable);
+        }else {
+            mv.addObject("exam", examTable);
+        }
+        //查询该年级的班级集合
+        List<String> gradeClass = getGradeClass(grade);
+        //根据数据库处理examTable和subject字段
+        String rankingTable = examTable.replace("grades", "ranking");
+        subject = subject + "_school_ranking";
+        List<Map<String, Integer>> list = new ArrayList<>();
+        //遍历各班级，获取各班指定排名段的人数分布
+        for (String c : gradeClass){
+            Map<String, Integer> map = new HashMap<>();
+            map.put("classNumber", Integer.valueOf(c));
+            map.put("number", teacherMapper.selectClassesRanking(rankingTable, c, ranking, subject));
+            list.add(map);
+        }
+        JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(list));
+        //要显示的考试列表
+        List<Exam> examList = getExamList(grade);
+        //各班该分段人数列表
+        mv.addObject("list", list);
+        //用于绘制统计图
+        mv.addObject("jsonArray", jsonArray);
+        //分段范围
+        mv.addObject("ranking", ranking);
+        //考试列表
+        mv.addObject("examList", examList);
+        return mv;
+    }
+
 }

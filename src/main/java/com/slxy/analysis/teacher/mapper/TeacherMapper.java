@@ -184,4 +184,7 @@ public interface TeacherMapper extends UserMapper {
 
     @Select("select count(*) from ${examTable} where total_point_grades >= #{cutOffGrade}")
     Integer calcPassLineCount(String examTable, Integer cutOffGrade);
+
+    @Select("select count(*) from ${rankingTable} where classNumber = #{classNumber} and ${subject} <= ${ranking}")
+    Integer selectClassesRanking(String rankingTable, String classNumber, String ranking, String subject);
 }

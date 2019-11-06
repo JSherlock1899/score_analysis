@@ -48,9 +48,8 @@
                     <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}" th:selected="${exam eq e.tableName}"></option>
                 </select>
             </div>
-            <a class="btn btn-default" href="/user/goTeacherIndex" role="button">返回上一级</a>
+            <a class="btn btn-default" href="/teacher/setCutOffGrade" role="button">返回上一级</a>
             <a class="btn btn-default" th:href="@{'/teacher/setCutOffGrade?exam=' + ${exam} + '&startYear=' + ${startYear}}"  role="button">总体分析</a>
-            <a class="btn btn-default" th:href="@{'/teacher/showGradesVariation?startYear=' + ${startYear}}"  role="button">历次考试分析</a>
             <div class="table-respqonsive">
                 <table border="1" class="table table-bordered">
                     <thead>

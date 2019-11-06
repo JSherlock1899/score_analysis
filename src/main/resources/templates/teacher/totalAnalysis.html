@@ -57,7 +57,10 @@
                             </select>
                         </div>
                         <input type="button" class="btn btn-info" id="btn" style="margin-right:20px;margin-left: -10px" value="提交"/>
-                        <a class="btn btn-default" href="/teacher/selectClassGrade" role="button">返回上一级</a>
+                        <a class="btn btn-default" href="/user/goTeacherIndex" role="button">返回上一级</a>
+                        <a class="btn btn-default" href="/teacher/selectClassGrade" role="button">查看详细数据</a>
+                        <a class="btn btn-default" href="/teacher/selectClassesRanking" role="button">查看各科分析</a>
+                        <a class="btn btn-default" th:href="@{'/teacher/showGradesVariation?startYear=' + ${startYear}}"  role="button">历次考试分析</a>
                     </div>
                 </div>
                 <div class="panel-body row">
@@ -88,6 +91,7 @@
     </div>
 
 
+
 <input type="hidden" th:value="${exam}" id="exam">
 <input type="hidden" th:value="${startYear}" id="startYear">
 <input type="hidden" th:value="${map}" id="map">
@@ -115,6 +119,7 @@
                 }
             })
         })
+
 
         $('#startYearSelect').on("change", function () {
             var startYear = $("#startYearSelect option:selected").val();

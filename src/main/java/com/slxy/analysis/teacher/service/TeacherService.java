@@ -74,4 +74,6 @@ public interface TeacherService {
     List<String> getGradeList(HttpServletRequest request);
 
     Integer calcPassLineCount(String examTable, Integer cutOffGrade);
+
+    ModelAndView selectClassesRanking(HttpServletRequest request, String examTable, String grade, String ranking, String subject);
 }

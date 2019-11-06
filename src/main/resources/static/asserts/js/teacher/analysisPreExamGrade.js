@@ -70,6 +70,5 @@ function transform(subject) {
         case "geography": return "地理";break;
         case "technology": return "技术";break;
         case "total_point": return "总分";break;
-
     }
 }
