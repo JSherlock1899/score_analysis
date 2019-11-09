@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: sherlock
@@ -162,8 +163,8 @@ public interface TeacherMapper extends UserMapper {
      * @param cutOffGrade 分数线
      * @return
      */
-    @Select("select count(*) from ${examTable} where classNumber = #{classNumber} and total_point_grades >= #{cutOffGrade}")
-   Integer selectPassLineStudents(String classNumber, String examTable, Integer cutOffGrade);
+    @Select("select classNumber,count(*) as number from ${examTable} where total_point_grades >= #{cutOffGrade} GROUP BY classNumber")
+    List<Map<String ,String>> selectPassLineStudents(String examTable, Integer cutOffGrade);
 
 
     /**
@@ -185,6 +186,6 @@ public interface TeacherMapper extends UserMapper {
     @Select("select count(*) from ${examTable} where total_point_grades >= #{cutOffGrade}")
     Integer calcPassLineCount(String examTable, Integer cutOffGrade);
 
-    @Select("select count(*) from ${rankingTable} where classNumber = #{classNumber} and ${subject} <= ${ranking}")
-    Integer selectClassesRanking(String rankingTable, String classNumber, String ranking, String subject);
+    @Select("select classNumber,count(*) as number from ${rankingTable} where  ${subject} <= ${ranking} GROUP BY classNumber")
+    List<Map<String ,String>> selectClassesRanking(String rankingTable, String ranking, String subject);
 }

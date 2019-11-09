@@ -45,9 +45,13 @@
 }
 
 #school_grades_bar {
-    width: 70%;
+    width: 65%;
     height: 400px;
     position: absolute;
     top: 80px;
     right: 40px;
+}
+.all{
+    width: 90%;
+    margin: 20px auto;
 }

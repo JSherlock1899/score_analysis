@@ -40,6 +40,11 @@ public class Teacher extends User {
    */
   private String subject;
 
+  /**
+   * MD5使用到的盐值
+   */
+  private String salt;
+
   public String getNativePlace() {
     return nativePlace;
   }
@@ -102,5 +107,13 @@ public class Teacher extends User {
 
   public void setSubject(String subject) {
     this.subject = subject;
+  }
+
+  public String getSalt() {
+    return salt;
+  }
+
+  public void setSalt(String salt) {
+    this.salt = salt;
   }
 }

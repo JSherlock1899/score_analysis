@@ -65,7 +65,7 @@ public class UserController {
      */
     @RequestMapping("login")
     public ModelAndView login(HttpServletRequest request, String username, String password, String role, Model model){
-        return userService.login(request, username, password, role, model);
+            return userService.login(request, username, password, role, model);
     }
 
     @RequestMapping("getClassAverageGrade")
@@ -90,5 +90,10 @@ public class UserController {
     @RequestMapping("goTeacherIndex")
     public String goIndex(){
         return "teacher/teacherIndex";
+    }
+
+    @RequestMapping("goStudentIndex")
+    public String goTeacherIndex(){
+        return "student/index";
     }
 }

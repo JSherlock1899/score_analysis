@@ -10,7 +10,8 @@
     <!--JQuery-->
     <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
     <!--Echarts-->
-    <script th:src="@{/asserts/js/echarts.common.min.js}"></script>
+    <script th:src="@{/asserts/js/frame/echarts.common.min.js}"></script>
+    <script th:src="@{/asserts/js/common.js}"></script>
     <script th:src="@{/asserts/js/teacher/subjectAnalysis.js}"></script>
 </head>
 <body id="allbody">
@@ -65,8 +66,8 @@
                                 <option th:each="g:${presentGrade}" th:value="${g}" th:text="${g}"  th:selected="${grade eq g}"></option>
                             </select>
                         </div>
-                        <label for="examName" style="font-size: 18px;">请选择考试：</label>
-                        <select name="exam" id="examName"  class="form-control">
+                        <label for="examSelect" style="font-size: 18px;">请选择考试：</label>
+                        <select name="exam" id="examSelect"  class="form-control">
                             <option th:each="e:${examList}" th:text="${e.examName}" th:value="${e.tableName}" th:selected="${exam eq e.tableName}"></option>
                         </select>
                         <label for="rankingSelect" style="font-size: 18px;">请选择分段：</label>
@@ -108,9 +109,14 @@
 <input type="hidden" th:value="${subject}" id="subject">
 
 <script>
-    $('#subjectSelect,#rankingSelect,#examName').on("change", function () {
+    window.onload = function () {
+        classJudge();
+        gradeOptions();
+    }
+
+    $('#subjectSelect,#rankingSelect,#examSelect').on("change", function () {
         var startYear = $("#startYearSelect option:selected").val();
-        var exam = $("#examName option:selected").val();
+        var exam = $("#examSelect option:selected").val();
         var subject = $("#subjectSelect option:selected").val();
         var ranking = $("#rankingSelect option:selected").val();
         $.ajax({
@@ -125,6 +131,8 @@
             },
             success: function (data) {
                 $("#allbody").html(data);
+                classJudge();
+                gradeOptions();
             },
             error: function (msg) {
                 alert('请求出现错误...');
@@ -146,11 +154,9 @@
                 "ranking": ranking
             },
             success: function (data) {
-                console.log(data)
-
                 $("#allbody").html(data);
-                console.log(data)
-
+                classJudge();
+                gradeOptions();
             },
             error: function (msg) {
                 alert('请求出现错误...');

@@ -10,7 +10,8 @@
     <!--JQuery-->
     <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
     <!--Echarts-->
-    <script th:src="@{/asserts/js/echarts.common.min.js}"></script>
+    <script th:src="@{/asserts/js/frame/echarts.common.min.js}"></script>
+    <script th:src="@{/asserts/js/common.js}"></script>
     <script th:src="@{/asserts/js/teacher/analysisPreExamGrade.js}"></script>
 </head>
 <body id="allbody">
@@ -87,9 +88,7 @@
                 "subject": subjectSelect,
             },
             success: function (msg) {
-                classJudge();
                 $("#allbody").html(msg);
-
             },
             error: function (msg) {
                 alert('请求出现错误...');
@@ -97,33 +96,9 @@
         })
     })
 
-    window.onload = function(){
-        classJudge();
-    }
 
-    function classJudge() {
-        var myOptions = $('#classSelect').find('option');
-        var newmyOptions = Array.from(myOptions);
-        newmyOptions.forEach(function (item, index) {
-            var myValue = $(item).attr('value')
-            var str = ''
-            str += '20' + myValue;
-            var newStr = parseInt(str);
-            var date = new Date();
-            var year = parseInt(date.getFullYear());
-            if (year - newStr == 0) {
-                $(item).text('高一')
-            }
-            if (year - newStr == 1) {
-                $(item).text('高二')
-            }
-            if (year - newStr == 2) {
-                $(item).text('高三')
-            }
-            // if (year - newStr !== 2 && year - newStr !== 1 && year - newStr !== 0) {
-            // }
-        })
-    }
+
+
 </script>
 </body>
 </html>

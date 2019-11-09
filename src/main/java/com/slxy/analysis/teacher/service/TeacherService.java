@@ -55,7 +55,7 @@ public interface TeacherService {
 
     List<String> getClassList(HttpServletRequest request, String role, String remark, String adminClass, String startYear);
 
-    List<Map<String, Integer>> selectPassLineStudents(String startYear, String exam, String cutOffGrade);
+    List<Map<String, String>> selectPassLineStudents(String startYear, String exam, String cutOffGrade);
 
     String selectTeacherSubject(String id);
 
@@ -71,9 +71,11 @@ public interface TeacherService {
 
     String disposeExam(String exam,List<Exam> examList);
 
-    List<String> getGradeList(HttpServletRequest request);
+    List<String> getGradeList(HttpServletRequest request, List<String> presentGrade);
 
     Integer calcPassLineCount(String examTable, Integer cutOffGrade);
 
     ModelAndView selectClassesRanking(HttpServletRequest request, String examTable, String grade, String ranking, String subject);
+
+    String goTeacherIndex();
 }

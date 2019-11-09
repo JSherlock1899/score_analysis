@@ -55,7 +55,7 @@ public class UserRealm extends AuthorizingRealm {
         if (User.STUDENT.equals(role)){
             //根据学生用户名获取其所在的年级
             Integer grade = Integer.valueOf(token.getUsername().substring(0,2));
-            //判断年级是否正确
+            //判断年级是否正确(暂时先这样)
             if (!User.gradeInt.contains(grade)){
                 grade = 17;
             }
@@ -67,6 +67,7 @@ public class UserRealm extends AuthorizingRealm {
             //添加用户角色
         }else if(User.TEACHER.equals(role)){
             user = teacherService.getTeacherById(token.getUsername());
+
             if (user == null) {
                 //shiro底层会抛出UnKnowAccountException
                 return null;

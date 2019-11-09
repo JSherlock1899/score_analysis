@@ -294,20 +294,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<Map<String, Integer>> selectPassLineStudents(String startYear, String exam, String cutOffGrade){
+    public List<Map<String, String>> selectPassLineStudents(String startYear, String exam, String cutOffGrade){
         if (exam == null){
             //获取该年级最近的一次考试
         }
         List<String> classList = getGradeClass(startYear);
         Integer cutOffGradeInt = Integer.parseInt(cutOffGrade);
-        List<Map<String, Integer>> list = new ArrayList<>();
-        //遍历各班级，分别获取各班的过线人数
-        for (String c : classList){
-            Map<String, Integer> map = new HashMap<>();
-            map.put("classNumber", Integer.valueOf(c));
-            map.put("number", teacherMapper.selectPassLineStudents(c, exam, cutOffGradeInt));
-            list.add(map);
-        }
+        List<Map<String, String>> list = teacherMapper.selectPassLineStudents(exam, cutOffGradeInt);
         return list;
     }
 
@@ -368,7 +361,7 @@ public class TeacherServiceImpl implements TeacherService {
     public ModelAndView setCutOffGrade(HttpServletRequest request, String startYear) {
         ModelAndView mv = new ModelAndView();
         //首次查询时初始化年级
-        List<String> presentGrade = getGradeList(request);
+        List<String> presentGrade = getGradeList(request, teacherMapper.getPresentGrade());
         //初始化考试名称的下拉框
         HashSet<Exam> examList = userService.getExam(Collections.singletonList(startYear));
         //年级
@@ -433,11 +426,11 @@ public class TeacherServiceImpl implements TeacherService {
      * @return
      */
     @Override
-   public List<String> getGradeList(HttpServletRequest request){
+   public List<String> getGradeList(HttpServletRequest request, List<String> presentGrade){
        String  username = (String) request.getSession().getAttribute("username");
        String role = getTeacherRole(username);
        if ("5".equals(role) || "6".equals(role)){
-            return getPresentGrade();
+            return presentGrade;
        }else {
            List<String> listClass = listClass(request);
            return Arrays.asList(listClass.get(0).substring(0, 2));
@@ -466,40 +459,48 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public ModelAndView selectClassesRanking(HttpServletRequest request, String examTable, String grade, String ranking, String subject) {
         ModelAndView mv = new ModelAndView();
+        //查询应该显示的年级
+        List<String> presentGrade = getGradeList(request, teacherMapper.getPresentGrade());
         //初始化年级值
         if (grade == null || "".equals(grade)){
             //查询现在所有的年级
-            List<String> gradeList = getGradeList(request);
+            List<String> gradeList = getGradeList(request,presentGrade);
             //初始化年级字段
             grade = gradeList.get(0);
             mv.addObject("grade", grade);
         }else {
             mv.addObject("grade", grade);
         }
+        //要显示的考试列表
+        List<Exam> examList = getExamList(grade);
         //初始化考试表值
-        System.out.println("fg = " + grade);
         if (examTable == null || "".equals(examTable)){
-            examTable = getExamList(grade).get(0).getTableName();
+            examTable = examList.get(0).getTableName();
             mv.addObject("exam", examTable);
         }else {
             mv.addObject("exam", examTable);
         }
-        //查询该年级的班级集合
-        List<String> gradeClass = getGradeClass(grade);
         //根据数据库处理examTable和subject字段
         String rankingTable = examTable.replace("grades", "ranking");
         subject = subject + "_school_ranking";
-        List<Map<String, Integer>> list = new ArrayList<>();
         //遍历各班级，获取各班指定排名段的人数分布
-        for (String c : gradeClass){
-            Map<String, Integer> map = new HashMap<>();
-            map.put("classNumber", Integer.valueOf(c));
-            map.put("number", teacherMapper.selectClassesRanking(rankingTable, c, ranking, subject));
-            list.add(map);
-        }
+        List<Map<String ,String>> list = teacherMapper.selectClassesRanking(rankingTable, ranking, subject);
+//        for (Map<String ,String> m : map){
+////            System.out.println("m = " + m.toString());
+//            //迭代器遍历map集合(该集合存储着一个班级的数据)
+//            Iterator<Map.Entry<String, String>> iterator = m.entrySet().iterator();
+//            while (iterator.hasNext()) {
+//                Map.Entry<String, String> entry = iterator.next();
+//                Map<String, String> hashMap = new HashMap<>();
+//                hashMap.put( entry.getKey(), entry.getValue());
+//                //因为该集合中有一个key-value对，因此此时要跳到第二个
+//                entry = iterator.next();
+//                hashMap.put( entry.getKey(), entry.getValue());
+//                list.add(hashMap);
+//            }
+//        }
+//        System.out.println("list = " + list.toString());
         JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(list));
-        //要显示的考试列表
-        List<Exam> examList = getExamList(grade);
         //各班该分段人数列表
         mv.addObject("list", list);
         //用于绘制统计图
@@ -508,7 +509,13 @@ public class TeacherServiceImpl implements TeacherService {
         mv.addObject("ranking", ranking);
         //考试列表
         mv.addObject("examList", examList);
+        //当前用户可查看的年级
+        mv.addObject("presentGrade", presentGrade);
         return mv;
+    }
+
+    public String goTeacherIndex(){
+        return "teacher/teacherIndex";
     }
 
 }

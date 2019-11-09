@@ -6,6 +6,7 @@ import com.slxy.analysis.teacher.result.CodeMsg;
 import com.slxy.analysis.teacher.service.StudentService;
 import com.slxy.analysis.teacher.service.TeacherService;
 import com.slxy.analysis.teacher.service.UserService;
+import com.slxy.analysis.teacher.util.MD5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -43,8 +44,9 @@ public class UserServiceImpl implements UserService {
         request.getSession().setAttribute("username", username);
         //获取subject
         Subject subject = SecurityUtils.getSubject();
+        String calcPass = MD5Util.FromPassToDBPass(password, MD5Util.salt);
         //封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password,role);
+        UsernamePasswordToken token = new UsernamePasswordToken(username,calcPass,role);
         //执行登录方法
         try {
             //
@@ -79,6 +81,7 @@ public class UserServiceImpl implements UserService {
         catch (IncorrectCredentialsException e) {
             //登录失败：密码错误
             model.addAttribute("msg", CodeMsg.PASSWORD_ERROR.getMsg());
+            System.out.println("密码错误！");
             mv.setViewName("login");
         }
         return mv;

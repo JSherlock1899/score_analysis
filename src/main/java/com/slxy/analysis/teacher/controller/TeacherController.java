@@ -53,7 +53,7 @@ public class TeacherController {
         //查询教师备注(来判断该教师属于哪个年级)
         String remark = teacherService.getTeacherRemark((String) request.getSession().getAttribute("username"));
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getGradeList(request);
+        List<String> presentGrade = teacherService.getGradeList(request, teacherService.getPresentGrade());
         List<String> classList = teacherService.getClassList(request, role, remark, presentGrade.get(0), startYear);
         //初始化考试名称的下拉框
         HashSet<Exam> examList = userService.getExam(teacherService.getTeacherGrade(classList));
@@ -133,7 +133,7 @@ public class TeacherController {
                                        @RequestParam(required = false) String exam, @RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
                                        @RequestParam(defaultValue = "asc") String sort, Map<String, Object> map){
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getGradeList(request);
+        List<String> presentGrade = teacherService.getGradeList(request, teacherService.getPresentGrade());
         if (startYear == null){
             startYear = presentGrade.get(0);
         }
@@ -226,7 +226,7 @@ public class TeacherController {
         exam = teacherService.disposeExam(exam, examList);
         //获取过线人数总和
         Integer passLineCount = teacherService.calcPassLineCount(exam, Integer.valueOf(cutOffGrade));
-        List<Map<String, Integer>> map = teacherService.selectPassLineStudents(startYear, exam, cutOffGrade);
+        List<Map<String, String>> map = teacherService.selectPassLineStudents(startYear, exam, cutOffGrade);
         JSONArray jsonArray = JSONArray.parseArray(JSON.toJSONString(map));
         //各班过线人数集合
         mv.addObject("map", map);
@@ -248,13 +248,10 @@ public class TeacherController {
 
     @RequestMapping("selectClassesRanking")
     public ModelAndView selectClassesRanking(HttpServletRequest request, @RequestParam(required = false,value = "exam") String examTable,@RequestParam(value = "startYear", required = false) String grade, @RequestParam(value = "ranking", defaultValue = "100") String ranking,@RequestParam(value = "subject", defaultValue = "total_point") String subject){
-        //查询应该显示的年级
-        List<String> presentGrade = teacherService.getGradeList(request);
         ModelAndView mv = teacherService.selectClassesRanking(request, examTable, grade, ranking, subject);
         mv.setViewName("teacher/subjectAnalysis");
         mv.addObject("exam", examTable);
         mv.addObject("subject", subject);
-        mv.addObject("presentGrade", presentGrade);
         mv.addObject("ranking", ranking);
         return mv;
     }
@@ -262,9 +259,6 @@ public class TeacherController {
     @RequestMapping("showGradesVariation")
     public ModelAndView showGradesVariation(@RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
                                         @RequestParam(required = false) String classNumber){
-        System.out.println("subject = " + subject);
-        System.out.println("startYear = " + startYear);
-        System.out.println("classNumber = " + classNumber);
         ModelAndView mv = new ModelAndView();
         //获取该年级最近的考试列表
         List<Exam> exams = teacherService.selectRecentlyExams(startYear);
@@ -291,5 +285,9 @@ public class TeacherController {
         return mv;
     }
 
+    @RequestMapping("goTeacherIndex")
+    public String goTeacherIndex(){
+        return "teacher/teacherIndex";
+    }
 
 }

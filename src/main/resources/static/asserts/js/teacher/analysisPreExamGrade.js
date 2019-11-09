@@ -57,18 +57,3 @@ $(function () {
     myChart.setOption(option);
 })
 
-function transform(subject) {
-    switch (subject) {
-        case "chinese": return "语文";break;
-        case "math": return "数学";break;
-        case "english": return "英语";break;
-        case "physics": return "物理";break;
-        case "chemistry": return "化学";break;
-        case "biology": return "生物";break;
-        case "politics": return "政治";break;
-        case "history": return "历史";break;
-        case "geography": return "地理";break;
-        case "technology": return "技术";break;
-        case "total_point": return "总分";break;
-    }
-}

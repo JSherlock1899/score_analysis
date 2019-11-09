@@ -99,7 +99,7 @@ public class SuperAdminController {
     public ModelAndView goCreateExam(HttpServletRequest request){
         ModelAndView mv = new ModelAndView();
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getGradeList(request);
+        List<String> presentGrade = teacherService.getGradeList(request, teacherService.getPresentGrade());
         //查询所有考试信息
         List<Exam> exams = superAdminService.selectAllExam();
         mv.addObject("exams", exams);
