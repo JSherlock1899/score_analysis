@@ -31,13 +31,12 @@ public class TeacherServiceImpl implements TeacherService {
     UserService userService;
 
     @Override
-    @Cacheable(cacheNames = "teacher")
     public Teacher getTeacherById(String id) {
         return teacherMapper.getTeacherById(id);
     }
 
     @Override
-    @Cacheable(cacheNames = "teacherRole")
+    @Cacheable(value = "teacherRole")
     public String getTeacherRole(String id) {
         return teacherMapper.getTeacherRole(id);
     }
@@ -193,6 +192,7 @@ public class TeacherServiceImpl implements TeacherService {
      * @return
      */
     @Override
+    @Cacheable(value = "topStuNum")
     public Integer getTopStudnetNumber(String examTable, String classNumber, Integer num) {
         String rankingTable = examTable.replace("grades", "ranking");
         Integer studnetNumber = teacherMapper.getTopStudnetNumber(rankingTable, classNumber,num);
@@ -257,6 +257,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Cacheable(value = "presentGrade")
     public List<String> getPresentGrade() {
         return teacherMapper.getPresentGrade();
     }
@@ -294,11 +295,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Cacheable(value = "passLineStu")
     public List<Map<String, String>> selectPassLineStudents(String startYear, String exam, String cutOffGrade){
         if (exam == null){
             //获取该年级最近的一次考试
+            exam = teacherMapper.selectLastExam().getTableName();
         }
-        List<String> classList = getGradeClass(startYear);
         Integer cutOffGradeInt = Integer.parseInt(cutOffGrade);
         List<Map<String, String>> list = teacherMapper.selectPassLineStudents(exam, cutOffGradeInt);
         return list;
@@ -383,7 +385,11 @@ public class TeacherServiceImpl implements TeacherService {
             //获取教师所教的班级列表
             List<String> listClass = listClass(request);
             //此处暂时默认一个教师只教一个年级
-            startYear = listClass.get(0).substring(0, 2);
+            if (listClass.size() == 0){
+                return getPresentGrade().get(0);
+            }else {
+                startYear = listClass.get(0).substring(0, 2);
+            }
         }
         return startYear;
     }
@@ -433,7 +439,11 @@ public class TeacherServiceImpl implements TeacherService {
             return presentGrade;
        }else {
            List<String> listClass = listClass(request);
-           return Arrays.asList(listClass.get(0).substring(0, 2));
+           if (listClass == null || listClass.size() == 0){
+               return presentGrade;
+           }else {
+               return Arrays.asList(listClass.get(0).substring(0, 2));
+           }
        }
    }
 
@@ -514,8 +524,28 @@ public class TeacherServiceImpl implements TeacherService {
         return mv;
     }
 
+    /**
+     * 跳转到教师端首页
+     * @return
+     */
     public String goTeacherIndex(){
         return "teacher/teacherIndex";
     }
+
+    @Override
+    public String selectPassword(String id) {
+        return teacherMapper.selectPassword(id);
+    }
+
+    @Override
+    public Integer changePassword(String id, String pwd) {
+        return teacherMapper.changePassword(id, pwd);
+    }
+
+    @Override
+    public String selectEmail(String id) {
+        return teacherMapper.selectEmail(id);
+    }
+
 
 }

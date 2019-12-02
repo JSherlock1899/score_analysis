@@ -9,8 +9,15 @@ import com.slxy.analysis.teacher.model.ClassGrade;
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Teacher;
+import com.slxy.analysis.teacher.service.MailService;
+import com.slxy.analysis.teacher.service.RedisService;
 import com.slxy.analysis.teacher.service.TeacherService;
 import com.slxy.analysis.teacher.service.UserService;
+import com.slxy.analysis.teacher.utils.CommonUtils;
+import com.slxy.analysis.teacher.utils.MD5Utils;
+import com.slxy.analysis.teacher.utils.Operation;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +40,12 @@ public class TeacherController {
     UserService userService;
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    MailService mailService;
+    @Autowired
+    RedisService redisService;
+
+    Log log = LogFactory.getLog(getClass());
 
     /**
      * 根据考试名和班级返回对应的成绩列表
@@ -42,6 +55,7 @@ public class TeacherController {
      * @param pageSize 每页数据条数 默认为10条
      * @return
      */
+    @Operation(name="查看学生成绩")
     @RequestMapping("selectStuGrade")
     public ModelAndView listStudentGrade(HttpServletRequest request, @RequestParam(defaultValue = "1")
             int pageNum, @RequestParam(defaultValue = "5") int pageSize,  @RequestParam(required = false) String exam,
@@ -50,6 +64,7 @@ public class TeacherController {
         subject = subject.replace(" reactive", "");
         //获取当前教师权限角色
         String role = teacherService.getTeacherRole((String) request.getSession().getAttribute("username"));
+        System.out.println("role = " + role);
         //查询教师备注(来判断该教师属于哪个年级)
         String remark = teacherService.getTeacherRemark((String) request.getSession().getAttribute("username"));
         //首次查询时初始化年级
@@ -128,6 +143,7 @@ public class TeacherController {
      * @param map 用来存发传到前端的对象
      * @return
      */
+    @Operation(name="查看班级成绩")
     @RequestMapping("selectClassGrade")
     public ModelAndView listClassGrade(HttpServletRequest request,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pageSize,
                                        @RequestParam(required = false) String exam, @RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
@@ -177,6 +193,7 @@ public class TeacherController {
      * 查看班级详情
      * @return
      */
+    @Operation(name="查看班级成绩详情")
     @RequestMapping("viewDetail")
     public ModelAndView viewDetail(String classNumber, String exam, Map<String, Object> map){
         List<Grade> classGradeList = teacherService.getClassGradeList(classNumber);
@@ -197,6 +214,7 @@ public class TeacherController {
      * @param request
      * @return
      */
+    @Operation(name="查看个人信息")
     @RequestMapping("getPersonalInformation")
     public ModelAndView getPersonalInformation(HttpServletRequest request, String id){
         String username = (String) request.getSession().getAttribute("username");
@@ -214,6 +232,7 @@ public class TeacherController {
      * @param cutOffGrade 分数线
      * @return
      */
+    @Operation(name="查看某次考试的情况")
     @RequestMapping("setCutOffGrade")
     public ModelAndView setCutOffGrade(HttpServletRequest request,@RequestParam(required = false) String exam, @RequestParam(required = false) String startYear
             ,@RequestParam(defaultValue = "500") String cutOffGrade){
@@ -247,6 +266,7 @@ public class TeacherController {
     }
 
     @RequestMapping("selectClassesRanking")
+    @Operation(name="查看班级各科排名分析")
     public ModelAndView selectClassesRanking(HttpServletRequest request, @RequestParam(required = false,value = "exam") String examTable,@RequestParam(value = "startYear", required = false) String grade, @RequestParam(value = "ranking", defaultValue = "100") String ranking,@RequestParam(value = "subject", defaultValue = "total_point") String subject){
         ModelAndView mv = teacherService.selectClassesRanking(request, examTable, grade, ranking, subject);
         mv.setViewName("teacher/subjectAnalysis");
@@ -256,7 +276,15 @@ public class TeacherController {
         return mv;
     }
 
+    /**
+     * 查看班级历次考试分析
+     * @param startYear
+     * @param subject
+     * @param classNumber
+     * @return
+     */
     @RequestMapping("showGradesVariation")
+    @Operation(name="查看班级历次考试分析")
     public ModelAndView showGradesVariation(@RequestParam(required = false) String startYear,@RequestParam(defaultValue = "total_point") String subject,
                                         @RequestParam(required = false) String classNumber){
         ModelAndView mv = new ModelAndView();
@@ -285,9 +313,129 @@ public class TeacherController {
         return mv;
     }
 
+    /**
+     * 跳转到教师端首页
+     * @return
+     */
     @RequestMapping("goTeacherIndex")
+    @Operation(name="访问了教师端首页")
     public String goTeacherIndex(){
         return "teacher/teacherIndex";
+    }
+
+    /**
+     * 跳转到验证密码页面
+     * @return
+     */
+    @Operation(name="跳转到验证密码页面")
+    @RequestMapping("goVerifyPwd")
+    public String goVerifyPwd(){
+        return "teacher/verifyPwd";
+    }
+
+    /**
+     * 验证原密码
+     * @param request
+     * @param pwd 原密码
+     * @return
+     */
+    @RequestMapping("verifyPwd")
+    public ModelAndView verifyPwd(HttpServletRequest request, String pwd){
+        ModelAndView mv = new ModelAndView();
+        String username = (String) request.getSession().getAttribute("username");
+        String selectPassword = teacherService.selectPassword(username);
+        //进行两次MD5加密
+        String inputPassword = MD5Utils.inputPassToDbPass(pwd, MD5Utils.salt);
+        if (inputPassword.equals(selectPassword)){
+            mv.setViewName("teacher/changePassword");
+        }else {
+            mv.addObject("msg", "对不起，原密码输入错误！");
+            mv.setViewName("teacher/verifyPwd");
+        }
+        return mv;
+    }
+
+    /**
+     * 修改密码
+     * @param request
+     * @param pwd
+     * @return
+     */
+    @Operation(name="修改密码了密码")
+    @RequestMapping("changePassword")
+    public ModelAndView changePassword(HttpServletRequest request,@RequestParam("newPassword") String pwd){
+        ModelAndView mv = new ModelAndView();
+        String username = (String) request.getSession().getAttribute("username");
+        //进行两次MD5加密
+        String inputPassword = MD5Utils.inputPassToDbPass(pwd, MD5Utils.salt);
+        Integer result = teacherService.changePassword(username, inputPassword);
+        if (result > 0){
+            mv.addObject("msg", "密码修改成功！");
+        }else {
+            mv.addObject("msg", "密码修改出错！");
+        }
+        return mv;
+    }
+
+    /**
+     * 跳转到忘记密码页面
+     * @return
+     */
+    @Operation(name="访问忘记密码页面")
+    @RequestMapping("goForgetPwd")
+    public String goForgetPwd(){
+        return "teacher/forgetPwd";
+    }
+
+    /**
+     * 向预存邮箱发送验证码
+     * @param request
+     * @return
+     */
+    @Operation(name="向预存邮箱发送验证码")
+    @RequestMapping("sendMail")
+    public ModelAndView sendMail(HttpServletRequest request){
+        ModelAndView mv = new ModelAndView();
+        String username = (String) request.getSession().getAttribute("username");
+        //该用户的邮箱
+        String email = teacherService.selectEmail(username);
+        //验证码
+        String code = CommonUtils.randomCode();
+        //邮件正文
+        String content = CommonUtils.preContent + code + CommonUtils.rearContent;
+        mailService.sendSimpleMail(email, CommonUtils.subject, content);
+        //将验证码加入redis
+        redisService.setVerifyCode(username, code);
+        String key = "code::" + username;
+        //设置过期时间
+        redisService.setExpire(key);
+        mv.setViewName("teacher/forgetPwd");
+        mv.addObject("msg", "邮件发送成功！");
+        return mv;
+    }
+
+    /**
+     * 验证验证码
+     * @param request
+     * @param code
+     * @return
+     */
+    @Operation(name="验证验证码")
+    @RequestMapping("verifyCode")
+    public ModelAndView verifyCode(HttpServletRequest request, @RequestParam("pwd") String code){
+        log.trace("这是trace日志...");
+        ModelAndView mv = new ModelAndView();
+        String username = (String) request.getSession().getAttribute("username");
+        String key = "code::" + username;
+        String redisCode = redisService.getVerifyCode(key);
+        System.out.println("time = " + redisService.getExpire(key));
+        if (code.equals(redisCode)){
+            mv.setViewName("teacher/changePassword");
+        }else {
+            mv.setViewName("teacher/forgetPwd");
+            mv.addObject("msg", "验证码错误！");
+        }
+        return mv;
     }
 
 }

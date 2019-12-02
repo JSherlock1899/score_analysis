@@ -1,4 +1,4 @@
-package com.slxy.analysis.teacher.util;
+package com.slxy.analysis.teacher.utils;
 
 /**
  * @program: miaosha
@@ -7,7 +7,7 @@ package com.slxy.analysis.teacher.util;
  * @create: 2019-07-24 14:22
  **/
 
-public class MD5Util {
+public class MD5Utils {
 
     public static final String salt = "1a2b3c4d";
 

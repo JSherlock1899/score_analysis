@@ -1,14 +1,19 @@
 package com.slxy.analysis.teacher.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.slxy.analysis.student.tools.ExcelHandelTools;
 import com.slxy.analysis.student.tools.UploadFileTools;
 import com.slxy.analysis.teacher.mapper.SuperAdminMapper;
+import com.slxy.analysis.teacher.mapper.TeacherMapper;
+import com.slxy.analysis.teacher.mapper.UserMapper;
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Student;
 import com.slxy.analysis.teacher.model.Teacher;
 import com.slxy.analysis.teacher.service.SuperAdminService;
-import com.slxy.analysis.teacher.util.LinuxCmdUtils;
+import com.slxy.analysis.teacher.service.UserService;
+import com.slxy.analysis.teacher.utils.LinuxCmdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +34,20 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 
     @Autowired
     SuperAdminMapper superAdminMapper;
+    @Autowired
+    TeacherMapper teacherMapper;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    SuperAdminService superAdminService;
+    @Autowired
+    UserService userService;
 
+    /**
+     * 创建三张考试用表
+     * @param grade
+     * @param examTime
+     */
     @Override
     public void createExamTable(String grade, String examTime) {
         examTime = examTime.replace("-", "");
@@ -46,7 +64,18 @@ public class SuperAdminServiceImpl implements SuperAdminService {
         examTime = examTime.replace("-", "");
         //该次考试对应的数据表名
         String examTalbe = grade + "_students_grades_" + examTime;
+        superAdminService.insertExam(examTalbe, grade, examTime, examName);
+    }
+
+
+    @Override
+    public List<Exam> insertExam(String examTalbe, String grade, String examTime, String examName) {
         superAdminMapper.createExamRecord(examTalbe, grade, examTime, examName);
+        List<Exam> examByRedis = userMapper.getExam(grade);
+        for (Exam e : examByRedis) {
+            System.out.println("e = " + e.getExamName());
+        }
+        return examByRedis;
     }
 
     /**
@@ -146,12 +175,18 @@ public class SuperAdminServiceImpl implements SuperAdminService {
     }
 
     @Override
-    public ModelAndView selectTeacherListByName(String name) {
+    public ModelAndView selectTeacherListByName(String name, int pageNum, int pageSize) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("superAdmin/updateTeacherInfo");
         //若输入了具体的名字则对其进行模糊查询，若没有则返回普通教师列表
+        PageHelper.startPage(pageNum, pageSize);
+        List<Teacher> teachers = superAdminMapper.selectTeacherListByName(name);
+        //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
+        PageInfo<Teacher> pageInfo = new PageInfo(teachers);
+        //pageINfo封装了分页的详细信息，也可以指定连续显示的页数
+        mv.addObject("pageInfo", pageInfo);
         if (!"".equals(name)){
-            mv.addObject("teacherList", superAdminMapper.selectTeacherListByName(name));
+            mv.addObject("teacherList", teachers);
             return mv;
         }else {
             mv.addObject("teacherList", superAdminMapper.selectTeacherListByRole("2"));
@@ -160,14 +195,23 @@ public class SuperAdminServiceImpl implements SuperAdminService {
 
     }
 
+    /**
+     * 修改教师权限(缓存)
+     * @param id
+     * @param role
+     * @return
+     */
+    public String updateAuthority(String id, String role){
+       superAdminMapper.updateTeacherAuthority(id, role);
+        return teacherMapper.getTeacherRole(id);
+    }
+
     @Override
     public ModelAndView updateTeacherAuthority(String id, String role) {
         ModelAndView mv = new ModelAndView();
-        int i = superAdminMapper.updateTeacherAuthority(role, id);
-        System.out.println("id = " + id);
-        System.out.println("i = " + i);
-        if (i == 0){
-            mv.addObject("msg", "表已存在");
+        String i = superAdminService.updateAuthority(id, role);
+        if (i.equals(role)){
+            mv.addObject("msg", "更改失败");
         }
         mv.setViewName("/superAdmin/authorityManagement");
         return mv;

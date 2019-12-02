@@ -3,62 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>登录页面</title>
+    <!-- Custom styles for this template -->
     <link th:href="@{/asserts/css/login/login.css}" rel="stylesheet">
-    <script th:src="@{/webjars/jquery/3.3.1/jquery.js}" type="text/javascript"></script>
-    <script th:src="@{/asserts/js/common.js}"></script>
-    <script th:src="@{/asserts/js/frame/md5.min.js}"></script>
 </head>
 <body>
-    <div class="login">
-        <div class="login-wrapper">
-            <div class="login-content">
-                <div class="login-left">
-                    <img th:src="@{/asserts/images/login/img-01.png}"  class="login-pic">
-                </div>
-                <h3 th:text="${msg}" id="msg" style="color: red"></h3>
-                <form action="/user/login" class="login-form" id="login-form">
-                    <span class="login-title">校 园 登 陆</span>
-                    <div class="login-ident login-com">
-                        <input type="text" class="identity" id="username" name="username" placeholder="账号" required>
-                        <span class="qq"></span>
-                        <span class="icon">
+<div class="login">
+    <div class="login-wrapper">
+        <div class="login-content">
+            <div class="login-left">
+                <img th:src="@{/asserts/images/login/img-01.png}"  class="login-pic">
+            </div>
+            <h3 th:text="${msg}" style="color: red"></h3>
+            <form action="/user/login" class="login-form" id="login-form">
+                <span class="login-title">校 园 登 陆</span>
+                <div class="login-ident login-com">
+                    <input type="text" class="identity" name="username" placeholder="账号" required>
+                    <span class="qq"></span>
+                    <span class="icon">
                                 <i class="iconfont icon-mail_fill"></i>
                             </span>
-                    </div>
-                    <div class="login-password login-com">
-                        <input type="password" class="password identity" id="password" placeholder="密码" required>
-                        <span class="qq"></span>
-                        <span class="icon">
+                </div>
+                <div class="login-password login-com">
+                    <input type="password" class="password identity" name="password" placeholder="密码" required>
+                    <span class="qq"></span>
+                    <span class="icon">
                                 <i class="iconfont icon-lock_fill"></i>
                             </span>
-                    </div>
-                    <div class="login-com login-select">
-                        <select name="role" id="role">
-                            <option value="student">学生</option>
-                            <option value="teacher">教师</option>
-                        </select>
-                    </div>
-                    <div class="dl login-com">
-                        <input type="submit" class="btn" id="btn" value="登陆"/>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="login-com login-select">
+                    <select name="role" id="choose">
+                        <option value="student">学生</option>
+                        <option value="teacher">教师</option>
+                    </select>
+                </div>
+                <div class="dl login-com">
+                    <input type="submit" class="btn" id="btn" value="登陆"/>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
-        $("#btn").on("click", function () {
-            var username = $("#username").val();
-            var password = $("#password").val();
-            var role = $("#role").val();
-            var salt = g_passsword_salt;
-            var str = "" + salt.charAt(0) + salt.charAt(2) + password + salt.charAt(5) + salt.charAt(4);
-            var md5Password = md5(str);
-            var loginForm = $("#login-form");
-            var pwd=$("<input type='password' name='password'/>");
-            pwd.attr("value", md5Password);
-            loginForm.append(pwd);
-            loginForm.submit();
-        })
-    </script>
+</div>
 </body>
 </html>

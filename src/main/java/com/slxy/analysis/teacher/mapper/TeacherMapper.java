@@ -5,7 +5,7 @@ import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Grade;
 import com.slxy.analysis.teacher.model.Teacher;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.cache.annotation.Cacheable;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,6 @@ public interface TeacherMapper extends UserMapper {
      * @param id 教师工号
      * @return 教师的权限角色
      */
-    @Cacheable(cacheNames = "teacherRole")
     @Select("select role from teacher_basic_info where id = #{id}")
     String getTeacherRole(String id);
 
@@ -40,7 +39,6 @@ public interface TeacherMapper extends UserMapper {
      * @param id  教师工号
      * @return
      */
-    @Cacheable(cacheNames = "teacherNameAndSubject")
     @Select("select name,subject from teacher_basic_info where id = #{id}")
     Teacher getTeacherNameAndSubject(String id);
 
@@ -50,7 +48,6 @@ public interface TeacherMapper extends UserMapper {
      * @param id 教师工号
      * @return 教师所教的班级集合
      */
-    @Cacheable(cacheNames = "teacherClass")
     @Select("select class_number from class_teacher_info where ${subject} = #{id}")
     List<String> getTeacherClass(String subject, String id);
 
@@ -61,7 +58,6 @@ public interface TeacherMapper extends UserMapper {
      * @param grade 年级
      * @return 学生成绩的集合
      */
-    @Cacheable(cacheNames = "studentGrades")
     @Select("select name,chinese_grades,math_grades,english_grades,physics_grades,chemistry_grades," +
             "biology_grades,history_grades,politics_grades,geography_grades,technology_grades,total_point_grades from ${exam} e " +
             "join ${grade}_students_basic_info s on e.id = s.id  where s.classNumber = #{classNumber} order by ${subject} ${sort}")
@@ -158,7 +154,6 @@ public interface TeacherMapper extends UserMapper {
 
     /**
      * 查询某班过线人数
-     * @param classNumber 班级
      * @param examTable 考试表
      * @param cutOffGrade 分数线
      * @return
@@ -183,9 +178,45 @@ public interface TeacherMapper extends UserMapper {
     @Select("select exam_name,exam_time,table_name from exam_record where grade = #{grade}")
     List<Exam> selectRecentlyExams(String grade);
 
+    /**
+     * 计算过线总人数
+     * @param examTable
+     * @param cutOffGrade
+     * @return
+     */
     @Select("select count(*) from ${examTable} where total_point_grades >= #{cutOffGrade}")
     Integer calcPassLineCount(String examTable, Integer cutOffGrade);
 
+    /**
+     * 查询各班学生的排名分布
+     * @param rankingTable
+     * @param ranking
+     * @param subject
+     * @return
+     */
     @Select("select classNumber,count(*) as number from ${rankingTable} where  ${subject} <= ${ranking} GROUP BY classNumber")
     List<Map<String ,String>> selectClassesRanking(String rankingTable, String ranking, String subject);
+
+    /**
+     * 查询用户密码
+     * @param id
+     * @return
+     */
+    @Select("select password from teacher_basic_info where id = #{id}")
+    String selectPassword(String id);
+
+    /**
+     * 修改用户密码
+     * @param id
+     * @param pwd
+     * @return
+     */
+    @Update("update teacher_basic_info set password = #{pwd} where id = #{id}")
+    Integer changePassword(String id, String pwd);
+
+    @Select("select email from teacher_basic_info where id = #{id}")
+    String selectEmail(String id);
+
+    @Select("select * from exam_record where exam_time = (SELECT MAX(exam_time) from exam_record)")
+    Exam selectLastExam();
 }

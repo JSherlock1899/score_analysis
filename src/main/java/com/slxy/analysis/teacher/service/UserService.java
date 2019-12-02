@@ -33,6 +33,9 @@ public interface UserService {
      */
     HashSet<Exam> getExam(List<String> grades);
 
+
+    List<Exam> getExamByRedis(String grade);
+
     ClassGrade getClassAverageGrade(String gradeTable,String classNumber);
 
 }

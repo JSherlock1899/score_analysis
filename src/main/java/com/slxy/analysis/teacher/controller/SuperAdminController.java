@@ -4,8 +4,10 @@ import com.slxy.analysis.student.service.StService;
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
 import com.slxy.analysis.teacher.model.Teacher;
+import com.slxy.analysis.teacher.service.MailService;
 import com.slxy.analysis.teacher.service.SuperAdminService;
 import com.slxy.analysis.teacher.service.TeacherService;
+import com.slxy.analysis.teacher.utils.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static com.slxy.analysis.teacher.util.MySQLUtils.dbBackup;
+import static com.slxy.analysis.teacher.utils.MySQLUtils.dbBackup;
 
 /**
  * @author: sherlock
@@ -34,18 +36,21 @@ public class SuperAdminController {
     TeacherService teacherService;
     @Autowired
     StService stServiceimp;
+    @Autowired
+    MailService mailService;
 
     /**
      * 创建各考试用表
      * @return
      */
+    @Operation(name="创建各考试用表")
     @RequestMapping("createTable")
     public ModelAndView createTable(String grade, String examTime, String examName){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("ttt");
         try{
             //创建三张表
-            superAdminService.createExamTable(grade, examTime);
+//            superAdminService.createExamTable(grade, examTime);
             //创建考试记录
             superAdminService.createExamRecord(grade ,examTime, examName);
         }catch (Exception e){
@@ -64,6 +69,7 @@ public class SuperAdminController {
      * @param start_year 入学年份（即年级）
      * @return
      */
+    @Operation(name="调用存储过程生成各班平均分")
     @RequestMapping("callAverageGrade")
     public String callAverageGrade(String examTable, String classGradeTable, String start_year){
         for (int i = 0; i < Student.SUBJECT.length; i++ ){
@@ -76,6 +82,7 @@ public class SuperAdminController {
         return "ttt";
     }
 
+    @Operation(name="调用存储过程生成学生排名")
     @RequestMapping("callStudentRanking")
     public void callStudentRanking(String startYear,String gradeTable, String rankingTable){
         List<String> classList = teacherService.getGradeClass(startYear);
@@ -86,6 +93,7 @@ public class SuperAdminController {
      * 跳转到管理后台
      * @return
      */
+    @Operation(name="访问管理后台")
     @RequestMapping("goSuperAdminIndex")
     public String goSuperAdminIndex(){
         return "superAdmin/superAdminIndex";
@@ -95,11 +103,12 @@ public class SuperAdminController {
      * 跳转到创建考试页面
      * @return
      */
+    @Operation(name="访问创建考试页面")
     @RequestMapping("goCreateExam")
     public ModelAndView goCreateExam(HttpServletRequest request){
         ModelAndView mv = new ModelAndView();
         //首次查询时初始化年级
-        List<String> presentGrade = teacherService.getGradeList(request, teacherService.getPresentGrade());
+        List<String> presentGrade = teacherService.getPresentGrade();
         //查询所有考试信息
         List<Exam> exams = superAdminService.selectAllExam();
         mv.addObject("exams", exams);
@@ -112,6 +121,7 @@ public class SuperAdminController {
      * 跳转到备份与恢复页面
      * @return
      */
+    @Operation(name="访问备份与恢复页面")
     @RequestMapping("goBackups")
     public ModelAndView goBackups(){
         ModelAndView mv = new ModelAndView();
@@ -123,6 +133,7 @@ public class SuperAdminController {
      * 跳转到权限管理页面
      * @return
      */
+    @Operation(name="访问权限管理页面")
     @RequestMapping("authorityManagement")
     public ModelAndView authorityManagement(@RequestParam(defaultValue = "2") String role){
         ModelAndView mv = new ModelAndView();
@@ -137,9 +148,10 @@ public class SuperAdminController {
      * 跳转到修改教师信息页面
      * @return
      */
+    @Operation(name="访问修改教师信息页面")
     @RequestMapping("updateTeacherInfo")
-    public ModelAndView updateTeacherInfo(@RequestParam(required = false) String name){
-        ModelAndView mv  = superAdminService.selectTeacherListByName(name);
+    public ModelAndView updateTeacherInfo(@RequestParam(required = false) String name,int pageNum, @RequestParam(defaultValue = "5") int pageSize){
+        ModelAndView mv  = superAdminService.selectTeacherListByName(name,pageNum,pageSize);
         return mv;
     }
 
@@ -158,6 +170,7 @@ public class SuperAdminController {
      * @param id 工号
      * @return
      */
+    @Operation(name="查看自己的详细信息")
     @RequestMapping("showTeacherInfo")
     public ModelAndView showTeacherInfo(String id){
         ModelAndView mv = new ModelAndView();
@@ -167,9 +180,9 @@ public class SuperAdminController {
         return mv;
     }
 
+    @Operation(name="查看教师详细信息")
     @RequestMapping("updateTeacherAuthority")
     public ModelAndView updateTeacherAuthority(String id, String role){
-        System.out.println(">>P:LKPKP{");
         ModelAndView mv = superAdminService.updateTeacherAuthority(id, role);
         return mv;
     }
@@ -177,6 +190,7 @@ public class SuperAdminController {
     /*
     跳到导入excel页面
      */
+    @Operation(name="访问导入excel页面")
     @RequestMapping("ie")
     public ModelAndView InExcelPage(ModelAndView mv){
         CopyOnWriteArrayList<Exam> all = stServiceimp.getExaminfomation("all");
@@ -188,6 +202,7 @@ public class SuperAdminController {
     /*
     导excel
      */
+    @Operation(name="导入excel")
     @RequestMapping("/eh")
     public ModelAndView ExcelHandle(HttpServletRequest req, ModelAndView mv){
         superAdminService.uploadfile(req);
@@ -200,6 +215,7 @@ public class SuperAdminController {
      * @param teacher 教师实体
      * @return
      */
+    @Operation(name="更新教师信息")
     @RequestMapping("updateTerInfo")
     public ModelAndView updateTerInfo(Teacher teacher){
         ModelAndView mv = new ModelAndView();
@@ -220,6 +236,7 @@ public class SuperAdminController {
      * @param id
      * @return
      */
+    @Operation(name="根据教师id删除教师")
     @RequestMapping("delTer")
     public ModelAndView delTer(String id){
         ModelAndView mv = new ModelAndView();
@@ -227,4 +244,6 @@ public class SuperAdminController {
         superAdminService.delTer(id);
         return mv;
     }
+
+
 }

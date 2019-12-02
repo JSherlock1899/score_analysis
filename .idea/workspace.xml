@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java" description="@CachePut(value = &quot;exam&quot;, key = &quot;#grade&quot;)" line="56" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d79297c-11c3-43b8-a752-5839b6ac1994" name="Default" comment="业务优化">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MD5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/css/teacher/classDetail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/js/common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/js/frame/md5.min.js" afterDir="false" />
+    <list default="true" id="6d79297c-11c3-43b8-a752-5839b6ac1994" name="Default" comment="增加兩次MD5加密">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/MailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/RedisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/MailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/RedisServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/CommonUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/LogAop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/Operation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/RedisUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/changePassword.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/forgetPwd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/verifyPwd.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/score_analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/score_analysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/AnalysisApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/AnalysisApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/config/RedisConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/model/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/SuperAdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/SuperAdminServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/asserts/css/teacher/totalScore.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/css/teacher/totalScore.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/asserts/js/echarts.common.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/js/frame/echarts.common.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisPreExamGrade.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisPreExamGrade.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/subjectAnalysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/subjectAnalysis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/LinuxCmdUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/LinuxCmdUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MD5Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/MD5Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MySQLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/MySQLUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/classDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/classDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/examAnalysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/examAnalysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/studentGradeList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/studentGradeList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/subjectAnalysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/subjectAnalysis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/totalAnalysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/totalAnalysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/superAdmin/updateTeacherInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/superAdmin/updateTeacherInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/teacher/teacherIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/teacher/teacherIndex.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -82,98 +100,98 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5908">
-              <caret line="228" selection-start-line="228" selection-end-line="228" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2212">
-              <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1400">
-              <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
-              <folding>
-                <element signature="e#2505#2506#0" expanded="true" />
-                <element signature="e#2543#2544#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4592">
-              <caret line="172" column="14" selection-start-line="172" selection-start-column="14" selection-end-line="172" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="60" column="28" selection-start-line="60" selection-end-line="61" />
+            <state relative-caret-position="-58">
+              <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
+              <folding>
+                <element signature="e#4092#4093#0" expanded="true" />
+                <element signature="e#4140#4141#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/changePassword.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/verifyPwd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="53" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="119" column="17" selection-start-line="112" selection-start-column="12" selection-end-line="119" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="43" column="10" lean-forward="true" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/totalAnalysis.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/test.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/teacherPersonalInfo.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/forgetPwd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/examAnalysis.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
-              <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MySQLUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MD5Util.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1288">
-              <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1372">
-              <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="17" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -183,31 +201,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setc</find>
-      <find>cut</find>
-      <find>getTeacherClass</find>
-      <find>PassLine</find>
-      <find>presen</find>
-      <find>2</find>
-      <find>初始化</find>
-      <find>GradeClass</find>
-      <find>add</find>
-      <find>rankingSelect</find>
-      <find>过线</find>
-      <find>examName</find>
-      <find>总体</find>
-      <find>examSelect</find>
-      <find>getTeacherById</find>
       <find>getStudentPassword</find>
       <find>teacherIndex</find>
       <find>password</find>
@@ -223,6 +226,21 @@
       <find>total_point_grades &gt;= ?</find>
       <find>as</find>
       <find>selectPassLineStudents</find>
+      <find>v</find>
+      <find>verif</find>
+      <find>log</find>
+      <find>test</find>
+      <find>role</find>
+      <find>getTeacherR</find>
+      <find>&quot;exam&quot;</find>
+      <find>CachePut</find>
+      <find>updateTeacherAuthority</find>
+      <find>insert</find>
+      <find>createExamRecord</find>
+      <find>getExam</find>
+      <find>insertExam</find>
+      <find>GradeL</find>
+      <find>select</find>
     </findStrings>
     <replaceStrings>
       <replace>filterMap</replace>
@@ -243,33 +261,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/slxy/analysis/AnalysisApplicationTests.java" />
-        <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MySQLUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/fragment.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/common.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/common/top.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/asserts/css/superAdmin/creatExam.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/createExam.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/backups.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/teacherPersonalInfo.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/superAdminIndex.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/student/service/imp/AnalysisGradeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/student/Mapper/ExamInfomation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/AnalysisApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/student/controller/AnalyizeController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/authorityManagement.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisClassGrade.js" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/student/service/imp/StServiceimp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/student/mapper/StudentGradeMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/common/sidebar.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisSchoolGrade.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/SuperAdminServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/updateTeacherInfo.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/teacherIndex.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/asserts/css/student/common.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisPreExamGrade.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html" />
@@ -282,18 +273,45 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/classDetail.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/examAnalysis.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/totalAnalysis.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/subjectAnalysis.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MD5Util.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/MailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/MailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/changePassword.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/teacherIndex.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/emailVerify.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/CommonUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/verifyPwd.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/config/RedisConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/RedisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/service/impl/redisServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/redisServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/forgetPwd.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/teacher/changePassword.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/CommonUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/RedisUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/RedisService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/RedisServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/UserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/Operation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/AnalysisApplication.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/LogAop.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/superAdmin/updateTeacherInfo.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/SuperAdminServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
       </list>
     </option>
   </component>
@@ -320,6 +338,11 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="analysis" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="analysis" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
         </path>
       </expand>
       <select />
@@ -520,7 +543,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -553,15 +575,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="analysis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="score_analysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="score_analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="student" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="score_analysis" type="b2602c69:ProjectViewProjectNode" />
@@ -641,7 +654,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="analysis" type="462c0819:PsiDirectoryNode" />
               <item name="teacher" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="score_analysis" type="b2602c69:ProjectViewProjectNode" />
@@ -733,6 +746,25 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="superAdmin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score_analysis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score_analysis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="superAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score_analysis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score_analysis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="teacher" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -743,6 +775,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -755,9 +788,9 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573222352873" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575296306444" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../resource/视频/源码文档/1.并发编程/第1节课/vip-concurrent" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -768,29 +801,31 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\1\project\score_analysis\src\main\java\com\slxy\analysis\teacher\service\impl" />
+      <recent name="D:\1\project\score_analysis\src\main\java\com\slxy\analysis\teacher\service" />
       <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\frame" />
       <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\teacher" />
       <recent name="D:\1\project\score_analysis\src\main\java\com\slxy\analysis" />
-      <recent name="D:\1\project\score_analysis\src\main\resources\templates\superAdmin" />
-      <recent name="D:\1\project\score_analysis\src\main\java\com\slxy\analysis\student\tools" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\1\project\score_analysis\src\main\resources\templates\teacher" />
+      <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\frame" />
+      <recent name="D:\1\project\score_analysis\src\main\resources\templates\studentIndex" />
+      <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\teacher" />
+      <recent name="D:\1\project\score_analysis\src\main\resources\templates" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.slxy.analysis" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\frame" />
-      <recent name="D:\1\project\score_analysis\src\main\resources\templates\studentIndex" />
-      <recent name="D:\1\project\score_analysis\src\main\resources\static\asserts\js\teacher" />
-      <recent name="D:\1\project\score_analysis\src\main\resources\templates\teacher" />
-      <recent name="D:\1\project\score_analysis\src\main\resources\templates" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.slxy.analysis.teacher.utils" />
       <recent name="com.slxy.analysis.teacher.util" />
     </key>
     <key name="OPEN_URL_DIALOG">
       <recent name="https://github.com/zhaojun1998/Shiro-Action.git" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.slxy.analysis.teacher.service.impl" />
       <recent name="com.slxy.analysis.service.impl" />
     </key>
   </component>
@@ -813,13 +848,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LinuxCmdUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.util.LinuxCmdUtils" />
+    <configuration name="CommonUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.utils.CommonUtils" />
       <module name="score_analysis" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.slxy.analysis.teacher.util.*" />
+          <option name="PATTERN" value="com.slxy.analysis.teacher.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -827,13 +862,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MD5Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.util.MD5Util" />
+    <configuration name="MD5Utils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.utils.MD5Utils" />
       <module name="score_analysis" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.slxy.analysis.teacher.util.*" />
+          <option name="PATTERN" value="com.slxy.analysis.teacher.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -842,12 +877,26 @@
       </method>
     </configuration>
     <configuration name="MySQLUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.util.MySQLUtils" />
+      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.utils.MySQLUtils" />
       <module name="score_analysis" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.slxy.analysis.teacher.util.*" />
+          <option name="PATTERN" value="com.slxy.analysis.teacher.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedisUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.slxy.analysis.teacher.utils.RedisUtils" />
+      <module name="score_analysis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.slxy.analysis.teacher.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -867,10 +916,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="analysis-0.0.1-SNAPSHOT.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/target/analysis-0.0.1-SNAPSHOT.jar" />
-      <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <module name="analysis" />
@@ -914,7 +959,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnalysisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="AnalysisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="score_analysis" />
       <extension name="coverage">
         <pattern>
@@ -930,7 +975,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnalysisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AnalysisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="score_analysis" />
       <extension name="coverage">
         <pattern>
@@ -1078,19 +1123,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.MySQLUtils" />
-      <item itemvalue="Application.LinuxCmdUtils" />
-      <item itemvalue="Application.MD5Util" />
-      <item itemvalue="JAR Application.analysis-0.0.1-SNAPSHOT.jar" />
+      <item itemvalue="Application.MD5Utils" />
+      <item itemvalue="Application.CommonUtils" />
+      <item itemvalue="Application.RedisUtils" />
       <item itemvalue="Spring Boot.AnalysisApplication" />
       <item itemvalue="Spring Boot.AnalysisApplication (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AnalysisApplication (1)" />
-        <item itemvalue="Application.MD5Util" />
+        <item itemvalue="Application.RedisUtils" />
+        <item itemvalue="Application.CommonUtils" />
+        <item itemvalue="Application.MD5Utils" />
         <item itemvalue="Application.MySQLUtils" />
-        <item itemvalue="JAR Application.analysis-0.0.1-SNAPSHOT.jar" />
-        <item itemvalue="Application.LinuxCmdUtils" />
       </list>
     </recent_temporary>
   </component>
@@ -1160,7 +1205,16 @@
       <workItem from="1573114043128" duration="7343000" />
       <workItem from="1573139788712" duration="16503000" />
       <workItem from="1573264228522" duration="1632000" />
-      <workItem from="1573269196291" duration="1616000" />
+      <workItem from="1573269196291" duration="3275000" />
+      <workItem from="1573616080333" duration="21143000" />
+      <workItem from="1573811077886" duration="14769000" />
+      <workItem from="1573867739518" duration="16636000" />
+      <workItem from="1573963570262" duration="592000" />
+      <workItem from="1574088896533" duration="14701000" />
+      <workItem from="1574267889959" duration="719000" />
+      <workItem from="1575084774946" duration="7000" />
+      <workItem from="1575088881565" duration="3007000" />
+      <workItem from="1575295766054" duration="639000" />
     </task>
     <task id="LOCAL-00001" summary="权限框架基本搭建完成">
       <created>1567310521769</created>
@@ -1260,7 +1314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573022849241</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="增加兩次MD5加密">
+      <created>1573271033037</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1573271033037</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1272,7 +1333,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="432033000" />
+    <option name="totallyTimeSpent" value="505905000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1287,7 +1348,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4936479" visible="true" weight="0.21313673" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4936479" visible="true" weight="0.22989276" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -1296,17 +1357,17 @@
       <window_info id="Web" order="6" sideWeight="0.50635207" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49932975" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5053619" side_tool="true" weight="0.3937677" />
-      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.48324397" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50603217" side_tool="true" weight="0.33002833" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.48324397" weight="0.32719547" />
       <window_info anchor="bottom" id="Java Enterprise" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.3286119" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.3281471" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32900944" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49463806" visible="true" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Run" order="11" sideWeight="0.49396783" visible="true" weight="0.33002833" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.3286119" />
@@ -1323,7 +1384,7 @@
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.3299356" />
       <window_info anchor="right" x="91" y="91" width="1738" height="823" id="Documentation" order="8" type="FLOATING" />
       <window_info anchor="right" id="Database" order="9" weight="0.3297587" />
-      <window_info anchor="right" id="Maven" order="10" visible="true" weight="0.24664879" />
+      <window_info anchor="right" id="Maven" order="10" weight="0.211126" />
       <window_info anchor="right" id="Bean Validation" order="11" weight="0.3297587" />
     </layout>
   </component>
@@ -1350,343 +1411,323 @@
     <MESSAGE value="添加了部分学生端的内容" />
     <MESSAGE value="添加部分后台功能" />
     <MESSAGE value="业务优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="业务优化" />
+    <MESSAGE value="增加兩次MD5加密" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加兩次MD5加密" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/subjectAnalysis.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/service/impl/redisServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/PermissionServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        <state relative-caret-position="121">
+          <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/asserts/css/teacher/totalScore.css">
+    <entry file="file://$PROJECT_DIR$/springboot.log" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/RedisService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1568">
-          <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="56" selection-end-column="1" />
+        <state relative-caret-position="420">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/model/Teacher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/CommonUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="111" column="27" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
-          <folding>
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#599#600#0" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-            <element signature="e#727#728#0" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#951#952#0" expanded="true" />
-            <element signature="e#985#986#0" expanded="true" />
-            <element signature="e#1017#1018#0" expanded="true" />
-            <element signature="e#1041#1042#0" expanded="true" />
-            <element signature="e#1085#1086#0" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
-            <element signature="e#1154#1155#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-            <element signature="e#1237#1238#0" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1349#1350#0" expanded="true" />
-            <element signature="e#1407#1408#0" expanded="true" />
-            <element signature="e#1453#1454#0" expanded="true" />
-            <element signature="e#1485#1486#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-            <element signature="e#1553#1554#0" expanded="true" />
-            <element signature="e#1585#1586#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-            <element signature="e#1685#1686#0" expanded="true" />
-            <element signature="e#1717#1718#0" expanded="true" />
-            <element signature="e#1776#1777#0" expanded="true" />
-            <element signature="e#1814#1815#0" expanded="true" />
-            <element signature="e#1840#1841#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="308">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/asserts/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/asserts/js/frame/md5.min.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/MailServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/classDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#815#840#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#8;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#8;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#9;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#9;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#10;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#10;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#11;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#11;n#tr#0;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/studentGradeList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#8;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#8;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#9;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#9;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#10;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#10;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#th#11;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#th#11;n#tr#0;n#thead#0;n#table#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.9.RELEASE/spring-web-5.1.9.RELEASE.jar!/org/springframework/web/context/request/async/WebAsyncManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.9.RELEASE/spring-webmvc-5.1.9.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="561" selection-start-line="561" selection-end-line="561" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.1.9.RELEASE/spring-aop-5.1.9.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/RedisServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
-          <caret line="503" selection-start-line="503" selection-end-line="503" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.9.RELEASE/spring-web-5.1.9.RELEASE.jar!/org/springframework/web/method/HandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding>
-            <element signature="e#6545#6546#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#661#662#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#812#813#0" expanded="true" />
+            <element signature="e#860#861#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.9.RELEASE/spring-webmvc-5.1.9.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/StudentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        <state relative-caret-position="149">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.9.RELEASE/spring-web-5.1.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/StudentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="261">
+          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/authc/UsernamePasswordToken.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/PermissionMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="149">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/StudentMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/authc/SimpleAuthenticationInfo.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        <state relative-caret-position="59">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/Subject.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="58" column="11" lean-forward="true" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+        <state relative-caret-position="149">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/mgt/SecurityManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/util/MapContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/support/DefaultSubjectContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="198" column="41" lean-forward="true" selection-start-line="198" selection-start-column="41" selection-end-line="198" selection-end-column="41" />
-          <folding>
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7430#7431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/SubjectContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/mgt/DefaultSecurityManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/support/DelegatingSubject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="184" column="50" selection-start-line="184" selection-start-column="50" selection-end-line="184" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/ShiroConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/model/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-end-line="51" />
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/student/information.html">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2772" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/student/inquire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1138">
-          <caret line="183" column="46" selection-start-line="183" selection-start-column="43" selection-end-line="183" selection-end-column="46" />
+        <state relative-caret-position="205">
+          <caret line="112" column="51" lean-forward="true" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+        <state relative-caret-position="149">
+          <caret line="115" column="49" lean-forward="true" selection-start-line="115" selection-start-column="49" selection-end-line="115" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.9.RELEASE/spring-core-5.1.9.RELEASE.jar!/org/springframework/core/annotation/AliasFor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.1.9.RELEASE/spring-context-5.1.9.RELEASE.jar!/org/springframework/cache/annotation/CachePut.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/RedisUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="46" column="37" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="37" />
           <folding>
-            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/student/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/SuperAdminMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500" />
+        <state relative-caret-position="113">
+          <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/student/analyze.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4200" />
+        <state relative-caret-position="141">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5936">
+          <caret line="220" column="23" selection-start-line="220" selection-start-column="9" selection-end-line="220" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/subjectAnalysis.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/LogAop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1456">
+          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/AnalysisApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/Operation.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4984">
+          <caret line="178" column="21" selection-start-line="178" selection-start-column="21" selection-end-line="178" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="812">
+          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/asserts/js/teacher/analysisPreExamGrade.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/student/information.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/SuperAdminService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="43" column="80" lean-forward="true" selection-start-line="43" selection-start-column="80" selection-end-line="43" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1344">
+          <caret line="72" column="21" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14810#14811#0" expanded="true" />
+            <element signature="e#14852#14853#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/superAdmin/superAdminIndex.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/superAdmin/updateTeacherInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="18" column="63" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/classDetail.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/utils/MD5Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="11" column="46" lean-forward="true" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="434" column="32" selection-start-line="434" selection-start-column="26" selection-end-line="434" selection-end-column="32" />
+          <folding>
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/SuperAdminServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="188" column="21" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
+          <folding>
+            <element signature="e#4092#4093#0" expanded="true" />
+            <element signature="e#4140#4141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/changePassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/verifyPwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/totalAnalysis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/test.html">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1694,129 +1735,40 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/teacherPersonalInfo.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/teacherIndex.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/forgetPwd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="69" column="54" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="54" />
+        <state relative-caret-position="28">
+          <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/examAnalysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="39" />
+        <state relative-caret-position="112">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/subjectAnalysis.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/teacher/classGradeList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1120">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+        <state relative-caret-position="624">
+          <caret line="119" column="17" selection-start-line="112" selection-start-column="12" selection-end-line="119" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="43" column="10" lean-forward="true" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/TeacherServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7588">
-          <caret line="302" selection-start-line="302" selection-end-line="302" />
-          <folding>
-            <element signature="e#1255#1256#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/TeacherController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5908">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/SuperAdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2212">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1400">
-          <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
-          <folding>
-            <element signature="e#2505#2506#0" expanded="true" />
-            <element signature="e#2543#2544#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/mapper/TeacherMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4592">
-          <caret line="172" column="14" selection-start-line="172" selection-start-column="14" selection-end-line="172" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MySQLUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/util/MD5Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/shiro/UserRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1288">
-          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/TeacherService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1372">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/slxy/analysis/teacher/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="60" column="28" selection-start-line="60" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
         </state>
       </provider>
     </entry>

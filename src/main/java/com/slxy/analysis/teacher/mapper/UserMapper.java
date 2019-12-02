@@ -3,7 +3,6 @@ package com.slxy.analysis.teacher.mapper;
 import com.slxy.analysis.teacher.model.ClassGrade;
 import com.slxy.analysis.teacher.model.Exam;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ public interface UserMapper {
      * 获取考试名
      * @return
      */
-    @Cacheable(cacheNames = "exam")
     @Select("select exam_name,table_name from exam_record where grade = ${grade}")
     List<Exam> getExam(String grade);
 

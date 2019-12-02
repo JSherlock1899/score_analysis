@@ -1,4 +1,4 @@
-package com.slxy.analysis.teacher.util;
+package com.slxy.analysis.teacher.utils;
 
 /**
  * @author: sherlock

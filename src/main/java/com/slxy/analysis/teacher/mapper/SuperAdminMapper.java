@@ -176,7 +176,7 @@ public interface SuperAdminMapper {
      * @return
      */
     @Update("update teacher_basic_info set role = #{role} where id = #{id}")
-    int updateTeacherAuthority(String role, String id);
+    int updateTeacherAuthority(String id, String role);
 
     /**
      * 根据教师id修改其个人信息

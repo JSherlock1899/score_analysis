@@ -2,6 +2,7 @@ package com.slxy.analysis.teacher.service;
 
 import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Teacher;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,17 +41,22 @@ public interface SuperAdminService {
 
     List<Teacher> selectTeacherListByRole(String role);
 
-    ModelAndView selectTeacherListByName(String name);
+    ModelAndView selectTeacherListByName(String name,int pageNum, int pageSize);
 
     ModelAndView updateTeacherAuthority(String role, String id);
 
     /*
   将当前excel表上传至服务器
    */
-    public boolean uploadfile(HttpServletRequest req);
+    boolean uploadfile(HttpServletRequest req);
 
     int updateTerInfo(Teacher teacher);
 
     void delTer(String id);
 
+    @CachePut(value = "exam", key = "#grade" )
+    List<Exam> insertExam(String examTalbe, String grade, String examTime, String examName);
+
+    @CachePut(value = "teacherRole", key = "#id")
+    String updateAuthority(String id, String role);
 }

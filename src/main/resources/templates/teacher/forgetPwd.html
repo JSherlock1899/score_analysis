@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+</head>
+<body>
+<h3 th:text="${msg}" id="msg" style="color: red"></h3>
+<form action="/teacher/verifyCode">
+    请输入验证码：<input type="password" name="pwd"><a href="/teacher/sendMail">发送验证码</a>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

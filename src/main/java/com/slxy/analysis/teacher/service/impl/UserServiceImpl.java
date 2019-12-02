@@ -6,7 +6,6 @@ import com.slxy.analysis.teacher.result.CodeMsg;
 import com.slxy.analysis.teacher.service.StudentService;
 import com.slxy.analysis.teacher.service.TeacherService;
 import com.slxy.analysis.teacher.service.UserService;
-import com.slxy.analysis.teacher.util.MD5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -33,6 +32,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
     @Autowired
+    UserService userService;
+    @Autowired
     TeacherService teacherService;
     @Autowired
     StudentService studentService;
@@ -44,9 +45,8 @@ public class UserServiceImpl implements UserService {
         request.getSession().setAttribute("username", username);
         //获取subject
         Subject subject = SecurityUtils.getSubject();
-        String calcPass = MD5Util.FromPassToDBPass(password, MD5Util.salt);
         //封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(username,calcPass,role);
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password,role);
         //执行登录方法
         try {
             //
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
         HashSet<Exam> examSet = new HashSet<Exam>();
         for (String grade : grades){
             grade = grade.substring(0, 2);
-            exams = userMapper.getExam(grade);
+            exams = userService.getExamByRedis(grade);
             if (exams != null){
                 for (Exam e : exams){
                     if (!examSet.contains(e)){
@@ -109,6 +109,10 @@ public class UserServiceImpl implements UserService {
         return examSet;
     }
 
+    @Cacheable(value = "exam" ,key = "#grade" )
+    public List<Exam> getExamByRedis(String grade) {
+        return userMapper.getExam(grade);
+    }
     /**
      * 获取某个班的各科平均分
      * @param gradeTable 成绩表
@@ -122,6 +126,7 @@ public class UserServiceImpl implements UserService {
         String classGradeTable = gradeTable.replace("students","class");
         return userMapper.getClassAverageGrade(classGradeTable, classNumber);
     }
+
 
 
 }

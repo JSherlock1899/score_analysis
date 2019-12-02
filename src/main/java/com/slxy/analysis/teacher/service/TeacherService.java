@@ -21,6 +21,7 @@ public interface TeacherService {
 
     String getTeacherRole(String id);
 
+
     Teacher getTeacherNameAndSubject(String id);
 
     List<String> getTeacherClass(String subject, String id);
@@ -78,4 +79,10 @@ public interface TeacherService {
     ModelAndView selectClassesRanking(HttpServletRequest request, String examTable, String grade, String ranking, String subject);
 
     String goTeacherIndex();
+
+    String selectPassword(String id);
+
+    Integer changePassword(String id, String pwd);
+
+    String selectEmail(String id);
 }

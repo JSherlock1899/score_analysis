@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>验证原密码</title>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+    <h3 th:text="${msg}" id="msg" style="color: red"></h3>
+    <form action="/teacher/verifyPwd">
+        请输入原密码：<input type="password" name="pwd">
+        <a href="/teacher/goForgetPwd">忘记密码</a>
+        <input type="submit" value="提交" class="">
+    </form>
+</body>
+</html>

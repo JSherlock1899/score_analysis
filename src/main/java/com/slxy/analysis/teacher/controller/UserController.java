@@ -1,10 +1,13 @@
 package com.slxy.analysis.teacher.controller;
 
+import com.slxy.analysis.teacher.mapper.UserMapper;
 import com.slxy.analysis.teacher.model.ClassGrade;
+import com.slxy.analysis.teacher.model.Exam;
 import com.slxy.analysis.teacher.model.Student;
 import com.slxy.analysis.teacher.service.StudentService;
 import com.slxy.analysis.teacher.service.TeacherService;
 import com.slxy.analysis.teacher.service.UserService;
+import com.slxy.analysis.teacher.utils.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author: sherlock
@@ -26,6 +30,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserMapper userMapper;
     @Autowired
     TeacherService teacherService;
     @Autowired
@@ -63,6 +69,7 @@ public class UserController {
      * @param role 权限等级
      * @return
      */
+    @Operation(name="登录")
     @RequestMapping("login")
     public ModelAndView login(HttpServletRequest request, String username, String password, String role, Model model){
             return userService.login(request, username, password, role, model);
@@ -79,6 +86,7 @@ public class UserController {
      * 注销
      * @return
      */
+    @Operation(name="注销")
     @RequestMapping("signOut")
     public String signOut(){
         return "login";
@@ -87,6 +95,7 @@ public class UserController {
     /**
      * 教师端跳转到首页
      */
+    @Operation(name="跳转到首页")
     @RequestMapping("goTeacherIndex")
     public String goIndex(){
         return "teacher/teacherIndex";
@@ -95,5 +104,17 @@ public class UserController {
     @RequestMapping("goStudentIndex")
     public String goTeacherIndex(){
         return "student/index";
+    }
+
+    @RequestMapping("exam")
+    public String test(){
+        System.out.println("@@@@@@@@@@@@#########");
+        List<Exam> exam = userMapper.getExam("17");
+        System.out.println(exam.toString());
+        for (Exam e : exam){
+            System.out.println("---------------------------");
+            System.out.println(e.getExamName());
+        }
+        return "login";
     }
 }
